@@ -28,6 +28,7 @@
 										<th></th>
 										<th>Name</th>
 										<th>Description</th>
+										<th>Stream</th>
 									</tr>
 								</thead>
 								<tbody>
@@ -47,6 +48,7 @@
 											</td>
 											<td><?=$row['name']?></td>
 											<td><?=$row['description']?></td>
+											<td>Placeholder</td>
 										</tr>
 									<?php endforeach; ?>
 								</tbody>

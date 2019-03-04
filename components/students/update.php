@@ -1,0 +1,174 @@
+<?php
+	include $_SERVER['DOCUMENT_ROOT']."/bookshop/components/streams/controller.php";
+	include $_SERVER['DOCUMENT_ROOT']."/bookshop/components/classes/controller.php";
+	include $_SERVER['DOCUMENT_ROOT']."/bookshop/components/class-levels/controller.php";
+
+    $streams = array();
+    $queryResult = retrieveStreams();
+    while ($row = mysqli_fetch_array($queryResult)) {
+        $streams[] = $row;
+	}
+	
+	$classes = array();
+    $queryResult = retrieveClasses();
+    while ($row = mysqli_fetch_array($queryResult)) {
+        $classes[] = $row;
+	}
+	
+	$class_levels = array();
+    $queryResult = retrieveClassLevels();
+    while ($row = mysqli_fetch_array($queryResult)) {
+        $class_levels[] = $row;
+    }
+
+    if (isset($_GET['id'])) {
+        $studentId = $_GET['id'];
+        $getStudentResult = getStudentByField("id", $studentId);
+        $student = mysqli_fetch_array($getStudentResult);
+
+        $_SESSION['first_name'] = $student['first_name'];
+        $_SESSION['middle_name'] = $student['middle_name'];
+        $_SESSION['last_name'] = $student['last_name'];
+        $_SESSION['birth_date'] = $student['birth_date'];
+        $_SESSION['contact_no'] = $student['contact_no'];
+        $_SESSION['email_address'] = $student['email_address'];
+        $_SESSION['gender'] = $student['gender'];
+        $_SESSION['stream'] = $student['stream'];
+        $_SESSION['class'] = $student['class'];
+        $_SESSION['class_level'] = $student['class_level'];
+        $_SESSION['id'] = $student['id'];
+    }
+?>
+
+<div class="panel with-nav-tabs panel-default">
+	<div class="panel-heading">
+		<?php include "partials/schools_nav.php"; ?>
+	</div>
+	<div class="panel-body">
+		<div class="tab-pane" <?php if ($_SESSION['page'] == 'new-student') { echo 'active';} ?>>
+			<div class="row">
+				<div class="col-sm-2">
+					<?php include "partials/students_side_nav.php"; ?> 
+				</div>
+				<div class="col-sm-10">
+					<div class="panel panel-primary">
+						<div class="panel-heading">
+							<div class="panel-title">
+								<h4 class="panel-title">Update Student</h4>
+							</div>
+						</div>
+						<div class="panel-body">
+							<div class="col-sm-12">
+								<form class="form-horizontal" role="form" action="components/students/controller.php" method="post">
+									<div class="row">
+										<div class="col-sm-6">
+											<div class="form-group">
+												<label for="form" class="col-sm-4 control-label">Firstname * :</label>
+												<div class="col-sm-8">
+													<input type="text" class="form-control" id="first_name" name="first_name" placeholder="Enter firstname" value="<?php  if (isset($_SESSION['first_name'])) {echo $_SESSION['first_name'];} ?>" />
+												</div>
+											</div>
+											<div class="form-group">
+												<label for="form" class="col-sm-4 control-label">Middlename:</label>
+												<div class="col-sm-8">
+													<input type="text" class="form-control" id="middle_name" name="middle_name" placeholder="Enter middlename" value="<?php  if (isset($_SESSION['middle_name'])) {echo $_SESSION['middle_name'];} ?>" />
+												</div>
+											</div>
+											<div class="form-group">
+												<label for="form" class="col-sm-4 control-label">Lastname * :</label>
+												<div class="col-sm-8">
+													<input type="text" class="form-control" id="last_name" name="last_name" placeholder="Enter lastname" value="<?php  if (isset($_SESSION['last_name'])) {echo $_SESSION['last_name'];} ?>" />
+												</div>
+											</div>                     
+											<div class="form-group">
+												<label for="form" class="col-sm-4 control-label">National Id * :</label>
+												<div class="col-sm-8">
+													<input type="text" class="form-control" id="national_id" name="national_id" placeholder="Enter nation ID" value="<?php  if (isset($_SESSION['national_id'])) {echo $_SESSION['national_id'];} ?>" />
+												</div>
+											</div>
+											<div class="form-group">
+												<label for="form" class="col-sm-4 control-label">Date Of Birth * :</label>
+												<div class="col-sm-8">
+													<input type="text" id="datepicker" class="form-control datepicker-here" name="birth_date" placeholder="Click date of birth" value="<?php  if (isset($_SESSION['birth_date'])) {echo $_SESSION['birth_date'];} ?>" />
+												</div>
+											</div>
+											<div class="form-group">
+												<label for="form" class="col-sm-4 control-label">Contact Number :</label>
+												<div class="col-sm-8">
+													<input type="text" class="form-control" id="contact_no" name="contact_no" placeholder="Enter contact number" value="<?php  if (isset($_SESSION['contact_no'])) {echo $_SESSION['contact_no'];} ?>" />
+												</div>
+											</div>
+										</div>
+										<div class="col-sm-6">
+											<div class="form-group">
+												<label for="form" class="col-sm-4 control-label">Contact Email Address :</label>
+												<div class="col-sm-8">
+													<input type="text" class="form-control" id="email_address" name="email_address" placeholder="Enter email address" value="<?php  if (isset($_SESSION['email_address'])) {echo $_SESSION['email_address'];} ?>" />
+												</div>
+											</div>
+											<div class="form-group">
+												<label for="form" class="col-sm-4 control-label">Gender * :</label>
+												<div class="col-sm-8">                                
+													<select class="form-control" id="gender" name="gender">
+														<option value="male">Male</option>
+														<option value="female">Female</option>
+													</select>
+												</div>
+											</div>
+											<div class="form-group">
+												<label for="form" class="col-sm-4 control-label">Stream * :</label>
+												<div class="col-sm-8">                                
+													<select class="form-control" id="stream" name="stream">
+														<?php foreach($streams as $row): ?>
+															<option value="<?php echo $row['id']; ?>"><?=$row['name']?></option>
+														<?php endforeach; ?>
+													</select>
+												</div>
+											</div>
+											<div class="form-group">
+												<label for="form" class="col-sm-4 control-label">Class * :</label>
+												<div class="col-sm-8">                                
+													<select class="form-control" id="class" name="class">
+														<?php foreach($classes as $row): ?>
+															<option value="<?php echo $row['id']; ?>"><?=$row['name']?></option>
+														<?php endforeach; ?>
+													</select>
+												</div>
+											</div>
+											<div class="form-group">
+												<label for="form" class="col-sm-4 control-label">Class Level * :</label>
+												<div class="col-sm-8">                                
+													<select class="form-control" id="class_level" name="class_level">
+														<?php foreach($class_levels as $row): ?>
+															<option value="<?php echo $row['id']; ?>"><?=$row['name']?></option>
+														<?php endforeach; ?>
+													</select>
+												</div>
+											</div>
+											<div class="form-group">
+												<div class="col-sm-8 col-sm-offset-4">
+													<button type="submit" class="btn btn-success" name="updatestudent"><span class="glyphicon glyphicon-ok-circle"></span>&nbsp;Add</button>
+													<a href="/<?php echo $_SESSION['home'];?>?action=students" class="btn btn-warning"><span class="glyphicon glyphicon-remove-circle"></span>&nbsp;Cancel</a>
+												</div>
+											</div>
+										</div>
+									</div>              
+								</form>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<script type="text/javascript">
+	$("#datepicker" ).datepicker({
+		language: 'en',
+		dateFormat: 'yyyy-mm-dd',
+		todayButton: new Date(),
+		autoClose: true,
+		maxDate: new Date()
+	});
+</script>

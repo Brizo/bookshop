@@ -1,6 +1,6 @@
 <div id="banner" class="row">
   <div class="col-sm-4">
-    <span id="company">Mpaka High School</span>
+    <span id="company"><?php if (isset($_SESSION['accountName'])) {echo $_SESSION['accountName']; }?></span>
   </div>
   <div class="col-sm-4" id="bannerSystemName">
     <span>BOOK SYSTEM</span>

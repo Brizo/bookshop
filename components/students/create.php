@@ -1,3 +1,27 @@
+<?php
+	include $_SERVER['DOCUMENT_ROOT']."/bookshop/components/streams/controller.php";
+	include $_SERVER['DOCUMENT_ROOT']."/bookshop/components/classes/controller.php";
+	include $_SERVER['DOCUMENT_ROOT']."/bookshop/components/class-levels/controller.php";
+
+    $streams = array();
+    $queryResult = retrieveStreams();
+    while ($row = mysqli_fetch_array($queryResult)) {
+        $streams[] = $row;
+	}
+	
+	$classes = array();
+    $queryResult = retrieveClasses();
+    while ($row = mysqli_fetch_array($queryResult)) {
+        $classes[] = $row;
+	}
+	
+	$class_levels = array();
+    $queryResult = retrieveClassLevels();
+    while ($row = mysqli_fetch_array($queryResult)) {
+        $class_levels[] = $row;
+    }
+?>
+
 <div class="panel with-nav-tabs panel-default">
 	<div class="panel-heading">
 		<?php include "partials/schools_nav.php"; ?>
@@ -47,7 +71,7 @@
 											<div class="form-group">
 												<label for="form" class="col-sm-4 control-label">Date Of Birth * :</label>
 												<div class="col-sm-8">
-													<input type="text" class="form-control" id="birth_date" name="birth_date" placeholder="Enter date of birth" value="<?php  if (isset($_SESSION['birth_date'])) {echo $_SESSION['birth_date'];} ?>" />
+													<input type="text" id="datepicker" class="form-control datepicker-here" name="birth_date" placeholder="Click date of birth" value="<?php  if (isset($_SESSION['birth_date'])) {echo $_SESSION['birth_date'];} ?>" />
 												</div>
 											</div>
 											<div class="form-group">
@@ -120,3 +144,13 @@
 		</div>
 	</div>
 </div>
+
+<script type="text/javascript">
+	$("#datepicker" ).datepicker({
+		language: 'en',
+		dateFormat: 'yyyy-mm-dd',
+		todayButton: new Date(),
+		autoClose: true,
+		maxDate: new Date()
+	});
+</script>

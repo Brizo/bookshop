@@ -9,19 +9,17 @@
 		return $result;
 	}
 
-	function getBookByField($field, $value) {
+	function getClassByField($field, $value) {
 		$conn = openCon();
 
-		if ($field == "id" || $field == "state" || $field == "status" || $field == "last_modified_by") {
-			$sql = "SELECT B.id,B.name, B.description, B.isb, B.year, B.author, B.bar_code, S.name `state`, CASE WHEN B.status = 1 THEN 'active' ELSE 'replaced' END `status`
-				FROM `books` B
-				LEFT JOIN book_states S ON B.state = S.id
-				WHERE B.{$field} = {$value}";
+		if ($field == "id") {
+			$sql = "SELECT `name`, `description`
+				FROM `classes`
+				WHERE {$field} = {$value}";
 		} else {
-			$sql = "SELECT B.id, B.name, B.description, B.isb, B.year, B.author, B.bar_code, S.name `state`, CASE WHEN B.status = 1 THEN 'active' ELSE 'replaced' END `status`
-				FROM `books` B
-				LEFT JOIN book_states S ON B.state = S.id
-				WHERE B.{$field} = '{$value}'";
+			$sql = "SELECT `name`, `description`
+				FROM `classes`
+				WHERE {$field} = '{$value}'";
 		}
 		
 		$result = $conn->query($sql);
@@ -29,39 +27,15 @@
 		return $result;
 	}
 
-	function getBookByFieldId($field, $value, $id) {
-		$conn = openCon();
 
-		if ($field == "id" || $field == "state" || $field == "status" || $field == "last_modified_by") {
-			$sql = "SELECT B.id,B.name, B.description, B.isb, B.year, B.author, B.bar_code, S.name `state`, CASE WHEN B.status = 1 THEN 'active' ELSE 'replaced' END `status`
-				FROM `books` B
-				LEFT JOIN book_states S ON B.state = S.id
-				WHERE B.{$field} = {$value} AND B.id != {$id}";
-		} else {
-			$sql = "SELECT B.id, B.name, B.description, B.isb, B.year, B.author, B.bar_code, S.name `state`, CASE WHEN B.status = 1 THEN 'active' ELSE 'replaced' END `status`
-				FROM `books` B
-				LEFT JOIN book_states S ON B.state = S.id
-				WHERE B.{$field} = '{$value}' AND B.id != {$id}";
-		}
-		
-		$result = $conn->query($sql);
-		closeCon($conn);
-		return $result;
-	}
-
-	function addBook($name, $description, $isb, $year, $author, $bar_code, $state) {
+	function addclass($name, $description) {
 		$conn = openCon();
 		$created_at = getTime();
 		$last_modified_by = $_SESSION['loggedUserId'];
 		$status = 1; // 1 = active, 0 = removed, 3 = replaced
-		$sql = "INSERT INTO `books`(`name`, `description`, `isb`, `year`, `author`, `bar_code`, `state`, `status`, `created_at`, `last_modified_by`) 
+		$sql = "INSERT INTO `classes`(`name`, `description`, `status`, `created_at`, `last_modified_by`) 
 			VALUES('{$name}',
 				'{$description}',
-				'{$isb}',
-				'{$year}',
-				'{$author}',
-				'{$bar_code}',
-				{$state},
 				{$status},
 				'{$created_at}',
 				{$last_modified_by})";
@@ -70,20 +44,14 @@
 		return $result;
 	}
 
-	function updateBook($id, $name, $description, $isb, $year, $author, $bar_code, $state) {
+	function updateClass($id, $name, $description) {
 		$conn = openCon();
-		$created_at = getTime();
 		$last_modified_by = $_SESSION['loggedUserId'];
 
-		$sql = "UPDATE `books`
+		$sql = "UPDATE `classes`
 			SET `name` = '{$name}', 
 				`description` = '{$description}', 
-				`isb` = '{$isb}', 
-				`year` = '{$year}', 
-				`author` = '{$author}', 
-				`bar_code` = '{$bar_code}', 
-				`state` = {$state}, 
-				`created_at` = '{$created_at}', 
+
 				`last_modified_by` = {$last_modified_by}
 			WHERE id = {$id}";
 
@@ -92,9 +60,9 @@
 		return $result;
 	}
 
-	function removeBook($id, $reason) {
+	function removeClass($id, $reason) {
 		$conn = openCon();
-		$sql = "UPDATE `books` SET `status` = 0, `reason` = '{$reason}' WHERE `id` = {$id}";
+		$sql = "UPDATE `classes` SET `status` = 0, `reason` = '{$reason}' WHERE `id` = {$id}";
 		$result = $conn->query($sql);
 		closeCon($conn);
 		return $result;

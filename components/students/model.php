@@ -3,8 +3,14 @@
 
 	function getStudents() {
 		$conn = openCon();
-		$sql = "SELECT `first_name`, `middle_name`, `last_name`, `national_id`, `birth_date`,
-			`gender`, `class`, `stream`, `class_level`, `student_no`, `contact_no`, `email_address`  FROM `students` WHERE `status` != 0";
+		$sql = "SELECT S.id, S.first_name, S.middle_name, S.last_name, S.national_id, S.birth_date, S.gender, 
+					C.name class, T.name stream, L.name class_level
+				FROM `students` S
+				LEFT JOIN streams T ON S.stream = T.id
+				LEFT JOIN classes C ON S.stream = C.id
+				LEFT JOIN class_levels L ON S.class_level = L.id 
+				WHERE S.status != 0";
+
 		$result = $conn->query($sql);
 		closeCon($conn);
 		return $result;
@@ -13,16 +19,22 @@
 	function getStudentByField($field, $value) {
 		$conn = openCon();
 
-		if ($field == "id" || $field == "state" || $field == "status" || $field == "last_modified_by") {
-			$sql = "SELECT S.id, S.name, S.description, S.isb, S.year, S.author, S.bar_code, S.name `state`, CASE WHEN B.status = 1 THEN 'active' ELSE 'replaced' END `status`
+		if ($field == "id" || $field == "class" || $field == "class_level" || $field == "stream" || $field == "status" || $field == "last_modified_by") {
+			$sql = "SELECT S.id, S.first_name, S.middle_name, S.last_name, S.national_id, S.birth_date, S.gender, 
+					C.name class, T.name stream, L.name class_level
 				FROM `students` S
-				LEFT JOIN book_states C ON S.state = C.id
+				LEFT JOIN streams T ON S.stream = T.id
+				LEFT JOIN classes C ON S.stream = C.id
+				LEFT JOIN class_levels L ON S.class_level = L.id
 				WHERE S.{$field} = {$value}";
 		} else {
-			$sql = "SELECT B.id, B.name, B.description, B.isb, B.year, B.author, B.bar_code, S.name `state`, CASE WHEN B.status = 1 THEN 'active' ELSE 'replaced' END `status`
-				FROM `students` B
-				LEFT JOIN book_states S ON B.state = S.id
-				WHERE B.{$field} = '{$value}'";
+			$sql = "SELECT S.id, S.first_name, S.middle_name, S.last_name, S.national_id, S.birth_date, S.gender, 
+						C.name class, T.name stream, L.name class_level
+					FROM `students` S
+					LEFT JOIN streams T ON S.stream = T.id
+					LEFT JOIN classes C ON S.stream = C.id
+					LEFT JOIN class_levels L ON S.class_level = L.id
+					WHERE S.{$field} = '{$value}'";
 		}
 		
 		$result = $conn->query($sql);

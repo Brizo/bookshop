@@ -11,7 +11,7 @@
 
 <div class="panel panel-primary">
 	<div class="panel-heading">
-    	<b>Welcome to Mpaka Book System</b>
+    	<b>Welcome <?php if (isset($_SESSION['accountName'])) {echo "to ".$_SESSION['accountName']." Book System"; }?></b>
     </div>
 	<div class="panel-body">
 		<div class="row">

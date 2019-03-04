@@ -2,6 +2,7 @@
 	session_start();
 	$_SESSION['home'] = "bookshop";
 	include "model.php";
+	include $_SERVER['DOCUMENT_ROOT']."/bookshop/components/school/controller.php";
 
   if (isset($_POST['local'])) {
 		$conn2 = openCon();
@@ -46,6 +47,16 @@
 						$_SESSION["message"] = "Logged in successfully. Welcome";
 						$_SESSION['instance'] = "Development";
 						$_SESSION['version'] = "1.0.0";
+
+						// get account information
+						$accountExist = accountExist();
+
+						if ($accountExist == 1) {
+							$getAccountResult = retrieveAccount();
+							$account = mysqli_fetch_array($getAccountResult);
+							$_SESSION['accountName'] = $account['name'];
+						}
+
 
 						$action = "Login";
 						$description = $_SESSION['username'];

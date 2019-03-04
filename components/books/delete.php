@@ -26,13 +26,13 @@
                         <div class="form-group">
                             <label for="form" class="col-sm-4 control-label">Name * :</label>
                             <div class="col-sm-8">
-                                <input type="text" class="form-control" id="name" name="name" placeholder="Enter book name" value="<?php  if (isset($_SESSION['name'])) {echo $_SESSION['name'];} ?>" disabled/>
+                                <input type="text" class="form-control" id="name" name="name" value="<?php  if (isset($_SESSION['name'])) {echo $_SESSION['name'];} ?>" disabled/>
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="form" class="col-sm-4 control-label">Reason * :</label>
                             <div class="col-sm-8">
-                                <textarea rows="3" cols="50" class="form-control" placeholder="Enter book deletion reason" name="reason" value="<?php  if (isset($_SESSION['reason'])) {echo $_SESSION['reason'];} ?>"></textarea>
+                                <textarea rows="3" cols="50" class="form-control" placeholder="Enter book deletion reason" name="reason"><?php  if (isset($_SESSION['reason'])) {echo $_SESSION['reason'];} ?></textarea>
                             </div>
                         </div>                      
                         <div class="form-group">

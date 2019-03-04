@@ -137,18 +137,6 @@
 				case "school":
 					$destination="components/school/retrieve.php";
 					break;
-
-				case "new-school":
-					$destination="components/school/create.php";
-					break;
-
-				case "edit-school":
-					$destination="components/school/update.php";
-					break;
-			
-				case "delete-school":
-					$destination="components/school/delete.php";
-					break;
 				
 				case "admin":
 					$destination="components/admin/retrieve.php";
