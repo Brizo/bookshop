@@ -14,6 +14,8 @@
         $_SESSION['description'] = mysqli_real_escape_string($conn,$_POST['description']);
 		$_SESSION['isb'] = mysqli_real_escape_string($conn,$_POST['isb']);
 		$_SESSION['year'] = mysqli_real_escape_string($conn,$_POST['year']);
+		$_SESSION['purchase_price'] = mysqli_real_escape_string($conn,$_POST['purchase_price']);
+		$_SESSION['levie'] = mysqli_real_escape_string($conn,$_POST['levie']);
         $_SESSION['author'] = mysqli_real_escape_string($conn,$_POST['author']);
         $_SESSION['barCode'] = mysqli_real_escape_string($conn,$_POST['barCode']);
         $_SESSION['state'] = mysqli_real_escape_string($conn,$_POST['state']);
@@ -50,7 +52,8 @@
 			}
 
 			// add book
-			$addBookResult = addBook($_SESSION['name'], $_SESSION['description'], $_SESSION['isb'], $_SESSION['year'], $_SESSION['author'], $_SESSION['barCode'], $_SESSION['state']);
+			$addBookResult = addBook($_SESSION['name'], $_SESSION['description'], $_SESSION['isb'], $_SESSION['year'] , $_SESSION['purchase_price'], $_SESSION['levie'], $_SESSION['author'], 
+				$_SESSION['barCode'], $_SESSION['state']);
 	
 			if ($addBookResult) {
 				unset($_SESSION['name']);
@@ -86,6 +89,8 @@
         $_SESSION['description'] = mysqli_real_escape_string($conn,$_POST['description']);
 		$_SESSION['isb'] = mysqli_real_escape_string($conn,$_POST['isb']);
 		$_SESSION['year'] = mysqli_real_escape_string($conn,$_POST['year']);
+		$_SESSION['purchase_price'] = mysqli_real_escape_string($conn,$_POST['purchase_price']);
+		$_SESSION['levie'] = mysqli_real_escape_string($conn,$_POST['levie']);
         $_SESSION['author'] = mysqli_real_escape_string($conn,$_POST['author']);
         $_SESSION['barCode'] = mysqli_real_escape_string($conn,$_POST['barCode']);
         $_SESSION['state'] = mysqli_real_escape_string($conn,$_POST['state']);
@@ -122,7 +127,8 @@
 			}
 
 			// update book
-			$updateBookResult = updateBook($_SESSION['id'], $_SESSION['name'], $_SESSION['description'], $_SESSION['isb'], $_SESSION['year'], $_SESSION['author'], $_SESSION['barCode'], $_SESSION['state']);
+			$updateBookResult = updateBook($_SESSION['id'], $_SESSION['name'], $_SESSION['description'], $_SESSION['isb'], $_SESSION['year'], $_SESSION['purchase_price'], $_SESSION['levie'], 
+					$_SESSION['author'], $_SESSION['barCode'], $_SESSION['state']);
 	
 			if ($updateBookResult) {
 				unset($_SESSION['id']);

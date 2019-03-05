@@ -35,7 +35,7 @@
                                     </div>
                                 </div>                      
                                 <div class="form-group">
-                                    <label for="form" class="col-sm-4 control-label">ISB * :</label>
+                                    <label for="form" class="col-sm-4 control-label">ISBN * :</label>
                                     <div class="col-sm-8">
                                         <input type="text" class="form-control" id="isb" name="isb" placeholder="Enter book isb" value="<?php  if (isset($_SESSION['isb'])) {echo $_SESSION['isb'];} ?>" />
                                     </div>
@@ -46,8 +46,20 @@
                                         <input type="text" class="form-control" id="year" name="year" placeholder="Enter book publish year" value="<?php  if (isset($_SESSION['year'])) {echo $_SESSION['year'];} ?>" />
                                     </div>
                                 </div>
+                                <div class="form-group">
+                                    <label for="form" class="col-sm-4 control-label">Purchase Price :</label>
+                                    <div class="col-sm-8">
+                                        <input type="text" class="form-control" id="purchase_price" name="purchase_price" placeholder="Enter book purchase price" value="<?php  if (isset($_SESSION['purchase_price'])) {echo $_SESSION['purchase_price'];} ?>" />
+                                    </div>
+                                </div>
                             </div>
                             <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label for="form" class="col-sm-4 control-label">Levie :</label>
+                                    <div class="col-sm-8">
+                                        <input type="text" class="form-control" id="levie" name="levie" placeholder="Enter book levie" value="<?php  if (isset($_SESSION['levie'])) {echo $_SESSION['levie'];} ?>" />
+                                    </div>
+                                </div>
                                 <div class="form-group">
                                     <label for="form" class="col-sm-4 control-label">Author * :</label>
                                     <div class="col-sm-8">

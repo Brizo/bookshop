@@ -3,7 +3,7 @@
 
 	function getStudents() {
 		$conn = openCon();
-		$sql = "SELECT S.id, S.first_name, S.middle_name, S.last_name, S.national_id, S.birth_date, S.gender, 
+		$sql = "SELECT S.id, S.first_name, S.middle_name, S.last_name, S.national_id, S.birth_date, S.gender, S.student_no, 
 					C.name class, T.name stream, L.name class_level
 				FROM `students` S
 				LEFT JOIN streams T ON S.stream = T.id
@@ -20,7 +20,7 @@
 		$conn = openCon();
 
 		if ($field == "id" || $field == "class" || $field == "class_level" || $field == "stream" || $field == "status" || $field == "last_modified_by") {
-			$sql = "SELECT S.id, S.first_name, S.middle_name, S.last_name, S.national_id, S.birth_date, S.gender, 
+			$sql = "SELECT S.id, S.first_name, S.middle_name, S.last_name, S.national_id, S.birth_date, S.gender, S.student_no
 					C.name class, T.name stream, L.name class_level
 				FROM `students` S
 				LEFT JOIN streams T ON S.stream = T.id
@@ -28,7 +28,7 @@
 				LEFT JOIN class_levels L ON S.class_level = L.id
 				WHERE S.{$field} = {$value}";
 		} else {
-			$sql = "SELECT S.id, S.first_name, S.middle_name, S.last_name, S.national_id, S.birth_date, S.gender, 
+			$sql = "SELECT S.id, S.first_name, S.middle_name, S.last_name, S.national_id, S.birth_date, S.gender, S.student_no
 						C.name class, T.name stream, L.name class_level
 					FROM `students` S
 					LEFT JOIN streams T ON S.stream = T.id
@@ -60,12 +60,17 @@
 				{$stream},
 				{$class_level},
 				'{$student_no}',
-				{$contact_no},
+				'{$contact_no}',
 				'{$email_address}',
 				{$status},
 				'{$created_at}',
 				{$last_modified_by})";
+
 		$result = $conn->query($sql);
+
+		$sql = "UPDATE `account_unit` SET `student_no_counter` = `student_no_counter` + 1 WHERE `status` = 1";
+		$result = $conn->query($sql);
+
 		closeCon($conn);
 		return $result;
 	}

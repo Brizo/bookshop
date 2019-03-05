@@ -27,6 +27,7 @@
 									<tr>
 										<th></th>
 										<th>Name</th>
+										<th>Surname</th>
 										<th>Student Number</th>
 										<th>Gender</th>
 										<th>Class</th>
@@ -48,7 +49,8 @@
 												<a href="/bookshop?action=edit-student&id=<?php echo $row['id']; ?>"><span class='glyphicon glyphicon-edit' aria-hidden='true'></span>Edit</a>&nbsp;&nbsp;
 												<a href="/bookshop?action=delete-student&id=<?php echo $row['id']; ?>"><span class='glyphicon glyphicon-trash' aria-hidden='true'></span>Remove</a>&nbsp;&nbsp;
 											</td>
-											<td><?=$row['name']?></td>
+											<td><?=$row['first_name']?></td>
+											<td><?=$row['last_name']?></td>
 											<td><?=$row['student_no']?></td>
 											<td><?=$row['gender']?></td>
 											<td><?=$row['class']?></td>

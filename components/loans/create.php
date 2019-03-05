@@ -1,3 +1,20 @@
+<?php
+    include $_SERVER['DOCUMENT_ROOT']."/bookshop/components/students/controller.php";
+    include $_SERVER['DOCUMENT_ROOT']."/bookshop/components/books/controller.php";
+
+    $students = array();
+    $queryResult = retrieveStudents();
+    while ($row = mysqli_fetch_array($queryResult)) {
+        $students[] = $row;
+    }
+
+    $books = array();
+    $queryResult = retrieveBooks();
+    while ($row = mysqli_fetch_array($queryResult)) {
+        $books[] = $row;
+    }
+?>
+
 <div class="row">
 	<div class="col col-sm-2">
 		<?php include "partials/side_nav.php"; ?>  
@@ -5,33 +22,35 @@
 	<div class="col col-sm-10">
         <div class="panel panel-primary">
             <div class="panel-heading">
-                <h4 class="panel-title">Add Loan <a href="/<?php echo $_SESSION['home'];?>?action=loans" class="pull-right"><span class = "glyphicon glyphicon-list"></span>&nbsp;View List</a></h4>
+                <h4 class="panel-title">New Loan <a href="/<?php echo $_SESSION['home'];?>?action=loans" class="pull-right"><span class = "glyphicon glyphicon-list"></span>&nbsp;View List</a></h4>
             </div>
             <div class="panel-body">
-                <div class="col-sm-8">
+                <div class="col-sm-10">
                     <form class="form-horizontal" role="form" action="components/loans/controller.php" method="post">
                         <div class="form-group">
-                            <label for="form" class="col-sm-4 control-label">Account no * :</label>
-                            <div class="col-sm-8">
-                                <input type="text" class="form-control" id="accountd" name="accountd" placeholder="Enter account number" value="<?php  if (isset($_SESSION['accountd'])) {echo $_SESSION['accountd'];} ?>" />
-                            </div>
-                        </div>                      
-                        <div class="form-group">
-                            <label for="form" class="col-sm-4 control-label">Mobile * :</label>
-                            <div class="col-sm-8">
-                                <input type="text" class="form-control" id="mobiled" name="mobiled" placeholder="Enter mobile number" value="<?php  if (isset($_SESSION['mobiled'])) {echo $_SESSION['mobiled'];} ?>" />
+                            <label for="form" class="col-sm-4 control-label">Student * :</label>
+                            <div class="col-sm-8">                                
+                                <select class="form-control" id="state" name="state">
+                                    <?php foreach($students as $row): ?>
+                                        <option value="<?php echo $row['id']; ?>"><?=$row['first_name']?>-<?=$row['student_no']?></option>
+                                    <?php endforeach; ?>
+                                </select>
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="form" class="col-sm-4 control-label">Telephone :</label>
-                            <div class="col-sm-8">
-                                <input type="text" class="form-control" id="telephoned" name="telephoned" placeholder="Enter telephone number" value="<?php  if (isset($_SESSION['telephoned'])) {echo $_SESSION['telephoned'];} ?>" />
+                            <label for="form" class="col-sm-4 control-label">Book * :</label>
+                            <div class="col-sm-8">                                
+                                <select class="form-control" id="state" name="state">
+                                    <?php foreach($books as $row): ?>
+                                        <option value="<?php echo $row['id']; ?>"><?=$row['name']?></option>
+                                    <?php endforeach; ?>
+                                </select>
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="form" class="col-sm-4 control-label">Pin :</label>
+                            <label for="form" class="col-sm-4 control-label">Return Date * :</label>
                             <div class="col-sm-8">
-                                <input type="text" class="form-control" id="pind" name="pind" placeholder="Enter customer pin" value="<?php  if (isset($_SESSION['pind'])) {echo $_SESSION['pind'];} ?>" />
+                                <input type="text" id="datepicker" class="form-control datepicker-here" name="return_date" placeholder="Click for return date" value="<?php  if (isset($_SESSION['return_date'])) {echo $_SESSION['return_date'];} ?>" />
                             </div>
                         </div>
                         <div class="form-group">
@@ -39,10 +58,19 @@
                                 <button type="submit" class="btn btn-success" name="addnewloan"><span class="glyphicon glyphicon-ok-circle"></span>&nbsp;Add</button>
                                 <a href="/<?php echo $_SESSION['home'];?>?action=loans" class="btn btn-warning"><span class="glyphicon glyphicon-remove-circle"></span>&nbsp;Cancel</a>
                             </div>
-                        </div>                
+                        </div>       
                     </form>
                 </div>
             </div>
         </div>
     </div>
 </div>
+
+<script type="text/javascript">
+	$("#datepicker" ).datepicker({
+		language: 'en',
+		dateFormat: 'yyyy-mm-dd',
+		todayButton: new Date(),
+		autoClose: true
+	});
+</script>

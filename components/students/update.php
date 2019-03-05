@@ -1,5 +1,6 @@
 <?php
 	include $_SERVER['DOCUMENT_ROOT']."/bookshop/components/streams/controller.php";
+	include $_SERVER['DOCUMENT_ROOT']."/bookshop/components/school/controller.php";
 	include $_SERVER['DOCUMENT_ROOT']."/bookshop/components/classes/controller.php";
 	include $_SERVER['DOCUMENT_ROOT']."/bookshop/components/class-levels/controller.php";
 
@@ -26,7 +27,8 @@
         $getStudentResult = getStudentByField("id", $studentId);
         $student = mysqli_fetch_array($getStudentResult);
 
-        $_SESSION['first_name'] = $student['first_name'];
+		$_SESSION['first_name'] = $student['first_name'];
+		$_SESSION['student_no'] = $student['student_no'];
         $_SESSION['middle_name'] = $student['middle_name'];
         $_SESSION['last_name'] = $student['last_name'];
         $_SESSION['birth_date'] = $student['birth_date'];
@@ -62,6 +64,12 @@
 								<form class="form-horizontal" role="form" action="components/students/controller.php" method="post">
 									<div class="row">
 										<div class="col-sm-6">
+											<div class="form-group">
+												<label for="form" class="col-sm-4 control-label">Student Number * :</label>
+												<div class="col-sm-8">
+													<input type="text" class="form-control" id="student_no" name="student_no" value="<?php  echo $_SESSION['student_no']; ?>" />
+												</div>
+											</div>
 											<div class="form-group">
 												<label for="form" class="col-sm-4 control-label">Firstname * :</label>
 												<div class="col-sm-8">
@@ -103,7 +111,7 @@
 											<div class="form-group">
 												<label for="form" class="col-sm-4 control-label">Contact Email Address :</label>
 												<div class="col-sm-8">
-													<input type="text" class="form-control" id="email_address" name="email_address" placeholder="Enter email address" value="<?php  if (isset($_SESSION['email_address'])) {echo $_SESSION['email_address'];} ?>" />
+													<input type="text" class="form-control" id="std_email_address" name="std_email_address" placeholder="Enter email address" value="<?php  if (isset($_SESSION['std_email_address'])) {echo $_SESSION['std_email_address'];} ?>" />
 												</div>
 											</div>
 											<div class="form-group">

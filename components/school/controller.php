@@ -31,7 +31,8 @@
         $_SESSION['website'] = mysqli_real_escape_string($conn,$_POST['website']);
         $_SESSION['postal_address'] = mysqli_real_escape_string($conn,$_POST['postal_address']);
         $_SESSION['physical_address'] = mysqli_real_escape_string($conn,$_POST['physical_address']);
-        $_SESSION['username_prefix'] = mysqli_real_escape_string($conn,$_POST['username_prefix']);
+		$_SESSION['username_prefix'] = mysqli_real_escape_string($conn,$_POST['username_prefix']);
+		$_SESSION['book_circulation'] = mysqli_real_escape_string($conn,$_POST['book_circulation']);
 		closeCon($conn); // disconnect from db
 	
 		// // check fields and throw error if empty
@@ -59,7 +60,7 @@
         } else {
 			// add account
             $addAccountResult = addAccount($_SESSION['name'], $_SESSION['contact_person'], $_SESSION['telephone'], $_SESSION['fax'], $_SESSION['email_address'], 
-                $_SESSION['website'], $_SESSION['postal_address'], $_SESSION['physical_address'], $_SESSION['username_prefix']);
+                $_SESSION['website'], $_SESSION['postal_address'], $_SESSION['physical_address'], $_SESSION['username_prefix'], $_SESSION['book_circulation']);
 	
 			if ($addAccountResult) {
 				unset($_SESSION['name']);
@@ -70,7 +71,8 @@
         		unset($_SESSION['website']);
                 unset($_SESSION['postal_address']);
                 unset($_SESSION['physical_address']);
-                unset($_SESSION['username_prefix']);
+				unset($_SESSION['username_prefix']);
+				unset($_SESSION['book_circulation']);
 				
                 $_SESSION["alert"] = "success";
                 $_SESSION["status"] = "Success";
@@ -101,7 +103,8 @@
         $_SESSION['website'] = mysqli_real_escape_string($conn,$_POST['website']);
         $_SESSION['postal_address'] = mysqli_real_escape_string($conn,$_POST['postal_address']);
         $_SESSION['physical_address'] = mysqli_real_escape_string($conn,$_POST['physical_address']);
-        $_SESSION['username_prefix'] = mysqli_real_escape_string($conn,$_POST['username_prefix']);
+		$_SESSION['username_prefix'] = mysqli_real_escape_string($conn,$_POST['username_prefix']);
+		$_SESSION['book_circulation'] = mysqli_real_escape_string($conn,$_POST['book_circulation']);
 		closeCon($conn); // disconnect from db
 	
 		// // check fields and throw error if empty
@@ -129,7 +132,7 @@
         } else {
 			// add account
             $addAccountResult = updateAccount($_SESSION['id'], $_SESSION['aname'], $_SESSION['contact_person'], $_SESSION['telephone'], $_SESSION['fax'], $_SESSION['email_address'], 
-                $_SESSION['website'], $_SESSION['postal_address'], $_SESSION['physical_address'], $_SESSION['username_prefix']);
+                $_SESSION['website'], $_SESSION['postal_address'], $_SESSION['physical_address'], $_SESSION['username_prefix'], $_SESSION['book_circulation']);
 	
 			if ($addAccountResult) {
                 unset($_SESSION['id']);
@@ -141,7 +144,8 @@
         		unset($_SESSION['website']);
                 unset($_SESSION['postal_address']);
                 unset($_SESSION['physical_address']);
-                unset($_SESSION['username_prefix']);
+				unset($_SESSION['username_prefix']);
+				unset($_SESSION['book_circulation']);
 				
                 $_SESSION["alert"] = "success";
                 $_SESSION["status"] = "Success";

@@ -73,8 +73,25 @@
 				case "delete-stream":
 					$destination="components/streams/delete.php";
 					break;
+
+				// stream subjects
+				case "stream-subjects":
+					$destination="components/stream-subjects/retrieve.php";
+					break;
+
+				case "new-stream-subject":
+					$destination="components/stream-subjects/create.php";
+					break;
 				
-				
+				// subject books
+				case "subject-books":
+					$destination="components/subject-books/retrieve.php";
+					break;
+
+				case "new-subject-book":
+					$destination="components/subject-books/create.php";
+					break;
+
 				// students
 				case "students":
 					$destination="components/students/retrieve.php";

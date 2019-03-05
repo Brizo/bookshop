@@ -10,69 +10,59 @@
 	if (isset($_POST['addnewstudent'])) {
 		session_start();
 		$conn = openCon(); // connect to db
-        $_SESSION['name'] = mysqli_real_escape_string($conn,$_POST['name']);
-        $_SESSION['description'] = mysqli_real_escape_string($conn,$_POST['description']);
-		$_SESSION['isb'] = mysqli_real_escape_string($conn,$_POST['isb']);
-		$_SESSION['year'] = mysqli_real_escape_string($conn,$_POST['year']);
-        $_SESSION['author'] = mysqli_real_escape_string($conn,$_POST['author']);
-        $_SESSION['barCode'] = mysqli_real_escape_string($conn,$_POST['barCode']);
-        $_SESSION['state'] = mysqli_real_escape_string($conn,$_POST['state']);
+        $_SESSION['first_name'] = mysqli_real_escape_string($conn,$_POST['first_name']);
+        $_SESSION['middle_name'] = mysqli_real_escape_string($conn,$_POST['middle_name']);
+		$_SESSION['last_name'] = mysqli_real_escape_string($conn,$_POST['last_name']);
+		$_SESSION['national_id'] = mysqli_real_escape_string($conn,$_POST['national_id']);
+        $_SESSION['birth_date'] = mysqli_real_escape_string($conn,$_POST['birth_date']);
+        $_SESSION['gender'] = mysqli_real_escape_string($conn,$_POST['gender']);
+		$_SESSION['class'] = mysqli_real_escape_string($conn,$_POST['class']);
+		$_SESSION['stream'] = mysqli_real_escape_string($conn,$_POST['stream']);
+		$_SESSION['class_level'] = mysqli_real_escape_string($conn,$_POST['class_level']);
+		$_SESSION['contact_no'] = mysqli_real_escape_string($conn,$_POST['contact_no']);
+		$_SESSION['std_email_address'] = mysqli_real_escape_string($conn,$_POST['std_email_address']);
 		closeCon($conn); // disconnect from db
 	
 		// // check fields and throw error if empty
-		if (empty($_SESSION['name']) || empty($_SESSION['isb']) || empty($_SESSION['author']) || empty($_SESSION['year']) || empty($_SESSION['barCode']) || empty($_SESSION['state'])) {
+		if (empty($_SESSION['first_name']) || empty($_SESSION['last_name']) || empty($_SESSION['birth_date']) || empty($_SESSION['gender']) || empty($_SESSION['class']) 
+			|| empty($_SESSION['stream']) || empty($_SESSION['class_level'])) {
 			$_SESSION["alert"] = "danger";
 			$_SESSION["status"] = "Error";
 			$_SESSION["message"] = "Please fill all mandatory information.";
 
-			header("Location: /bookshop?action=new-book");
-			exit();
-		} else if (!is_numeric($_SESSION['year'])) {
-			$_SESSION["alert"] = "danger";
-			$_SESSION["status"] = "Error";
-			$_SESSION["message"] = "Book publish year should be numeric.";
-
-			header("Location: /bookshop?action=new-book");
+			header("Location: /bookshop?action=new-student");
 			exit();
 		} else {
-			// check if barcode already used
-			$getByBarcodeResult = getBookByField("bar_code", $_SESSION['barCode']);
-
-			$getByBarcodeNum = mysqli_num_rows($getByBarcodeResult);
-
-			if ($getByBarcodeNum > 0) {
-				$_SESSION["alert"] = "warning";
-				$_SESSION["status"] = "Warning";
-				$_SESSION["message"] = "Book with entered barcode already exist.";
-
-				header("Location: /bookshop?action=new-book");
-				exit();
-			}
-
-			// add book
-			$addBookResult = addBook($_SESSION['name'], $_SESSION['description'], $_SESSION['isb'], $_SESSION['year'], $_SESSION['author'], $_SESSION['barCode'], $_SESSION['state']);
+			// add student
+			$addStudentResult = addStudent($_SESSION['first_name'], $_SESSION['middle_name'], $_SESSION['last_name'], $_SESSION['national_id'], $_SESSION['birth_date'], 
+			$_SESSION['gender'], $_SESSION['class'], $_SESSION['stream'], $_SESSION['class_level'], $_SESSION['student_no'], $_SESSION['contact_no'], $_SESSION['std_email_address']);
 	
-			if ($addBookResult) {
-				unset($_SESSION['name']);
-        		unset($_SESSION['description']);
-				unset($_SESSION['isb']);
-				unset($_SESSION['year']);
-        		unset($_SESSION['author']);
-        		unset($_SESSION['barCode']);
-				unset($_SESSION['state']);
+			if ($addStudentResult) {
+				unset($_SESSION['first_name']);
+        		unset($_SESSION['middle_name']);
+				unset($_SESSION['last_name']);
+				unset($_SESSION['national_id']);
+        		unset($_SESSION['birth_date']);
+        		unset($_SESSION['gender']);
+				unset($_SESSION['class']);
+				unset($_SESSION['stream']);
+				unset($_SESSION['class_level']);
+				unset($_SESSION['student_no']);
+				unset($_SESSION['contact_no']);
+				unset($_SESSION['std_email_address']);
 				
                 $_SESSION["alert"] = "success";
                 $_SESSION["status"] = "Success";
-                $_SESSION["message"] = "Book Successfully Added";
+                $_SESSION["message"] = "Student Successfully Added";
 
-                header("Location: /bookshop?action=new-book");
+                header("Location: /bookshop?action=new-student");
                 exit();
 			} else {
 			    $_SESSION["alert"] = "danger";
 				$_SESSION["status"] = "Error";
 				$_SESSION["message"] = "A database error has occured, please contact system administrator.";
 
-				header("Location: /bookshop?action=new-book");
+				header("Location: /bookshop?action=new-student");
 				exit();
 			}
 		}
@@ -82,70 +72,60 @@
 	if (isset($_POST['updatestudent'])) {
 		session_start();
 		$conn = openCon(); // connect to db
-        $_SESSION['name'] = mysqli_real_escape_string($conn,$_POST['name']);
-        $_SESSION['description'] = mysqli_real_escape_string($conn,$_POST['description']);
-		$_SESSION['isb'] = mysqli_real_escape_string($conn,$_POST['isb']);
-		$_SESSION['year'] = mysqli_real_escape_string($conn,$_POST['year']);
-        $_SESSION['author'] = mysqli_real_escape_string($conn,$_POST['author']);
-        $_SESSION['barCode'] = mysqli_real_escape_string($conn,$_POST['barCode']);
-        $_SESSION['state'] = mysqli_real_escape_string($conn,$_POST['state']);
+        $_SESSION['first_name'] = mysqli_real_escape_string($conn,$_POST['first_name']);
+        $_SESSION['middle_name'] = mysqli_real_escape_string($conn,$_POST['middle_name']);
+		$_SESSION['last_name'] = mysqli_real_escape_string($conn,$_POST['last_name']);
+		$_SESSION['national_id'] = mysqli_real_escape_string($conn,$_POST['national_id']);
+        $_SESSION['birth_date'] = mysqli_real_escape_string($conn,$_POST['birth_date']);
+        $_SESSION['gender'] = mysqli_real_escape_string($conn,$_POST['gender']);
+		$_SESSION['class'] = mysqli_real_escape_string($conn,$_POST['class']);
+		$_SESSION['stream'] = mysqli_real_escape_string($conn,$_POST['stream']);
+		$_SESSION['class_level'] = mysqli_real_escape_string($conn,$_POST['class_level']);
+		$_SESSION['student_no'] = mysqli_real_escape_string($conn,$_POST['student_no']);
+		$_SESSION['contact_no'] = mysqli_real_escape_string($conn,$_POST['contact_no']);
+		$_SESSION['std_email_address'] = mysqli_real_escape_string($conn,$_POST['std_email_address']);
 		closeCon($conn); // disconnect from db
 	
 		// // check fields and throw error if empty
-		if (empty($_SESSION['name']) || empty($_SESSION['isb']) || empty($_SESSION['author']) || empty($_SESSION['year']) || empty($_SESSION['barCode']) || empty($_SESSION['state'])) {
+		if (empty($_SESSION['first_name']) || empty($_SESSION['last_name']) || empty($_SESSION['birth_date']) || empty($_SESSION['gender']) || empty($_SESSION['class']) 
+			|| empty($_SESSION['stream']) || empty($_SESSION['class_level']) || empty($_SESSION['student_no'])) {
 			$_SESSION["alert"] = "danger";
 			$_SESSION["status"] = "Error";
 			$_SESSION["message"] = "Please fill all mandatory information.";
 
-			header("Location: /bookshop?action=edit-book");
-			exit();
-		} else if (!is_numeric($_SESSION['year'])) {
-			$_SESSION["alert"] = "danger";
-			$_SESSION["status"] = "Error";
-			$_SESSION["message"] = "Book publish year should be numeric.";
-
-			header("Location: /bookshop?action=edit-book");
+			header("Location: /bookshop?action=edit-student");
 			exit();
 		} else {
-			// check if barcode already used
-			$getByBarcodeResult = getBookByFieldId("bar_code", $_SESSION['barCode'], $_SESSION['id']);
-
-			$getByBarcodeNum = mysqli_num_rows($getByBarcodeResult);
-
-			if ($getByBarcodeNum > 0) {
-				$_SESSION["alert"] = "warning";
-				$_SESSION["status"] = "Warning";
-				$_SESSION["message"] = "Book with entered barcode already exist.";
-
-				header("Location: /bookshop?action=edit-book");
-				exit();
-			}
-
-			// update book
-			$updateBookResult = updateBook($_SESSION['id'], $_SESSION['name'], $_SESSION['description'], $_SESSION['isb'], $_SESSION['year'], $_SESSION['author'], $_SESSION['barCode'], $_SESSION['state']);
+			// add student
+			$updateStudentResult = updateStudent($_SESSION['first_name'], $_SESSION['middle_name'], $_SESSION['last_name'], $_SESSION['national_id'], $_SESSION['birth_date'], 
+			$_SESSION['gender'], $_SESSION['class'], $_SESSION['stream'], $_SESSION['class_level'], $_SESSION['student_no'], $_SESSION['contact_no'], $_SESSION['std_email_address']);
 	
-			if ($updateBookResult) {
-				unset($_SESSION['id']);
-				unset($_SESSION['name']);
-        		unset($_SESSION['description']);
-				unset($_SESSION['isb']);
-				unset($_SESSION['year']);
-        		unset($_SESSION['author']);
-        		unset($_SESSION['barCode']);
-				unset($_SESSION['state']);
+			if ($updateStudentResult) {
+				unset($_SESSION['first_name']);
+        		unset($_SESSION['middle_name']);
+				unset($_SESSION['last_name']);
+				unset($_SESSION['national_id']);
+        		unset($_SESSION['birth_date']);
+        		unset($_SESSION['gender']);
+				unset($_SESSION['class']);
+				unset($_SESSION['stream']);
+				unset($_SESSION['class_level']);
+				unset($_SESSION['student_no']);
+				unset($_SESSION['contact_no']);
+				unset($_SESSION['std_email_address']);
 				
                 $_SESSION["alert"] = "success";
                 $_SESSION["status"] = "Success";
-                $_SESSION["message"] = "Book Successfully updated";
+                $_SESSION["message"] = "Student Successfully Updated";
 
-                header("Location: /bookshop?action=books");
+                header("Location: /bookshop?action=edit-student");
                 exit();
 			} else {
 			    $_SESSION["alert"] = "danger";
 				$_SESSION["status"] = "Error";
 				$_SESSION["message"] = "A database error has occured, please contact system administrator.";
 
-				header("Location: /bookshop?action=edit-book");
+				header("Location: /bookshop?action=edit-student");
 				exit();
 			}
 		}
@@ -164,11 +144,11 @@
 			$_SESSION["status"] = "Error";
 			$_SESSION["message"] = "Please fill all mandatory information.";
 
-			header("Location: /bookshop?action=delete-book");
+			header("Location: /bookshop?action=delete-student");
 			exit();
 		} else {
 
-			// remove book
+			// remove student
 			$removeBookResult = removeBook($_SESSION['id'], $_SESSION['reason']);
 	
 			if ($removeBookResult) {
@@ -178,16 +158,16 @@
 				
                 $_SESSION["alert"] = "success";
                 $_SESSION["status"] = "Success";
-                $_SESSION["message"] = "Book Successfully removed";
+                $_SESSION["message"] = "Student Successfully removed";
 
-                header("Location: /bookshop?action=books");
+                header("Location: /bookshop?action=students");
                 exit();
 			} else {
 			    $_SESSION["alert"] = "danger";
 				$_SESSION["status"] = "Error";
 				$_SESSION["message"] = "A database error has occured, please contact system administrator.";
 
-				header("Location: /bookshop?action=delete-book");
+				header("Location: /bookshop?action=delete-student");
 				exit();
 			}
 		}

@@ -18,10 +18,11 @@
 					<thead>
 						<tr>
 							<th></th>
-							<th>Firstname</th>
-							<th>Lastname</th>
-							<th>Username</th>
-							<th>Role</th>
+							<th>Student</th>
+							<th>Book</th>
+							<th>Issue date</th>
+							<th>Return date</th>
+							<th>Status</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -39,10 +40,11 @@
 									<a href="/<?php echo $_SESSION['home'];?>?action=edit-loan&id=<?php echo $row['id']; ?>"><span class='glyphicon glyphicon-edit' aria-hidden='true'></span>Edit</a>&nbsp;&nbsp;
 									<a href="/<?php echo $_SESSION['home'];?>?action=delete-loan&id=<?php echo $row['id']; ?>"><span class='glyphicon glyphicon-trash' aria-hidden='true'></span>Remove</a>&nbsp;&nbsp;
 								</td>
-								<td><?=$row['first_name']?></td>
-								<td><?=$row['last_name']?></td>
-								<td><?=$row['username']?></td>
-								<td><?=$row['user_role']?></td>
+								<td><?=$row['client']?></td>
+								<td><?=$row['book']?></td>
+								<td><?=$row['issue_date']?></td>
+								<td><?=$row['return_date']?></td>
+								<td><?=$row['status']?></td>
 							</tr>
 						<?php endforeach; ?>
 					</tbody>

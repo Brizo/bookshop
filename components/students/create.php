@@ -1,6 +1,7 @@
 <?php
 	include $_SERVER['DOCUMENT_ROOT']."/bookshop/components/streams/controller.php";
 	include $_SERVER['DOCUMENT_ROOT']."/bookshop/components/classes/controller.php";
+	include $_SERVER['DOCUMENT_ROOT']."/bookshop/components/school/controller.php";
 	include $_SERVER['DOCUMENT_ROOT']."/bookshop/components/class-levels/controller.php";
 
     $streams = array();
@@ -19,7 +20,12 @@
     $queryResult = retrieveClassLevels();
     while ($row = mysqli_fetch_array($queryResult)) {
         $class_levels[] = $row;
-    }
+	}
+	
+	$getAccountResult = retrieveAccount();
+	$account = mysqli_fetch_array($getAccountResult);
+	$studentNoCounter = $account['student_no_counter'] + 1;
+	$_SESSION['student_no'] = "0".$studentNoCounter;
 ?>
 
 <div class="panel with-nav-tabs panel-default">
@@ -45,6 +51,12 @@
 									<div class="row">
 										<div class="col-sm-6">
 											<div class="form-group">
+												<label for="form" class="col-sm-4 control-label">Student Number * :</label>
+												<div class="col-sm-8">
+													<input type="text" class="form-control" id="student_no" name="student_no" value="<?php  echo $_SESSION['student_no']; ?>" disabled/>
+												</div>
+											</div>
+											<div class="form-group">
 												<label for="form" class="col-sm-4 control-label">Firstname * :</label>
 												<div class="col-sm-8">
 													<input type="text" class="form-control" id="first_name" name="first_name" placeholder="Enter firstname" value="<?php  if (isset($_SESSION['first_name'])) {echo $_SESSION['first_name'];} ?>" />
@@ -63,7 +75,7 @@
 												</div>
 											</div>                     
 											<div class="form-group">
-												<label for="form" class="col-sm-4 control-label">National Id * :</label>
+												<label for="form" class="col-sm-4 control-label">National Id :</label>
 												<div class="col-sm-8">
 													<input type="text" class="form-control" id="national_id" name="national_id" placeholder="Enter nation ID" value="<?php  if (isset($_SESSION['national_id'])) {echo $_SESSION['national_id'];} ?>" />
 												</div>
@@ -71,7 +83,7 @@
 											<div class="form-group">
 												<label for="form" class="col-sm-4 control-label">Date Of Birth * :</label>
 												<div class="col-sm-8">
-													<input type="text" id="datepicker" class="form-control datepicker-here" name="birth_date" placeholder="Click date of birth" value="<?php  if (isset($_SESSION['birth_date'])) {echo $_SESSION['birth_date'];} ?>" />
+													<input type="text" id="datepicker" class="form-control datepicker-here" name="birth_date" placeholder="Click for date of birth" value="<?php  if (isset($_SESSION['birth_date'])) {echo $_SESSION['birth_date'];} ?>" />
 												</div>
 											</div>
 											<div class="form-group">
@@ -85,7 +97,7 @@
 											<div class="form-group">
 												<label for="form" class="col-sm-4 control-label">Contact Email Address :</label>
 												<div class="col-sm-8">
-													<input type="text" class="form-control" id="email_address" name="email_address" placeholder="Enter email address" value="<?php  if (isset($_SESSION['email_address'])) {echo $_SESSION['email_address'];} ?>" />
+													<input type="text" class="form-control" id="std_email_address" name="std_email_address" placeholder="Enter email address" value="<?php  if (isset($_SESSION['std_email_address'])) {echo $_SESSION['std_email_address'];} ?>" />
 												</div>
 											</div>
 											<div class="form-group">

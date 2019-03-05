@@ -3,7 +3,7 @@
 
 	function getSubjects() {
 		$conn = openCon();
-		$sql = "SELECT  `name`, `description` FROM `subjects` WHERE `status` != 0";
+		$sql = "SELECT  `id`, `name`, `description` FROM `subjects` WHERE `status` != 0";
 		$result = $conn->query($sql);
 		closeCon($conn);
 		return $result;
@@ -13,14 +13,16 @@
 		$conn = openCon();
 
 		if ($field == "id") {
-			$sql = "SELECT `name`, `description`
+			$sql = "SELECT  `id`, `name`, `description`
 				FROM `subjects`
 				WHERE {$field} = {$value}";
 		} else {
-			$sql = "SELECT `name`, `description`
+			$sql = "SELECT  `id`, `name`, `description`
 				FROM `subjects`
 				WHERE {$field} = '{$value}'";
 		}
+
+		echo $sql;
 		
 		$result = $conn->query($sql);
 		closeCon($conn);

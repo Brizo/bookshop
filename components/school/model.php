@@ -22,7 +22,9 @@
 						`website`, 
 						`postal_address`, 
 						`physical_address`, 
-						`username_prefix`, 
+						`username_prefix`,
+						`student_no_counter`,
+						`book_circulation`,
 						`status`, 
 						`created_at`, 
 						`last_modified_by`
@@ -34,12 +36,13 @@
 	}
 	
 	// add account unit information
-	function addAccount($name, $contact_person, $telephone, $fax, $email_address, $website, $postal_address, $physical_address, $username_prefix) {
+	function addAccount($name, $contact_person, $telephone, $fax, $email_address, $website, $postal_address, $physical_address, $username_prefix, $book_circulation) {
 		$conn = openCon();
 		$created_at = getTime();
 		$last_modified_by = $_SESSION['loggedUserId'];
 		$status = 1; // 1 = active, 0 = removed
-		$sql = "INSERT INTO `account_unit`(`name`, `contact_person`, `telephone`, `fax`, `email_address`, `website`, `postal_address`, `physical_address`, `username_prefix`, `status`, `created_at`, `last_modified_by`) 
+		$sql = "INSERT INTO `account_unit`(`name`, `contact_person`, `telephone`, `fax`, `email_address`, `website`, `postal_address`, `physical_address`, 
+			`username_prefix`, `book_circulation`, `status`, `created_at`, `last_modified_by`) 
 			VALUES('{$name}',
 				'{$contact_person}',
 				'{$telephone}',
@@ -49,6 +52,7 @@
 				'{$postal_address}',
 				'{$physical_address}',
 				'{$username_prefix}',
+				{$book_circulation},
 				{$status},
 				'{$created_at}',
 				{$last_modified_by})";
@@ -58,7 +62,7 @@
 		return $result;
 	}
 
-	function updateAccount($id, $name, $contact_person, $telephone, $fax, $email_address, $website, $postal_address, $physical_address, $username_prefix) {
+	function updateAccount($id, $name, $contact_person, $telephone, $fax, $email_address, $website, $postal_address, $physical_address, $username_prefix, $book_circulation) {
 		$conn = openCon();
 		$created_at = getTime();
 		$last_modified_by = $_SESSION['loggedUserId'];
@@ -73,6 +77,7 @@
 				`postal_address` = '{$postal_address}',
 				`physical_address` = '{$physical_address}',
 				`username_prefix` = '{$username_prefix}',
+				`book_circulation` = {$book_circulation},
 				`created_at` = '{$created_at}', 
 				`last_modified_by` = {$last_modified_by}
 			WHERE id = {$id}";

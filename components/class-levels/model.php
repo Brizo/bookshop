@@ -3,7 +3,7 @@
 
 	function getClassLevels() {
 		$conn = openCon();
-		$sql = "SELECT  `name`, `description` FROM `class_levels` WHERE `status` != 0";
+		$sql = "SELECT  `id`, `name`, `description` FROM `class_levels` WHERE `status` != 0";
 		$result = $conn->query($sql);
 		closeCon($conn);
 		return $result;
@@ -13,11 +13,11 @@
 		$conn = openCon();
 
 		if ($field == "id") {
-			$sql = "SELECT `name`, `description`
+			$sql = "SELECT  `id`, `name`, `description`
 				FROM `class_levels`
 				WHERE {$field} = {$value}";
 		} else {
-			$sql = "SELECT `name`, `description`
+			$sql = "SELECT  `id`, `name`, `description`
 				FROM `class_levels`
 				WHERE {$field} = '{$value}'";
 		}

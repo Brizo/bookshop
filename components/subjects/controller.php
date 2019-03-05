@@ -6,6 +6,10 @@
 		return getSubjects();
 	}
 
+	function retrieveSubjectByField($field, $value) {
+		return getSubjectByField($field, $value);
+	}
+
 	// add new subject
 	if (isset($_POST['addnewsubject'])) {
 		session_start();

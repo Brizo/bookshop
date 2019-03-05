@@ -124,6 +124,12 @@
 												</div>
 											</div>
 											<div class="form-group">
+												<label for="form" class="col-sm-4 control-label">Username Prefix :</label>
+												<div class="col-sm-8">
+													<input type="text" class="form-control" id="book_circulation" name="book_circulation" placeholder="Enter book circulation years" value="<?php  if (isset($_SESSION['book_circulation'])) {echo $_SESSION['book_circulation'];} ?>" />
+												</div>
+											</div>
+											<div class="form-group">
 												<div class="col-sm-8 col-sm-offset-4">
 													<?php if ($accountExist == 0) echo '<button type="submit" class="btn btn-success" name="addnewaccount"><span class="glyphicon glyphicon-ok-circle"></span>&nbsp;Configure</button>'; ?>
 													<?php if ($accountExist == 1) echo '<button type="submit" class="btn btn-success" name="updateaccount"><span class="glyphicon glyphicon-ok-circle"></span>&nbsp;Update</button>' ?>
