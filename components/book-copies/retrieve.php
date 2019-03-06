@@ -9,12 +9,12 @@
 	<div class="col col-sm-10">
 		<div class="panel panel-primary">
 			<div class="panel-heading">
-				<b>Books</b>
+				<b>Book Copies</b>
 			</div>
 			<div class="panel-body">
-				<a class="btn btn-primary" data-keyboard="false" href="/<?php echo $_SESSION['home'];?>?action=new-book"><span class="glyphicon glyphicon-plus"></span>&nbsp;Add New</a><br /><br />
+				<a class="btn btn-primary" data-keyboard="false" href="/<?php echo $_SESSION['home'];?>?action=new-book-copy"><span class="glyphicon glyphicon-plus"></span>&nbsp;Add New</a><br /><br />
 
-				<table id="booksTable" class="table table-bordered table-hover">
+				<table id="bookCopiesTable" class="table table-bordered table-hover">
 					<thead>
 						<tr>
 							<th></th>
@@ -22,32 +22,32 @@
 							<th>ISBN</th>
 							<th>Year</th>
 							<th>Author</th>
-							<th>Price</th>
-							<th>Copies</th>
+							<th>Bar code</th>
+							<th>State</th>
 							<th>Status</th>
 						</tr>
 					</thead>
 					<tbody>
 						<?php
-							$books = array();
-							$queryResult = retrieveBooks();
+							$bookCopies = array();
+							$queryResult = retrieveBookCopies();
 							while ($row = mysqli_fetch_array($queryResult)) {
-								$books[] = $row;
+								$bookCopies[] = $row;
 							}
 						?>
 
-						<?php foreach($books as $row): ?>
+						<?php foreach($bookCopies as $row): ?>
 							<tr>
 								<td>
-									<a href="/bookshop?action=edit-book&id=<?php echo $row['id']; ?>"><span class='glyphicon glyphicon-edit' aria-hidden='true'></span>Edit</a>&nbsp;&nbsp;
-									<a href="/bookshop?action=delete-book&id=<?php echo $row['id']; ?>"><span class='glyphicon glyphicon-trash' aria-hidden='true'></span>Remove</a>&nbsp;&nbsp;
+									<a href="/bookshop?action=edit-book-copy&id=<?php echo $row['id']; ?>"><span class='glyphicon glyphicon-edit' aria-hidden='true'></span>Edit</a>&nbsp;&nbsp;
+									<a href="/bookshop?action=delete-book-copy&id=<?php echo $row['id']; ?>"><span class='glyphicon glyphicon-trash' aria-hidden='true'></span>Remove</a>&nbsp;&nbsp;
 								</td>
 								<td><?=$row['name']?></td>
 								<td><?=$row['isb']?></td>
 								<td><?=$row['year']?></td>
 								<td><?=$row['author']?></td>
-								<td><?=$row['purchase_price']?></td>
-								<td><?=$row['copies']?></td>
+								<td><?=$row['bar_code']?></td>
+								<td><?=$row['state']?></td>
 								<td><?=$row['status']?></td>
 							</tr>
 						<?php endforeach; ?>
@@ -60,7 +60,7 @@
 
 <script type="text/javascript">
 	$(document).ready(function() {
-		$('#booksTable').dataTable();
+		$('#bookCopiesTable').dataTable();
   });
 </script>
 

@@ -4,11 +4,24 @@
       <a class="navbar-brand" href="/<?php echo $_SESSION['home'];?>?action=home"><b>Home</b></a>
     </div>
     <ul class="nav navbar-nav">
-       <li><a href="/<?php echo $_SESSION['home'];?>?action=loans"><b>Loans</b></a></li>
-       <li><a href="/<?php echo $_SESSION['home'];?>?action=books"><b>Books</b></a></li>	
-       <li><a href="/<?php echo $_SESSION['home'];?>?action=school"><b>School</b></a></li>
-       <li><a href="/<?php echo $_SESSION['home'];?>?action=admin"><b>Admin</b></a></li> 
-       <li><a href="/<?php echo $_SESSION['home'];?>?action=reports"><b>Reports</b></a></li>  
+      <li><a href="/<?php echo $_SESSION['home'];?>?action=loans"><b>Loans</b></a></li>
+      <li class="dropdown">
+        <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><b>Books</b><span class="caret"></span></a>
+        <ul class="dropdown-menu">
+          <li><a href="/<?php echo $_SESSION['home'];?>?action=books">Books</b></li>
+          <li><a href="/<?php echo $_SESSION['home'];?>?action=book-copies">Book Copies</a></li>
+        </ul>
+      </li>	
+      <li><a href="/<?php echo $_SESSION['home'];?>?action=school"><b>School</b></a></li>
+      <li class="dropdown">
+        <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><b>Admin</b><span class="caret"></span></a>
+        <ul class="dropdown-menu">
+          <li><a href="/<?php echo $_SESSION['home'];?>?action=book-States">Book States</a></li>
+          <li><a href="/<?php echo $_SESSION['home'];?>?action=email">Email</a></li>
+          <li><a href="/<?php echo $_SESSION['home'];?>?action=users">Users</a></li>
+        </ul>
+      </li>	
+      <li><a href="/<?php echo $_SESSION['home'];?>?action=reports"><b>Reports</b></a></li>  
     </ul>
     <ul class="nav navbar-nav navbar-right">
       <li class="dropdown">

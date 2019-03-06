@@ -42,11 +42,9 @@
 									<tr>
 										<th></th>
 										<th>Name</th>
-										<th>ISB</th>
+										<th>ISBN</th>
 										<th>Year</th>
 										<th>Author</th>
-										<th>Bar code</th>
-										<th>State</th>
 										<th>Status</th>
 									</tr>
 								</thead>
@@ -61,8 +59,6 @@
 											<td><?=$row['isb']?></td>
 											<td><?=$row['year']?></td>
 											<td><?=$row['author']?></td>
-											<td><?=$row['bar_code']?></td>
-											<td><?=$row['state']?></td>
 											<td><?=$row['status']?></td>
 										</tr>
 									<?php endforeach; ?>

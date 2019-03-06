@@ -21,6 +21,23 @@
 					$destination="components/books/delete.php";
 					break;
 
+				// book copies
+				case "book-copies":
+					$destination="components/book-copies/retrieve.php";
+					break;
+
+				case "new-book-copy":
+					$destination="components/book-copies/create.php";
+					break;
+
+				case "edit-book-copy":
+					$destination="components/book-copies/update.php";
+					break;
+			
+				case "delete-book-copy":
+					$destination="components/book-copies/delete.php";
+					break;
+
 
 				// book loans
 				case "loans":
@@ -37,6 +54,10 @@
 			
 				case "delete-loan":
 					$destination="components/loans/delete.php";
+					break;
+
+				case "return-loan":
+					$destination="components/loans/return.php";
 					break;
 				
 

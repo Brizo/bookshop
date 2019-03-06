@@ -1,6 +1,7 @@
 <?php
     include $_SERVER['DOCUMENT_ROOT']."/bookshop/components/students/controller.php";
-    include $_SERVER['DOCUMENT_ROOT']."/bookshop/components/books/controller.php";
+    include $_SERVER['DOCUMENT_ROOT']."/bookshop/components/book-copies/controller.php";
+    include $_SERVER['DOCUMENT_ROOT']."/bookshop/components/book-states/controller.php";
 
     $students = array();
     $queryResult = retrieveStudents();
@@ -8,10 +9,16 @@
         $students[] = $row;
     }
 
-    $books = array();
-    $queryResult = retrieveBooks();
+    $bookCopies = array();
+    $queryResult = retrieveBookCopies();
     while ($row = mysqli_fetch_array($queryResult)) {
-        $books[] = $row;
+        $bookCopies[] = $row;
+    }
+
+    $bookStates = array();
+    $queryResult = retrieveBookStates();
+    while ($row = mysqli_fetch_array($queryResult)) {
+        $bookStates[] = $row;
     }
 ?>
 
@@ -30,7 +37,7 @@
                         <div class="form-group">
                             <label for="form" class="col-sm-4 control-label">Student * :</label>
                             <div class="col-sm-8">                                
-                                <select class="form-control" id="state" name="state">
+                                <select class="form-control" id="student" name="student">
                                     <?php foreach($students as $row): ?>
                                         <option value="<?php echo $row['id']; ?>"><?=$row['first_name']?>-<?=$row['student_no']?></option>
                                     <?php endforeach; ?>
@@ -40,8 +47,18 @@
                         <div class="form-group">
                             <label for="form" class="col-sm-4 control-label">Book * :</label>
                             <div class="col-sm-8">                                
-                                <select class="form-control" id="state" name="state">
-                                    <?php foreach($books as $row): ?>
+                                <select class="form-control" id="book" name="book">
+                                    <?php foreach($bookCopies as $row): ?>
+                                        <option value="<?php echo $row['id']; ?>"><?=$row['name']?> - <?=$row['bar_code']?></option>
+                                    <?php endforeach; ?>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="form" class="col-sm-4 control-label">Book Issue State * :</label>
+                            <div class="col-sm-8">                                
+                                <select class="form-control" id="issueState" name="issueState">
+                                    <?php foreach($bookStates as $row): ?>
                                         <option value="<?php echo $row['id']; ?>"><?=$row['name']?></option>
                                     <?php endforeach; ?>
                                 </select>

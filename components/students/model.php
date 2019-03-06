@@ -77,7 +77,6 @@
 
 	function updateStudent($id, $first_name, $middle_name, $last_name, $national_id, $birth_date, $gender, $class, $stream, $class_level, $student_no, $contact_no, $email_address) {
 		$conn = openCon();
-		$created_at = getTime();
 		$last_modified_by = $_SESSION['loggedUserId'];
 
 		$sql = "UPDATE `students`
@@ -93,7 +92,6 @@
 				`student_no` = {$student_no},
 				`contact_no` = {$contact_no},
 				`email_address` = {$email_address},
-				`created_at` = '{$created_at}', 
 				`last_modified_by` = {$last_modified_by}
 			WHERE id = {$id}";
 

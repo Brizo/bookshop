@@ -51,7 +51,6 @@
 		$sql = "UPDATE `classes`
 			SET `name` = '{$name}', 
 				`description` = '{$description}', 
-
 				`last_modified_by` = {$last_modified_by}
 			WHERE id = {$id}";
 

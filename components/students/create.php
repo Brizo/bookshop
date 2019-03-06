@@ -86,16 +86,16 @@
 													<input type="text" id="datepicker" class="form-control datepicker-here" name="birth_date" placeholder="Click for date of birth" value="<?php  if (isset($_SESSION['birth_date'])) {echo $_SESSION['birth_date'];} ?>" />
 												</div>
 											</div>
+										</div>
+										<div class="col-sm-6">
 											<div class="form-group">
 												<label for="form" class="col-sm-4 control-label">Contact Number :</label>
 												<div class="col-sm-8">
 													<input type="text" class="form-control" id="contact_no" name="contact_no" placeholder="Enter contact number" value="<?php  if (isset($_SESSION['contact_no'])) {echo $_SESSION['contact_no'];} ?>" />
 												</div>
 											</div>
-										</div>
-										<div class="col-sm-6">
 											<div class="form-group">
-												<label for="form" class="col-sm-4 control-label">Contact Email Address :</label>
+												<label for="form" class="col-sm-4 control-label">Email Address :</label>
 												<div class="col-sm-8">
 													<input type="text" class="form-control" id="std_email_address" name="std_email_address" placeholder="Enter email address" value="<?php  if (isset($_SESSION['std_email_address'])) {echo $_SESSION['std_email_address'];} ?>" />
 												</div>

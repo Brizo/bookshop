@@ -1,13 +1,3 @@
-<?php
-    include $_SERVER['DOCUMENT_ROOT']."/bookshop/components/book-states/controller.php";
-
-    $bookStates = array();
-    $queryResult = retrieveBookStates();
-    while ($row = mysqli_fetch_array($queryResult)) {
-        $bookStates[] = $row;
-    }
-?>
-
 <div class="row">
 	<div class="col col-sm-2">
 		<?php include "partials/side_nav.php"; ?>  
@@ -31,7 +21,7 @@
                                 <div class="form-group">
                                     <label for="form" class="col-sm-4 control-label">Description :</label>
                                     <div class="col-sm-8">
-                                        <textarea rows="3" cols="50" class="form-control" placeholder="Enter book descripion" name="description" value="<?php  if (isset($_SESSION['description'])) {echo $_SESSION['description'];} ?>"></textarea>
+                                        <textarea rows="3" cols="50" class="form-control" placeholder="Enter book descripion" name="description"><?php  if (isset($_SESSION['description'])) {echo $_SESSION['description'];} ?></textarea>
                                     </div>
                                 </div>                      
                                 <div class="form-group">
@@ -40,6 +30,8 @@
                                         <input type="text" class="form-control" id="isb" name="isb" placeholder="Enter book isb" value="<?php  if (isset($_SESSION['isb'])) {echo $_SESSION['isb'];} ?>" />
                                     </div>
                                 </div>
+                            </div>
+                            <div class="col-sm-6">
                                 <div class="form-group">
                                     <label for="form" class="col-sm-4 control-label">Year * :</label>
                                     <div class="col-sm-8">
@@ -52,8 +44,6 @@
                                         <input type="text" class="form-control" id="purchase_price" name="purchase_price" placeholder="Enter book purchase price" value="<?php  if (isset($_SESSION['purchase_price'])) {echo $_SESSION['purchase_price'];} ?>" />
                                     </div>
                                 </div>
-                            </div>
-                            <div class="col-sm-6">
                                 <div class="form-group">
                                     <label for="form" class="col-sm-4 control-label">Levie :</label>
                                     <div class="col-sm-8">
@@ -64,22 +54,6 @@
                                     <label for="form" class="col-sm-4 control-label">Author * :</label>
                                     <div class="col-sm-8">
                                         <input type="text" class="form-control" id="author" name="author" placeholder="Enter book author" value="<?php  if (isset($_SESSION['author'])) {echo $_SESSION['author'];} ?>" />
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label for="form" class="col-sm-4 control-label">Bar code * :</label>
-                                    <div class="col-sm-8">
-                                        <input type="text" class="form-control" id="barCode" name="barCode" placeholder="Enter book bar code" value="<?php  if (isset($_SESSION['barCode'])) {echo $_SESSION['barCode'];} ?>" />
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label for="form" class="col-sm-4 control-label">State * :</label>
-                                    <div class="col-sm-8">                                
-                                        <select class="form-control" id="state" name="state">
-                                            <?php foreach($bookStates as $row): ?>
-                                                <option value="<?php echo $row['id']; ?>"><?=$row['name']?></option>
-                                            <?php endforeach; ?>
-                                        </select>
                                     </div>
                                 </div>
                                 <div class="form-group">
