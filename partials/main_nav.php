@@ -11,8 +11,18 @@
           <li><a href="/<?php echo $_SESSION['home'];?>?action=books">Books</b></li>
           <li><a href="/<?php echo $_SESSION['home'];?>?action=book-copies">Book Copies</a></li>
         </ul>
+      </li>
+      <li class="dropdown">
+        <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><b>School</b><span class="caret"></span></a>
+        <ul class="dropdown-menu">
+          <li><a href="/<?php echo $_SESSION['home'];?>?action=school">School</a></li>
+          <li><a href="/<?php echo $_SESSION['home'];?>?action=subjects">Subjects</a></li>
+          <li><a href="/<?php echo $_SESSION['home'];?>?action=streams">Streams</a></li>
+          <li><a href="/<?php echo $_SESSION['home'];?>?action=classes">Classes</a></li>
+          <li><a href="/<?php echo $_SESSION['home'];?>?action=class_levels">Class Levels</a></li>
+          <li><a href="/<?php echo $_SESSION['home'];?>?action=students">Students</a></li>
+        </ul>
       </li>	
-      <li><a href="/<?php echo $_SESSION['home'];?>?action=school"><b>School</b></a></li>
       <li class="dropdown">
         <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><b>Admin</b><span class="caret"></span></a>
         <ul class="dropdown-menu">
