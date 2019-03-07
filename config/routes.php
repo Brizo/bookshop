@@ -130,7 +130,6 @@
 					$destination="components/students/delete.php";
 					break;
 
-				
 				// classes
 				case "classes":
 					$destination="components/classes/retrieve.php";
@@ -146,6 +145,44 @@
 			
 				case "delete-class":
 					$destination="components/classes/delete.php";
+					break;
+
+				// users
+				case "users":
+					$destination="components/users/retrieve.php";
+					break;
+
+				case "new-user":
+					$destination="components/users/create.php";
+					break;
+
+				case "edit-user":
+					$destination="components/users/update.php";
+					break;
+			
+				case "delete-user":
+					$destination="components/users/delete.php";
+					break;
+
+				case "change-password":
+					$destination="components/users/changepass.php";
+					break;
+
+				// book States
+				case "book-states":
+					$destination="components/book-states/retrieve.php";
+					break;
+
+				case "new-book_state":
+					$destination="components/book-states/create.php";
+					break;
+
+				case "edit-book_state":
+					$destination="components/book-states/update.php";
+					break;
+			
+				case "delete-book_state":
+					$destination="components/book-states/delete.php";
 					break;
 
 				
@@ -170,10 +207,14 @@
 					$destination="components/home/retrieve.php";
 					break;
 				
-				
 				// account
 				case "school":
 					$destination="components/school/retrieve.php";
+					break;
+
+				// email
+				case "email":
+					$destination="components/email/retrieve.php";
 					break;
 				
 				case "admin":

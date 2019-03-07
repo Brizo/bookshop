@@ -22,8 +22,8 @@
     
     //Execute the query
 	$conn = openCon();
-    $sql = "INSERT INTO users(first_name, middle_name, last_name, username, password, user_role, account_status,
-                password_status, password_last_modified, created_at, last_modified_by)
+    $sql = "INSERT INTO `users`(`first_name`, `middle_name`, `last_name`, `username`, `password`, `user_role`, `account_status`,
+                `password_status`, `password_last_modified`, `created_at`, `last_modified_by`)
             VALUES('{$first_name}',
                     '{$middle_name}',
                     '{$last_name}',

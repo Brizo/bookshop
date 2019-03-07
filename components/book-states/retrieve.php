@@ -1,45 +1,57 @@
 <?php
-    include "controller.php";
+	include "controller.php";
 ?>
-<div class="panel panel-primary">
-	<div class="panel-heading">
-    	<b>Users</b>
-    </div>
-	<div class="panel-body">
-		<h1>Listing users</h1>
 
-		<table id="userTable" class="table table-bordered table-hover">
-            <thead>
-                <tr>
-                    <th>Firstname</th>
-                    <th>Lastname</th>
-                    <th>Username</th>
-                    <th>Role</th>
-                </tr>
-            </thead>
-            <tbody>
-                <?php
-                    $users = array();
-                    $queryResult = retrieveUsers();
-                    while ($row = mysqli_fetch_array($queryResult)) {
-                        $users[] = $row;
-                    }
-                ?>
+<div class="row">
+	<div class="col-sm-2">
+		<?php include "partials/admin_side_nav.php"; ?> 
+	</div>
+	<div class="col-sm-10">
+		<div class="panel panel-primary">
+			<div class="panel-heading">
+				<div class="panel-title">
+					<h4 class="panel-title">Book States</h4>
+				</div>
+			</div>
+			<div class="panel-body">
+				<a class="btn btn-primary" data-keyboard="false" href="/<?php echo $_SESSION['home'];?>?action=new-book_state"><span class="glyphicon glyphicon-plus"></span>&nbsp;Add New</a><br /><br />
 
-                <?php foreach($users as $row): ?>
-                    <tr>
-                        <td><?=$row['first_name']?></td>
-                        <td><?=$row['last_name']?></td>
-                        <td><?=$row['username']?></td>
-                        <td><?=$row['role']?></td>
-                    </tr>
-                <?php endforeach; ?>
-            </tbody>
-        </table>
+				<table id="bookStatesTable" class="table table-bordered table-hover">
+					<thead>
+						<tr>
+							<th></th>
+							<th>Name</th>
+							<th>Description</th>
+						</tr>
+					</thead>
+					<tbody>
+						<?php
+							$bookStates = array();
+							$queryResult = retrieveBookStates();
+							while ($row = mysqli_fetch_array($queryResult)) {
+								$bookStates[] = $row;
+							}
+						?>
+
+						<?php foreach($bookStates as $row): ?>
+							<tr>
+								<td>
+									<a href="/bookshop?action=edit-book_state&id=<?php echo $row['id']; ?>"><span class='glyphicon glyphicon-edit' aria-hidden='true'></span>Edit</a>&nbsp;&nbsp;
+									<a href="/bookshop?action=delete-book_state&id=<?php echo $row['id']; ?>"><span class='glyphicon glyphicon-trash' aria-hidden='true'></span>Remove</a>&nbsp;&nbsp;
+								</td>
+								<td><?=$row['name']?></td>
+								<td><?=$row['description']?></td>
+							</tr>
+						<?php endforeach; ?>
+					</tbody>
+				</table>
+			</div>
+		</div>
 	</div>
 </div>
+
 <script type="text/javascript">
-    $(document).ready(function() {
-        $('#userTable').dataTable();
+	$(document).ready(function() {
+		$('#bookStatesTable').dataTable();
     });
 </script>

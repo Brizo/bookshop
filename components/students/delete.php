@@ -22,7 +22,7 @@
 
 <div class="row">
 	<div class="col col-sm-2">
-		<?php include "partials/side_nav.php"; ?>  
+		<?php include "partials/school_side_nav.php"; ?>  
 	</div>
 	<div class="col col-sm-10">
         <div class="panel panel-primary">

@@ -28,7 +28,7 @@
 	}
 
 
-	function addclass($name, $description) {
+	function addClass($name, $description) {
 		$conn = openCon();
 		$created_at = getTime();
 		$last_modified_by = $_SESSION['loggedUserId'];

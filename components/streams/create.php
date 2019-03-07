@@ -1,12 +1,12 @@
 <div class="row">
 	<div class="col-sm-2">
-		<?php include "partials/streams_side_nav.php"; ?> 
+		<?php include "partials/school_side_nav.php"; ?> 
 	</div>
 	<div class="col-sm-10">
 		<div class="panel panel-primary">
 			<div class="panel-heading">
 				<div class="panel-title">
-					<h4 class="panel-title">New Stream</h4>
+					<h4 class="panel-title">New Stream <a href="/<?php echo $_SESSION['home'];?>?action=streams" class="pull-right"><span class = "glyphicon glyphicon-list"></span>&nbsp;View List</a></h4>
 				</div>
 			</div>
 			<div class="panel-body">

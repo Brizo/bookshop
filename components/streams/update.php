@@ -15,13 +15,13 @@
 
 <div class="row">
 	<div class="col-sm-2">
-		<?php include "partials/streams_side_nav.php"; ?> 
+		<?php include "partials/school_side_nav.php"; ?> 
 	</div>
 	<div class="col-sm-10">
 		<div class="panel panel-primary">
 			<div class="panel-heading">
 				<div class="panel-title">
-					<h4 class="panel-title">Update Stream</h4>
+					<h4 class="panel-title">Update Stream <a href="/<?php echo $_SESSION['home'];?>?action=streams" class="pull-right"><span class = "glyphicon glyphicon-list"></span>&nbsp;View List</a></h4>
 				</div>
 			</div>
 			<div class="panel-body">
@@ -36,7 +36,7 @@
 						<div class="form-group">
 							<label for="form" class="col-sm-4 control-label">Description :</label>
 							<div class="col-sm-8">
-								<textarea rows="3" cols="50" class="form-control" placeholder="Enter stream descripion" name="description" value="<?php  if (isset($_SESSION['description'])) {echo $_SESSION['description'];} ?>"></textarea>
+								<textarea rows="3" cols="50" class="form-control" placeholder="Enter stream descripion" name="description"><?php  if (isset($_SESSION['description'])) {echo $_SESSION['description'];} ?></textarea>
 							</div>
 						</div>                      
 						

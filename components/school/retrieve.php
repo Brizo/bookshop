@@ -91,14 +91,14 @@
 										<input type="text" class="form-control" id="email_address" name="email_address" placeholder="Enter email address" value="<?php  if (isset($_SESSION['email_address'])) {echo $_SESSION['email_address'];} ?>" />
 									</div>
 								</div>
-							</div>
-							<div class="col-sm-6">
 								<div class="form-group">
 									<label for="form" class="col-sm-4 control-label">Website :</label>
 									<div class="col-sm-8">
 										<input type="text" class="form-control" id="website" name="website" placeholder="Enter website" value="<?php  if (isset($_SESSION['website'])) {echo $_SESSION['website'];} ?>" />
 									</div>
 								</div>
+							</div>
+							<div class="col-sm-6">
 								<div class="form-group">
 									<label for="form" class="col-sm-4 control-label">Postal Address * :</label>
 									<div class="col-sm-8">
@@ -108,7 +108,7 @@
 								<div class="form-group">
 									<label for="form" class="col-sm-4 control-label">Physical Address * :</label>
 									<div class="col-sm-8">
-										<textarea rows="3" cols="50" class="form-control" placeholder="Enter physical address" name="physical_address"><?php  if (isset($_SESSION['physical_address'])) {echo $_SESSION['physical_address'];} ?></textarea>
+										<textarea rows="4" cols="50" class="form-control" placeholder="Enter physical address" name="physical_address"><?php  if (isset($_SESSION['physical_address'])) {echo $_SESSION['physical_address'];} ?></textarea>
 									</div>
 								</div>
 								<div class="form-group">
@@ -118,7 +118,7 @@
 									</div>
 								</div>
 								<div class="form-group">
-									<label for="form" class="col-sm-4 control-label">Username Prefix :</label>
+									<label for="form" class="col-sm-4 control-label">Book Circulation :</label>
 									<div class="col-sm-8">
 										<input type="text" class="form-control" id="book_circulation" name="book_circulation" placeholder="Enter book circulation years" value="<?php  if (isset($_SESSION['book_circulation'])) {echo $_SESSION['book_circulation'];} ?>" />
 									</div>

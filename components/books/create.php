@@ -1,6 +1,6 @@
 <div class="row">
 	<div class="col col-sm-2">
-		<?php include "partials/side_nav.php"; ?>  
+		<?php include "partials/main_side_nav.php"; ?>  
 	</div>
 	<div class="col col-sm-10">
         <div class="panel panel-primary">
@@ -27,7 +27,7 @@
                                 <div class="form-group">
                                     <label for="form" class="col-sm-4 control-label">ISBN * :</label>
                                     <div class="col-sm-8">
-                                        <input type="text" class="form-control" id="isb" name="isb" placeholder="Enter book isb" value="<?php  if (isset($_SESSION['isb'])) {echo $_SESSION['isb'];} ?>" />
+                                        <input type="text" class="form-control" id="isb" name="isb" placeholder="Enter book isbn" value="<?php  if (isset($_SESSION['isb'])) {echo $_SESSION['isb'];} ?>" />
                                     </div>
                                 </div>
                             </div>

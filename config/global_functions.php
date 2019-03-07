@@ -37,4 +37,58 @@
         }
     }
 
+    function validPassword($password) {
+        $error = '';
+
+        if(strlen($password) < 8) {
+            if (strlen($error) > 0) {
+                $error .= " , Password Too Short"; 
+            } else {
+                $error = "Password Too Short";
+            }
+        }
+
+        if(strlen($password) > 20) {
+            if (strlen($error) > 0) {
+                $error .= " , Password Too Long"; 
+            } else {
+                $error = "Password Too Long";
+            }
+        }
+
+        if(!preg_match("#[0-9]+#", $password)) {
+            if (strlen($error) > 0) {
+                $error .= " , Password Must Include At Least One Number"; 
+            } else {
+                $error = "Password Must Include At Least One Number";
+            }
+        }
+
+        if(!preg_match("#[a-z]+#", $password)) {
+            if (strlen($error) > 0) {
+                $error .= " , Password Must Include At Least One Letter"; 
+            } else {
+                $error = "Password Must Include At Least One Letter";
+            }
+        }
+
+        if(!preg_match("#[A-Z]+#", $password)) {
+            if (strlen($error) > 0) {
+                $error .= " , Password Must Include At Least One CAPS"; 
+            } else {
+                $error = "Password Must Include At Least One CAPS";
+            }
+        }
+
+        if(!preg_match("#\W+#", $password)) {
+            if (strlen($error) > 0) {
+                $error .= " , Password Must Include At Least One Symbol"; 
+            } else {
+                $error = "Password Must Include At Least One Symbol";
+            }
+        }
+
+        return $error;
+    }
+
 ?>

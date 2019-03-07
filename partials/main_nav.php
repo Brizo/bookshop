@@ -26,7 +26,7 @@
       <li class="dropdown">
         <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><b>Admin</b><span class="caret"></span></a>
         <ul class="dropdown-menu">
-          <li><a href="/<?php echo $_SESSION['home'];?>?action=book-States">Book States</a></li>
+          <li><a href="/<?php echo $_SESSION['home'];?>?action=book-states">Book States</a></li>
           <li><a href="/<?php echo $_SESSION['home'];?>?action=email">Email</a></li>
           <li><a href="/<?php echo $_SESSION['home'];?>?action=users">Users</a></li>
         </ul>

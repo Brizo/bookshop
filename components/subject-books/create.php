@@ -19,7 +19,7 @@
 
 <div class="panel with-nav-tabs panel-default">
 	<div class="panel-heading">
-		<?php include "partials/schools_nav.php"; ?>
+		<?php include "partials/school_side_nav.php"; ?>
 	</div>
 	<div class="panel-body">
 		<div class="tab-pane" <?php if ($_SESSION['page'] == 'new-subject-book') { echo 'active';} ?>>

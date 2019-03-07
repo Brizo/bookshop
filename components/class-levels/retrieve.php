@@ -4,7 +4,7 @@
 
 <div class="row">
 	<div class="col-sm-2">
-		<?php include "partials/class_levels_side_nav.php"; ?> 
+		<?php include "partials/school_side_nav.php"; ?> 
 	</div>
 	<div class="col-sm-10">
 		<div class="panel panel-primary">
