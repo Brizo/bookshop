@@ -22,7 +22,7 @@
             </div>
             <div class="panel-body">
                 <div class="col-sm-8">
-                    <form class="form-horizontal" role="form" action="components/book-states/controller.php" method="post" id="removeClassForm">
+                    <form class="form-horizontal" role="form" action="components/book-states/controller.php" method="post" id="removeBookStateForm">
                         <div class="form-group">
                             <label for="form" class="col-sm-4 control-label">Name * :</label>
                             <div class="col-sm-8">
@@ -50,8 +50,8 @@
 
 <script type="text/javascript">
     $(document).ready(function() {
-		$('#removeClassForm').submit(function(e){
-            if (confirm("Are you sure you want to remove this class?")) {
+		$('#removeBookStateForm').submit(function(e){
+            if (confirm("Are you sure you want to remove this book state?")) {
                 return true;
             } else {
                 return false;

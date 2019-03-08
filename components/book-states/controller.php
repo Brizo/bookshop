@@ -65,7 +65,7 @@
 			exit();
 		} else {
 			// update book state
-			$updateBookStateResult = updateBookState($_SESSION['name'], $_SESSION['description']);
+			$updateBookStateResult = updateBookState($_SESSION['id'],$_SESSION['name'], $_SESSION['description']);
 	
 			if ($updateBookStateResult) {
 				unset($_SESSION['name']);

@@ -3,7 +3,7 @@
 
 	function getBookStates() {
 		$conn = openCon();
-		$sql = "SELECT `id`, `name`, `description` FROM `book_states`";
+		$sql = "SELECT `id`, `name`, `description` FROM `book_states` WHERE `status` != 0";
 		$result = $conn->query($sql);
 		closeCon($conn);
 		return $result;

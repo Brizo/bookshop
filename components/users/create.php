@@ -44,19 +44,19 @@
                                 <div class="form-group">
                                     <label for="form" class="col-sm-4 control-label">Username * :</label>
                                     <div class="col-sm-8">
-                                        <input type="text" class="form-control" id="username" name="username" placeholder="Enter username" value="<?php  if (isset($_SESSION['username'])) {echo $_SESSION['username'];} ?>" />
+                                        <input type="text" class="form-control" id="usernameu" name="usernameu" placeholder="Enter username" value="<?php  if (isset($_SESSION['usernameu'])) {echo $_SESSION['usernameu'];} ?>" />
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label for="form" class="col-sm-4 control-label">Password * :</label>
                                     <div class="col-sm-8">
-                                        <input type="password" class="form-control" id="password" name="password" placeholder="Enter password" value="<?php  if (isset($_SESSION['password'])) {echo $_SESSION['password'];} ?>" />
+                                        <input type="password" class="form-control" id="passwordu" name="passwordu" placeholder="Enter password" value="<?php  if (isset($_SESSION['passwordu'])) {echo $_SESSION['passwordu'];} ?>" />
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label for="form" class="col-sm-4 control-label">Confirm Password * :</label>
                                     <div class="col-sm-8">
-                                        <input type="password" class="form-control" id="password2" name="password2" placeholder="Confirm password" value="<?php  if (isset($_SESSION['password2'])) {echo $_SESSION['password2'];} ?>" />
+                                        <input type="password" class="form-control" id="passwordu2" name="passwordu2" placeholder="Confirm password" value="<?php  if (isset($_SESSION['passwordu2'])) {echo $_SESSION['passwordu2'];} ?>" />
                                     </div>
                                 </div>
                                 <div class="form-group">

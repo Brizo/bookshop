@@ -28,9 +28,9 @@
 
 		if (!isset($_SESSION['reply_to'])) {
 			$_SESSION['reply_to'] = $emailConfigs['reply_to'];
-        }
+    }
         
-        if (!isset($_SESSION['from_email'])) {
+    if (!isset($_SESSION['from_email'])) {
 			$_SESSION['from_email'] = $emailConfigs['from_email'];
 		}
 
@@ -74,10 +74,16 @@
 										<input type="password" class="form-control" id="password" name="password" placeholder="Enter authenticating password" value="<?php  if (isset($_SESSION['password'])) {echo $_SESSION['password'];} ?>" />
 									</div>
 								</div>
-                            </div>
-                            <div class="col-sm-6">
 								<div class="form-group">
-									<label for="form" class="col-sm-4 control-label">Host :</label>
+									<label for="form" class="col-sm-4 control-label">Reply To Email :</label>
+									<div class="col-sm-8">
+										<input type="text" class="form-control" id="reply_to" name="reply_to" placeholder="Enter reply to email" value="<?php  if (isset($_SESSION['reply_to'])) {echo $_SESSION['reply_to'];} ?>" />
+									</div>
+								</div> 
+              </div>
+              <div class="col-sm-6">
+								<div class="form-group">
+									<label for="form" class="col-sm-4 control-label">Host * :</label>
 									<div class="col-sm-8">
 										<input type="text" class="form-control" id="host" name="host" placeholder="Enter Host" value="<?php  if (isset($_SESSION['host'])) {echo $_SESSION['host'];} ?>" />
 									</div>
@@ -97,7 +103,7 @@
 								<div class="form-group">
 									<div class="col-sm-8 col-sm-offset-4">
 										<?php if ($configsExist == 0) echo '<button type="submit" class="btn btn-success" name="addnewemailconfigs"><span class="glyphicon glyphicon-ok-circle"></span>&nbsp;Configure</button>'; ?>
-										<?php if ($configsExist == 1) echo '<button type="submit" class="btn btn-success" name="updatemailconfigs"><span class="glyphicon glyphicon-ok-circle"></span>&nbsp;Update</button>' ?>
+										<?php if ($configsExist == 1) echo '<button type="submit" class="btn btn-success" name="updateemailconfigs"><span class="glyphicon glyphicon-ok-circle"></span>&nbsp;Update</button>' ?>
 										<a href="/<?php echo $_SESSION['home'];?>?action=email" class="btn btn-warning"><span class="glyphicon glyphicon-remove-circle"></span>&nbsp;Cancel</a>
 									</div>
 								</div>

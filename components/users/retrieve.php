@@ -20,6 +20,7 @@
 							<th></th>
 							<th>Name</th>
 							<th>Username</th>
+							<th>Role</th>
 							<th>Status</th>
 						</tr>
 					</thead>
@@ -41,6 +42,7 @@
 								</td>
 								<td><?=$row['name']?></td>
 								<td><?=$row['username']?></td>
+								<td><?=$row['user_role']?></td>
 								<td><?=$row['status']?></td>
 							</tr>
 						<?php endforeach; ?>
