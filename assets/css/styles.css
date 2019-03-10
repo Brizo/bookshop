@@ -4,14 +4,14 @@
 #systemNav { margin-top: 0px; padding-top: 0px; font-family: serif; font-size: 17px; }
 #company { font-size: 25px; font-weight: bold; }
 #banner { margin-top: 0px; padding-top: 0px; font-family: serif; font-size: 17px; background: #337ab7; color: white; padding: 15px; border-color: #000000; } 
-.navbar-default { background-color: green; color: #000000; }
+.navbar-default { background-color: #e3f2fd; color: #000000; }
 .navbar-default .navbar-text { color: #000000; }
 .navbar-default .navbar-nav>li>a { color: #000000; }
 .navbar-default .navbar-brand { color: #000000; }
 .navbar-default .navbar-nav>li>a:focus, .navbar-default .navbar-nav>li>a:hover { color: #ffffff; background-color: #337ab7; } 
 .navbar-default .navbar-nav>.active>a, .navbar-default .navbar-nav>.active>a:focus,.navbar-default .navbar-nav>.active>a:hover { color: #ffffff; background-color: #337ab7; }
 #systemBtn { background-color: #73e600; font-weight: bold; color: black; }
-#clearBtn { background-color: #FFFF00; color: black; font-weight: bold; }
+#clearBtn { background-color: #FFFF00; color: #000000; font-weight: bold; }
 #systemFooter { background-color: #e3f2fd; padding-top: 5px }
 #systemFooterText { margin-left: 20px }
 hr { background-color: #000000; height: 1px; border: 0;  margin-top: 0px; margin-bottom: 0px; padding-top: 0px; padding-bottom: 0px; color: #000000; }
@@ -19,3 +19,4 @@ hr { background-color: #000000; height: 1px; border: 0;  margin-top: 0px; margin
 .sidenav a { text-decoration: none; color: #000000; }
 .sidenav li { padding-left: 0px; padding-right: 0px; padding-bottom: 15px; list-style-type: none; list-style: none; }
 .sidenav a:hover { color: #337ab7; text-decoration: underline; }
+#removeStyle { color: #FF0000 }

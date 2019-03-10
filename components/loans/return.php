@@ -47,9 +47,9 @@
                             <label for="form" class="col-sm-4 control-label">Book Returned * :</label>
                             <div class="col-sm-8">                                
                                 <select class="form-control" id="returnedBook" name="returnedBook">
-                                    <option value="1">Original</option>
-                                    <option value="2">Replacement</option>
-                                    <option value="3">Payment</option>
+                                    <option value="2">Original</option>
+                                    <option value="3">Replacement</option>
+                                    <option value="4">Payment</option>
                                 </select>
                             </div>
                         </div>

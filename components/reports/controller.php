@@ -32,6 +32,13 @@
 
         return $result['count'];
     }
+
+    function retrieveStdDebt($stdId) {
+      $getCountResult = sumStudentDebt($stdId);
+      $result = mysqli_fetch_array($getCountResult);
+
+      return $result['debt'];
+  }
     
     // count new books
 	function countNewBooks() {

@@ -1,4 +1,14 @@
 <?php
+	// open modal when there is an error
+	if (isset($_SESSION["selfchangepwdfailure"])){
+		echo "<script type='text/javascript'>
+			$('#selfChangePasswordM').modal({backdrop:'static',keyboard:false});
+			$('#selfChangePasswordM').modal('show');
+		</script>";
+
+		unset($_SESSION["selfchangepwdfailure"]);
+	}
+
 	include "controller.php";
 
 	$stockBooks = countBooksOnStock();

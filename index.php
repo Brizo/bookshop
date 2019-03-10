@@ -10,7 +10,7 @@
 		<title>Smart BookShop</title>
 		<!-- css -->
 		<link rel="stylesheet" href="assets/css/bootstrap.min.css">
-		<link rel="stylesheet" href="assets/css/bootstrap-theme.min.css">
+		<!-- <link rel="stylesheet" href="assets/css/bootstrap-theme.min.css"> -->
 		<link rel="stylesheet" href="assets/css/jquery.dataTables.min.css"/>
 		<link rel="stylesheet" href="assets/css/datepicker.min.css"/>
 		<link rel="stylesheet" href="assets/css/styles.css"/>
@@ -27,6 +27,7 @@
 
 		<?php
 			if (isset($_GET['action']) && isset($_SESSION["logged"])) {
+				include "partials/modals.php";
 				include "partials/banner.php";
 				include "partials/main_nav.php";
 			}

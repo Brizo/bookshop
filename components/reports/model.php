@@ -149,4 +149,18 @@ function retrieveStdStatement($id, $status) {
 	return $result;
 }
 
+function sumStudentDebt($stdId) {
+	$conn = openCon();
+	$sql = "SELECT SUM(B.purchase_price) + SUM(B.levie) debt
+		FROM `book_loans` L
+		LEFT JOIN book_copies C ON L.book = C.id
+		LEFT JOIN books B ON C.book = B.id
+		WHERE L.client = {$stdId}
+		GROUP BY L.client";
+		
+	$result = $conn->query($sql);
+	closeCon($conn);
+	return $result;
+}
+
 ?>

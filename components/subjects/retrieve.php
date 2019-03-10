@@ -37,7 +37,7 @@
 							<tr>
 								<td>
 									<a href="/bookshop?action=edit-subject&id=<?php echo $row['id']; ?>"><span class='glyphicon glyphicon-edit' aria-hidden='true'></span>Edit</a>&nbsp;&nbsp;
-									<a href="/bookshop?action=delete-subject&id=<?php echo $row['id']; ?>"><span class='glyphicon glyphicon-trash' aria-hidden='true'></span>Remove</a>&nbsp;&nbsp;
+									<a style="color: #FF0000;" href="/bookshop?action=delete-subject&id=<?php echo $row['id']; ?>"><span class='glyphicon glyphicon-trash' aria-hidden='true'></span>Remove</a>&nbsp;&nbsp;
 									<a href="/bookshop?action=subject-books&id=<?php echo $row['id']; ?>&name=<?php echo $row['name']; ?>"><span class='glyphicon glyphicon-link' aria-hidden='true'></span>Books</a>
 								</td>
 								<td><?=$row['name']?></td>

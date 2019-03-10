@@ -40,7 +40,7 @@
 							<tr>
 								<td>
 									<a href="/bookshop?action=edit-book&id=<?php echo $row['id']; ?>"><span class='glyphicon glyphicon-edit' aria-hidden='true'></span>Edit</a>&nbsp;&nbsp;
-									<a href="/bookshop?action=delete-book&id=<?php echo $row['id']; ?>"><span class='glyphicon glyphicon-trash' aria-hidden='true'></span>Remove</a>&nbsp;&nbsp;
+									<a style="color: #FF0000;" href="/bookshop?action=delete-book&id=<?php echo $row['id']; ?>"><span class='glyphicon glyphicon-trash' aria-hidden='true'></span>Remove</a>&nbsp;&nbsp;
 								</td>
 								<td><?=$row['name']?></td>
 								<td><?=$row['isb']?></td>

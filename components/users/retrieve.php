@@ -37,7 +37,7 @@
 							<tr>
 								<td>
 									<a href="/bookshop?action=edit-user&id=<?php echo $row['id']; ?>"><span class='glyphicon glyphicon-edit' aria-hidden='true'></span>Edit</a>&nbsp;&nbsp;
-									<a href="/bookshop?action=delete-user&id=<?php echo $row['id']; ?>"><span class='glyphicon glyphicon-trash' aria-hidden='true'></span>Remove</a>&nbsp;&nbsp;
+									<a style="color: #FF0000;" href="/bookshop?action=delete-user&id=<?php echo $row['id']; ?>"><span class='glyphicon glyphicon-trash' aria-hidden='true'></span>Remove</a>&nbsp;&nbsp;
 									<a href="/bookshop?action=change-password&id=<?php echo $row['id']; ?>"><span class='glyphicon glyphicon-eye-open' aria-hidden='true'></span>Change Password</a>
 								</td>
 								<td><?=$row['name']?></td>

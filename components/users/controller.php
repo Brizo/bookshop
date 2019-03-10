@@ -163,6 +163,92 @@
 			}
 		}
 	}
+
+	// self change password
+	if (isset($_POST['selfchangepwd'])) {
+		session_start();
+		$conn = openCon(); // connect to db
+		$_SESSION['oldpassword'] = mysqli_real_escape_string($conn,$_POST['oldpassword']);
+		$_SESSION['newpassword'] = mysqli_real_escape_string($conn,$_POST['newpassword']);
+        $_SESSION['newpassword2'] = mysqli_real_escape_string($conn,$_POST['newpassword2']);
+		closeCon($conn); // disconnect from db
+	
+		// // check fields and throw error if empty
+		if (empty($_SESSION['oldpassword']) || empty($_SESSION['newpassword']) || empty($_SESSION['newpassword2'])) {
+			$_SESSION["selfchangepwdfailure"] = "true";
+			$_SESSION["alert2"] = "danger";
+			$_SESSION["status2"] = "Error";
+			$_SESSION["message2"] = "Please fill all mandatory information.";
+
+			header("Location: /bookshop?action=home");
+			exit();
+		} else if ($_SESSION['newpassword'] != $_SESSION['newpassword2']) {
+			$_SESSION["selfchangepwdfailure"] = "true";
+			$_SESSION["alert2"] = "danger";
+			$_SESSION["status2"] = "Error";
+			$_SESSION["message2"] = "Entered passwords do not match.";
+
+			header("Location: /bookshop?action=home");
+			exit();
+		} else {
+			// get old password
+			$userDetailsResult = localUserLogin($_SESSION['loggedUsername']);
+			$userData = mysqli_fetch_assoc($userLoginResult);
+			$dbPassword = $userData['password'];
+
+			// check if old password is correct
+			if (!password_verify($_SESSION['oldpassword'], $dbPassword)) {
+				$_SESSION["selfchangepwdfailure"] = "true";
+				$_SESSION["alert2"] = "danger";
+				$_SESSION["status2"] = "Error";
+				$_SESSION["message2"] = "Wrong Old Password Entered.";
+	
+				header("Location: /bookshop?action=home");
+				exit();
+			}
+
+			// check password
+			$checkPasswordResult = validPassword($_SESSION['newpassword2']);
+
+			if (strlen($checkPasswordResult) > 0) {
+				$_SESSION["selfchangepwdfailure"] = "true";
+				$_SESSION["alert2"] = "danger";
+				$_SESSION["status2"] = "Error";
+				$_SESSION["message2"] = $checkPasswordResult;
+
+				header("Location: /bookshop?action=home");
+				exit();
+			}
+
+			// hash password
+			$options = [ 'cost' => 12, ];
+			$hashedPassword = password_hash($_SESSION['newpassword2'], PASSWORD_BCRYPT, $options);
+
+			// change user password
+			$changeUserPassResult = changeUserPassword($_SESSION['loggedUsername'],$hashedPassword);
+	
+			if ($changeUserPassResult) {
+				unset($_SESSION['oldpassword']);
+				unset($_SESSION['newpassword']);
+				unset($_SESSION['newpassword2']);
+				
+                $_SESSION["alert"] = "success";
+                $_SESSION["status"] = "Success";
+                $_SESSION["message"] = "Your Password Has Been Successfully Changed, will take effect on next login";
+
+                header("Location: /bookshop?action=home");
+                exit();
+			} else {
+				$_SESSION["selfchangepwdfailure"] = "true";
+			    $_SESSION["alert2"] = "danger";
+				$_SESSION["status2"] = "Error";
+				$_SESSION["message2"] = "A database error has occured, please contact system administrator.";
+
+				header("Location: /bookshop?action=home");
+				exit();
+			}
+		}
+	}
 	
 	// update user
 	if (isset($_POST['updateuser'])) {

@@ -97,18 +97,20 @@
 		session_start();
 		$conn = openCon();
 		$_SESSION['returnState'] = mysqli_real_escape_string($conn,$_POST['returnState']);
+		$_SESSION['returnedBook'] = mysqli_real_escape_string($conn,$_POST['returnedBook']);
 		closeCon($conn);
 	
 		// // check if user filled fields and throw error if not
-		if (empty($_SESSION['returnState'])) {
+		if (empty($_SESSION['returnState']) || empty($_SESSION['returnedBook'])) {
 			$_SESSION["alert"] = "danger";
 			$_SESSION["status"] = "Error";
-			$_SESSION["message"] = "Please fill all information.";
+			$_SESSION["message"] = "Please fill all mandatory fields.";
 
 			header("Location: /bookshop?action=return-loan");
 			exit();
 		} else {
-			$returnBookLoanResult = returnBookLoan($_SESSION['id'], $_SESSION['returnState']);
+
+			$returnBookLoanResult = returnBookLoan($_SESSION['id'], $_SESSION['returnState'], $_SESSION['returnedBook']);
 	
 			if ($returnBookLoanResult) {
 				unset($_SESSION['id']);

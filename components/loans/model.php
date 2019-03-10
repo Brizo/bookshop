@@ -61,7 +61,7 @@
 		$conn = openCon();
 		$created_at = getTime();
 		$last_modified_by = $_SESSION['loggedUserId'];
-		$status = 1; // 1 = loaned, 0 = removed, 2 = returned, 3 = paid
+		$status = 1; // 1 = loaned, 0 = removed, 2 = returned, 4 = paid, 3 = replaced
 		$sql = "INSERT INTO `book_loans`(`client`, `issue_date`, `return_date`, `book_issue_state`, `book`, `status`, `created_at`, `last_modified_by`) 
 			VALUES({$student},
 				'{$created_at}',
@@ -100,10 +100,10 @@
 		return $result;
 	}
 
-	function returnBookLoan($id, $state) {
+	function returnBookLoan($id, $state, $status) {
 		$conn = openCon();
 		$last_modified_by = $_SESSION['loggedUserId'];
-		$status = 2; // 1 = loaned, 0 = removed, 2 = returned
+		//$status = 2; // 1 = loaned, 0 = removed, 2 = returned, 3 = replaced, 4 = lost
 		$returned_date = getTime();
 
 		$sql = "UPDATE `book_loans`

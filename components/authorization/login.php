@@ -15,7 +15,7 @@
         </div>
         <div class="form-group last">
           <div class="col-sm-offset-3 col-sm-9">
-            <button  type="submit" name="local" class="btn btn-success btn-sm"><span class = "glyphicon glyphicon-user"></span>&nbsp;Sign in</button>
+            <button  type="submit" name="local" class="btn btn-success btn-sm"><span class = "glyphicon glyphicon-log-in"></span>&nbsp;Sign in</button>
             <button type="reset" class="btn btn-warning btn-sm"><span class = "glyphicon glyphicon-remove-circle"></span>&nbsp;Reset</button>
           </div>
         </div>

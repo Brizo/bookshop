@@ -151,6 +151,23 @@
 					$destination="components/classes/delete.php";
 					break;
 
+				// class levels
+				case "class_levels":
+					$destination="components/class-levels/retrieve.php";
+					break;
+
+				case "new-class_level":
+					$destination="components/class-levels/create.php";
+					break;
+
+				case "edit-class_level":
+					$destination="components/class-levels/update.php";
+					break;
+			
+				case "delete-class_level":
+					$destination="components/class-levels/delete.php";
+					break;
+
 				// users
 				case "users":
 					$destination="components/users/retrieve.php";
@@ -187,24 +204,6 @@
 			
 				case "delete-book_state":
 					$destination="components/book-states/delete.php";
-					break;
-
-				
-				// class levels
-				case "class_levels":
-					$destination="components/class-levels/retrieve.php";
-					break;
-
-				case "new-class_level":
-					$destination="components/class-levels/create.php";
-					break;
-
-				case "edit-class_level":
-					$destination="components/class-levels/update.php";
-					break;
-			
-				case "delete-class_level":
-					$destination="components/class-levels/delete.php";
 					break;
 
 				// home

@@ -44,7 +44,7 @@
 						$_SESSION["logged"] = true;
 						$_SESSION["alert"] = "info";
 						$_SESSION["status"] = "Welcome";
-						$_SESSION["message"] = "Logged in successfully. Welcome";
+						$_SESSION["message"] = "Logged in successfully, welcome";
 						$_SESSION['instance'] = "Development";
 						$_SESSION['version'] = "1.0.0";
 

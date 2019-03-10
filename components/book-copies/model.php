@@ -92,9 +92,15 @@
 					'{$reason}',
 					{$last_modified_by},
 				)";
+
+		$sql3 = "UPDATE `book_loans` 
+					SET `book` = $replaced_with 
+					WHERE `book` = {$id}";
 				
 		$result1 = $conn->query($sql);
 		$result2 = $conn->query($sql2);
+		$result3 = $conn->query($sql3);
+		
 		closeCon($conn);
 		return $result2;
 	}

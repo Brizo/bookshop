@@ -6,6 +6,7 @@
         $status = $_GET['status'];
         if ($status == 1) {
             $type = "Unsettled Loans";
+            $debt = retrieveStdDebt($stdId);
         } else {
             $type = "Settled Loans";
         }
@@ -59,7 +60,7 @@
                             </tbody>
                         </table>
                         <br>
-                        <?php if ($status == 1) echo "<h3>Total Outstanding : </h3>" ?>
+                        <?php if ($status == 1) echo "<h3>Total Outstanding : E".$debt." </h3>" ?>
 					</div>
 				</div>
 			</div>
