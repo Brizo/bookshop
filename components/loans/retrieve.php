@@ -39,7 +39,7 @@
 								<td>
 									<a href="/<?php echo $_SESSION['home'];?>?action=edit-loan&id=<?php echo $row['id']; ?>"><span class='glyphicon glyphicon-edit' aria-hidden='true'></span>Edit</a>&nbsp;&nbsp;
 									<a href="/<?php echo $_SESSION['home'];?>?action=delete-loan&id=<?php echo $row['id']; ?>"><span class='glyphicon glyphicon-trash' aria-hidden='true'></span>Remove</a>&nbsp;&nbsp;
-									<a href="/<?php echo $_SESSION['home'];?>?action=return-loan&id=<?php echo $row['id']; ?>"><span class='glyphicon glyphicon-trash' aria-hidden='true'></span>Return Book</a>&nbsp;&nbsp;
+									<a href="/<?php echo $_SESSION['home'];?>?action=return-loan&id=<?php echo $row['id']; ?>"><span class='glyphicon glyphicon-saved' aria-hidden='true'></span>Return Book</a>&nbsp;&nbsp;
 								</td>
 								<td><?=$row['client']?></td>
 								<td><?=$row['book']?></td>

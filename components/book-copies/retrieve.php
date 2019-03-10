@@ -41,6 +41,7 @@
 								<td>
 									<a href="/bookshop?action=edit-book-copy&id=<?php echo $row['id']; ?>"><span class='glyphicon glyphicon-edit' aria-hidden='true'></span>Edit</a>&nbsp;&nbsp;
 									<a href="/bookshop?action=delete-book-copy&id=<?php echo $row['id']; ?>"><span class='glyphicon glyphicon-trash' aria-hidden='true'></span>Remove</a>&nbsp;&nbsp;
+									<a href="/bookshop?action=replace-book-copy&id=<?php echo $row['id']; ?>"><span class='glyphicon glyphicon-trash' aria-hidden='true'></span>Replace</a>
 								</td>
 								<td><?=$row['name']?></td>
 								<td><?=$row['isb']?></td>

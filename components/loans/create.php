@@ -90,4 +90,18 @@
 		todayButton: new Date(),
 		autoClose: true
 	});
+
+    // Initialize select2
+    $("#student").select2();
+    // Read selected option
+    $('#but_read').click(function(){
+        $('#student option:selected').text();
+    });
+
+    // Initialize select2
+    $("#book").select2();
+    // Read selected option
+    $('#but_read').click(function(){
+        $('#book option:selected').text();
+    });
 </script>

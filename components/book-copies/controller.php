@@ -69,12 +69,12 @@
 		session_start();
 		$conn = openCon(); // connect to db
 		$_SESSION['status'] = mysqli_real_escape_string($conn,$_POST['status']);
-        $_SESSION['barCode'] = mysqli_real_escape_string($conn,$_POST['barCode']);
+        $_SESSION['bar_code'] = mysqli_real_escape_string($conn,$_POST['bar_code']);
         $_SESSION['state'] = mysqli_real_escape_string($conn,$_POST['state']);
 		closeCon($conn); // disconnect from db
 	
 		// // check fields and throw error if empty
-		if (empty($_SESSION['status']) || empty($_SESSION['barCode']) || empty($_SESSION['state'])) {
+		if (empty($_SESSION['status']) || empty($_SESSION['bar_code']) || empty($_SESSION['state'])) {
 			$_SESSION["alert"] = "danger";
 			$_SESSION["status"] = "Error";
 			$_SESSION["message"] = "Please fill all mandatory information.";
@@ -83,7 +83,7 @@
 			exit();
 		} else {
 			// check if barcode already used
-			$getByBarcodeResult = getBookCopyByField("bar_code", $_SESSION['barCode']);
+			$getByBarcodeResult = getBookCopyByField("bar_code", $_SESSION['bar_code']);
 
 			$getByBarcodeNum = mysqli_num_rows($getByBarcodeResult);
 
@@ -97,7 +97,7 @@
 			}
 
 			// update book copy
-			$updateBookCopyResult = updateBookCopy($_SESSION['id'], $_SESSION['barCode'], $_SESSION['state'], $_SESSION['status']);
+			$updateBookCopyResult = updateBookCopy($_SESSION['id'], $_SESSION['bar_code'], $_SESSION['state'], $_SESSION['status']);
 	
 			if ($updateBookCopyResult) {
 				unset($_SESSION['status']);
@@ -161,5 +161,51 @@
 				exit();
 			}
 		}
-    }
+	}
+	
+	// replace book
+	if (isset($_POST['replacebookcopy'])) {
+		session_start();
+		$conn = openCon(); // connect to db
+		$_SESSION['reason'] = mysqli_real_escape_string($conn,$_POST['reason']);
+		$_SESSION['newBook'] = mysqli_real_escape_string($conn,$_POST['newBook']);
+		$_SESSION['replaceStudent'] = mysqli_real_escape_string($conn,$_POST['replaceStudent']);
+		closeCon($conn); // disconnect from db
+	
+		// // check fields and throw error if empty
+		if (empty($_SESSION['reason']) || empty($_SESSION['newBook']) || empty($_SESSION['replaceStudent'])) {
+			$_SESSION["alert"] = "danger";
+			$_SESSION["status"] = "Error";
+			$_SESSION["message"] = "Please fill all mandatory information.";
+
+			header("Location: /bookshop?action=replace-book-copy");
+			exit();
+		} else {
+
+			// replace book copy
+			$replanceBookCopyResult = replaceBookCopy($_SESSION['id'], $_SESSION['newBook'], $_SESSION['reason'], $_SESSION['replaceStudent']);
+	
+			if ($removeBookCopyResult) {
+				unset($_SESSION['id']);
+				unset($_SESSION['book']);
+				unset($_SESSION['reason']);
+				unset($_SESSION['newBook']);
+				unset($_SESSION['replaceStudent']);
+				
+                $_SESSION["alert"] = "success";
+                $_SESSION["status"] = "Success";
+                $_SESSION["message"] = "Book Copy Successfully Replaced";
+
+                header("Location: /bookshop?action=book-copies");
+                exit();
+			} else {
+			    $_SESSION["alert"] = "danger";
+				$_SESSION["status"] = "Error";
+				$_SESSION["message"] = "A database error has occured, please contact system administrator.";
+
+				header("Location: /bookshop?action=replace-book");
+				exit();
+			}
+		}
+	}
 ?>

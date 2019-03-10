@@ -37,6 +37,10 @@
 				case "delete-book-copy":
 					$destination="components/book-copies/delete.php";
 					break;
+				
+				case "replace-book-copy":
+					$destination="components/book-copies/replace.php";
+					break;
 
 
 				// book loans
@@ -203,6 +207,7 @@
 					$destination="components/class-levels/delete.php";
 					break;
 
+				// home
 				case "home":
 					$destination="components/home/retrieve.php";
 					break;
@@ -216,13 +221,38 @@
 				case "email":
 					$destination="components/email/retrieve.php";
 					break;
-				
-				case "admin":
-					$destination="components/admin/retrieve.php";
-					break;
-				
+			
+				// reports
 				case "reports":
 					$destination="components/reports/retrieve.php";
+					break;
+				
+				case "loaned-books_r":
+					$destination="components/reports/loaned_books.php";
+					break;
+				
+				case "lost-books_r":
+					$destination="components/reports/lost_books.php";
+					break;
+
+				case "returned-books_r":
+					$destination="components/reports/returned_books.php";
+					break;
+
+				case "new-books_r":
+					$destination="components/reports/new_books.php";
+					break;
+
+				case "replaced-books_r":
+					$destination="components/reports/replaced_books.php";
+					break;
+
+				case "student_statement":
+					$destination="components/reports/student_statement.php";
+					break;
+				
+				case "student_statement_r":
+					$destination="components/reports/new_std_statement.php";
 					break;
 						
 				default:

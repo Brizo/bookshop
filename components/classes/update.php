@@ -10,7 +10,6 @@
         $_SESSION['description'] = $class['description'];
         $_SESSION['id'] = $class['id'];
     }
-
 ?>
 
 <div class="row">

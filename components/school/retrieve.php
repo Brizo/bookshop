@@ -42,6 +42,10 @@
 			$_SESSION['username_prefix'] = $account['username_prefix'];
 		}
 
+		if (!isset($_SESSION['book_circulation'])) {
+			$_SESSION['book_circulation'] = $account['book_circulation'];
+		}
+
 		if (!isset($_SESSION['id'])) {
 			$_SESSION['id'] = $account['id'];
 		}
@@ -53,7 +57,7 @@
 		<div class="panel panel-primary">
 			<div class="panel-heading">
 				<div class="panel-title">
-					<h4 class="panel-title">Account Unit Information</h4>
+					<h4 class="panel-title">School Information</h4>
 				</div>
 			</div>
 			<div class="panel-body">
@@ -64,7 +68,7 @@
 								<div class="form-group">
 									<label for="form" class="col-sm-4 control-label">School Name * :</label>
 									<div class="col-sm-8">
-										<input type="text" class="form-control" id="name" name="name" placeholder="Enter school name" value="<?php  if (isset($_SESSION['aname'])) {echo $_SESSION['aname'];} ?>" />
+										<input type="text" class="form-control" id="aname" name="aname" placeholder="Enter school name" value="<?php  if (isset($_SESSION['aname'])) {echo $_SESSION['aname'];} ?>" />
 									</div>
 								</div>                   
 								<div class="form-group">

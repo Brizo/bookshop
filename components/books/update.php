@@ -11,8 +11,8 @@
         $_SESSION['isb'] = $book['isb'];
         $_SESSION['year'] = $book['year'];
         $_SESSION['author'] = $book['author'];
-        $_SESSION['barCode'] = $book['bar_code'];
-        $_SESSION['state'] = $book['state'];
+        $_SESSION['levie'] = $book['levie'];
+        $_SESSION['purchase_price'] = $book['purchase_price'];
         $_SESSION['id'] = $book['id'];
     }
 ?>

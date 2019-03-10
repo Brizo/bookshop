@@ -1,19 +1,21 @@
 <nav id="systemNav" class="navbar navbar-static-top navbar-default">
   <div class="container-fluid">
     <div class="navbar-header">
-      <a class="navbar-brand" href="/<?php echo $_SESSION['home'];?>?action=home"><b>Home</b></a>
+      <a class="navbar-brand" href="/<?php echo $_SESSION['home'];?>?action=home"><b><span class="glyphicon glyphicon-home"></span> Home</b></a>
     </div>
     <ul class="nav navbar-nav">
-      <li><a href="/<?php echo $_SESSION['home'];?>?action=loans"><b>Loans</b></a></li>
+      <li class="<?php if ($_SESSION['page'] == 'loans' || $_SESSION['page'] == 'new-loan' || $_SESSION['page'] == 'edit-loan' || $_SESSION['page'] == 'delete-loan') {echo 'active';} ?>">
+        <a href="/<?php echo $_SESSION['home'];?>?action=loans"><b><span class="glyphicon glyphicon-euro"></span> Loans</b></a>
+      </li>
       <li class="dropdown">
-        <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><b>Books</b><span class="caret"></span></a>
+        <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><b><span class="glyphicon glyphicon-book"></span> Books</b><span class="caret"></span></a>
         <ul class="dropdown-menu">
           <li><a href="/<?php echo $_SESSION['home'];?>?action=books">Books</b></li>
           <li><a href="/<?php echo $_SESSION['home'];?>?action=book-copies">Book Copies</a></li>
         </ul>
       </li>
       <li class="dropdown">
-        <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><b>School</b><span class="caret"></span></a>
+        <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><b><span class="glyphicon glyphicon-education"></span> School</b><span class="caret"></span></a>
         <ul class="dropdown-menu">
           <li><a href="/<?php echo $_SESSION['home'];?>?action=school">School</a></li>
           <li><a href="/<?php echo $_SESSION['home'];?>?action=subjects">Subjects</a></li>
@@ -24,14 +26,14 @@
         </ul>
       </li>	
       <li class="dropdown">
-        <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><b>Admin</b><span class="caret"></span></a>
+        <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><b><span class="glyphicon glyphicon-wrench"></span> Admin</b><span class="caret"></span></a>
         <ul class="dropdown-menu">
           <li><a href="/<?php echo $_SESSION['home'];?>?action=book-states">Book States</a></li>
           <li><a href="/<?php echo $_SESSION['home'];?>?action=email">Email</a></li>
           <li><a href="/<?php echo $_SESSION['home'];?>?action=users">Users</a></li>
         </ul>
       </li>	
-      <li><a href="/<?php echo $_SESSION['home'];?>?action=reports"><b>Reports</b></a></li>  
+      <li><a href="/<?php echo $_SESSION['home'];?>?action=reports"><b><span class="glyphicon glyphicon-list-alt"></span> Reports</b></a></li>  
     </ul>
     <ul class="nav navbar-nav navbar-right">
       <li class="dropdown">

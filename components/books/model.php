@@ -3,11 +3,15 @@
 
 	function getBooks() {
 		$conn = openCon();
-		$sql = "SELECT B.id, B.name, B.description, B.isb, B.year, B.purchase_price, B.levie, B.author, Count(S.book) copies,  CASE WHEN B.status = 1 THEN 'active' ELSE 'obsolete' END `status`
+		$sql = "SELECT B.id, B.name, B.description, B.isb, B.year, B.purchase_price, B.levie, B.author, Count(S.book) copies,  
+			CASE 
+				WHEN B.status = 1 THEN 'active' 
+				ELSE 'obsolete' 
+			END `status`
 			FROM `books` B
 			LEFT JOIN book_copies S ON B.id = S.book
 			WHERE B.status != 0
-			GROUP BY (S.book)";
+			GROUP BY (B.id)";
 		$result = $conn->query($sql);
 		closeCon($conn);
 		return $result;
@@ -17,12 +21,20 @@
 		$conn = openCon();
 
 		if ($field == "id" || $field == "state" || $field == "status" || $field == "last_modified_by") {
-			$sql = "SELECT B.id,B.name, B.description, B.isb, B.year,B.purchase_price, B.levie, B.author, CASE WHEN B.status = 1 THEN 'active' ELSE 'obsolete' END `status`
+			$sql = "SELECT B.id,B.name, B.description, B.isb, B.year,B.purchase_price, B.levie, B.author, 
+				CASE 
+					WHEN B.status = 1 THEN 'active' 
+					ELSE 'obsolete' 
+				END `status`
 				FROM `books` B
 				LEFT JOIN book_copies S ON B.id = S.book
 				WHERE B.{$field} = {$value}";
 		} else {
-			$sql = "SELECT B.id, B.name, B.description, B.isb, B.year,B.purchase_price, B.levie, B.author, CASE WHEN B.status = 1 THEN 'active' ELSE 'obsolete' END `status`
+			$sql = "SELECT B.id, B.name, B.description, B.isb, B.year,B.purchase_price, B.levie, B.author, 
+				CASE 
+					WHEN B.status = 1 THEN 'active' 
+					ELSE 'obsolete' 
+				END `status`
 				FROM `books` B
 				LEFT JOIN book_copies S ON B.id = S.book
 				WHERE B.{$field} = '{$value}'";

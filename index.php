@@ -14,6 +14,7 @@
 		<link rel="stylesheet" href="assets/css/jquery.dataTables.min.css"/>
 		<link rel="stylesheet" href="assets/css/datepicker.min.css"/>
 		<link rel="stylesheet" href="assets/css/styles.css"/>
+		<link rel="stylesheet" href="assets/css/select2.min.css"/>
 
 		<!-- javascript -->
 		<script src="assets/js/jquery.min.js"></script>
@@ -22,6 +23,7 @@
 		<script src="assets/js/jquery.dataTables.min.js"></script>
 		<script src="assets/js/datepicker.min.js"></script>
 		<script src="assets/js/datepicker.en.js"></script>
+		<script src="assets/js/select2.min.js"></script>
 
 		<?php
 			if (isset($_GET['action']) && isset($_SESSION["logged"])) {

@@ -37,7 +37,7 @@
 								<td>
 									<a href="/bookshop?action=edit-stream&id=<?php echo $row['id']; ?>"><span class='glyphicon glyphicon-edit' aria-hidden='true'></span>Edit</a>&nbsp;&nbsp;
 									<a href="/bookshop?action=delete-stream&id=<?php echo $row['id']; ?>"><span class='glyphicon glyphicon-trash' aria-hidden='true'></span>Remove</a>&nbsp;&nbsp;
-									<a href="/bookshop?action=stream-subjects&id=<?php echo $row['id']; ?>&name=<?php echo $row['name']; ?>"><span class='glyphicon glyphicon-edit' aria-hidden='true'></span>Subjects</a>
+									<a href="/bookshop?action=stream-subjects&id=<?php echo $row['id']; ?>&name=<?php echo $row['name']; ?>"><span class='glyphicon glyphicon-link' aria-hidden='true'></span>Subjects</a>
 								</td>
 								<td><?=$row['name']?></td>
 								<td><?=$row['description']?></td>

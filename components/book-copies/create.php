@@ -30,7 +30,7 @@
                         <div class="form-group">
                             <label for="form" class="col-sm-4 control-label">Book * :</label>
                             <div class="col-sm-8">                                
-                                <select class="form-control" id="class" name="bookId">
+                                <select class="form-control" id="bookid" name="bookId">
                                     <?php foreach($books as $row): ?>
                                         <option value="<?php echo $row['id']; ?>"><?=$row['name']?></option>
                                     <?php endforeach; ?>
@@ -80,4 +80,11 @@
 		autoClose: true,
 		maxDate: new Date()
 	});
+
+    // Initialize select2
+    $("#bookid").select2();
+    // Read selected option
+    $('#but_read').click(function(){
+        $('#bookid option:selected').text();
+    });
 </script>

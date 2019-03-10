@@ -1,12 +1,6 @@
 <?php
     include $_SERVER['DOCUMENT_ROOT']."/bookshop/components/book-states/controller.php";
-    include $_SERVER['DOCUMENT_ROOT']."/bookshop/components/books/controller.php";
-
-    $books = array();
-    $queryResult = retrieveBooks();
-    while ($row = mysqli_fetch_array($queryResult)) {
-        $books[] = $row;
-    }
+    include "controller.php";
 
     $bookStates = array();
     $queryResult = retrieveBookStates();
@@ -15,11 +9,12 @@
     }
 
     if (isset($_GET['id'])) {
+        
         $bookCopyId = $_GET['id'];
-        $getBookCopyResult = getBookByCopyField("id", $bookCopyId);
+        $getBookCopyResult = getBookCopyByField("id", $bookCopyId);
         $bookCopy = mysqli_fetch_array($getBookCopyResult);
 
-        $_SESSION['book'] = $bookCopy['book'];
+        $_SESSION['book'] = $bookCopy['name'];
         $_SESSION['state'] = $bookCopy['state'];
         $_SESSION['bar_code'] = $bookCopy['bar_code'];
         $_SESSION['id'] = $bookCopy['id'];
@@ -47,7 +42,7 @@
                         <div class="form-group">
                             <label for="form" class="col-sm-4 control-label">Bar code * :</label>
                             <div class="col-sm-8">
-                                <input type="text" class="form-control" id="barCode" name="barCode" placeholder="Enter book bar code" value="<?php  if (isset($_SESSION['barCode'])) {echo $_SESSION['barCode'];} ?>" />
+                                <input type="text" class="form-control" id="bar_code" name="bar_code" placeholder="Enter book bar code" value="<?php  if (isset($_SESSION['bar_code'])) {echo $_SESSION['bar_code'];} ?>" />
                             </div>
                         </div>
                         <div class="form-group">
@@ -64,8 +59,8 @@
                             <label for="form" class="col-sm-4 control-label">Status * :</label>
                             <div class="col-sm-8">                                
                                 <select class="form-control" id="status" name="status">
-                                    <option value="3">Lost</option>
-                                    <option value="4">Replaced</option>
+                                    <option value="1">Active</option>
+                                    <option value="4">Lost</option>
                                 </select>
                             </div>
                         </div>

@@ -7,8 +7,8 @@
         $getBookLoanResult = getBookLoanByField("id", $loanId);
         $loan = mysqli_fetch_array($getBookLoanResult);
 
-        $_SESSION['client'] = $loan['client'];
-        $_SESSION['book'] = $loan['book'];
+        $_SESSION['client'] = $loan['clientName'];
+        $_SESSION['book'] = $loan['bookName'];
         $_SESSION['id'] = $loan['id'];
     }
 
@@ -41,6 +41,16 @@
                             <label for="form" class="col-sm-4 control-label">Book * :</label>
                             <div class="col-sm-8">                                
                                 <input type="text" class="form-control" id="book" name="book" value="<?php  if (isset($_SESSION['book'])) {echo $_SESSION['book'];} ?>" disabled/>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="form" class="col-sm-4 control-label">Book Returned * :</label>
+                            <div class="col-sm-8">                                
+                                <select class="form-control" id="returnedBook" name="returnedBook">
+                                    <option value="1">Original</option>
+                                    <option value="2">Replacement</option>
+                                    <option value="3">Payment</option>
+                                </select>
                             </div>
                         </div>
                         <div class="form-group">
