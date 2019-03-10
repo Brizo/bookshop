@@ -4,11 +4,11 @@
     function getSubjectBooks($subject) {
         $conn = openCon();
 
-        $sql = "SELECT T.subject id, S.name, S.isb, S.year, S.author, S.bar_code, S.state, S.status
-            FROM `book_subjects` T
-            LEFT JOIN `books` S
-            ON T.book = S.id
-            WHERE T.subject = $subject";
+        $sql = "SELECT S.subject id, B.name, B.isb, B.year, B.author, B.status
+            FROM `book_subjects` S
+            LEFT JOIN `books` B
+            ON S.book = B.id
+            WHERE S.subject = {$subject}";
         
         $result = $conn->query($sql);
         closeCon($conn);

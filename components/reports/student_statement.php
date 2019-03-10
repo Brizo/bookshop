@@ -60,7 +60,9 @@
                             </tbody>
                         </table>
                         <br>
-                        <?php if ($status == 1) echo "<h3>Total Outstanding : E".$debt." </h3>" ?>
+                        <?php if ($_SESSION['loggedRole'] == 'admin'): ?>
+                            <h3>Total Outstanding : E <?php echo $debt; ?> </h3>
+                        <?php endif; ?>
 					</div>
 				</div>
 			</div>

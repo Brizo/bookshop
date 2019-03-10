@@ -35,18 +35,20 @@
           <li><a href="/<?php echo $_SESSION['home'];?>?action=class_levels">Class Levels</a></li>
           <li><a href="/<?php echo $_SESSION['home'];?>?action=students">Students</a></li>
         </ul>
-      </li>	
-      <li class="dropdown <?php if ($_SESSION['page'] == 'email' || $_SESSION['page'] == 'users' || $_SESSION['page'] == 'new-user' || 
-          $_SESSION['page'] == 'edit-user' || $_SESSION['page'] == 'delete-user' || $_SESSION['page'] == 'change-password' ||
-          $_SESSION['page'] == 'book-states' || $_SESSION['page'] == 'new-book_state' || $_SESSION['page'] == 'edit-book_state' ||
-          $_SESSION['page'] == 'delete-book_state') {echo 'active';} ?>">
-        <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><b><span class="glyphicon glyphicon-wrench"></span> Admin</b><span class="caret"></span></a>
-        <ul class="dropdown-menu">
-          <li><a href="/<?php echo $_SESSION['home'];?>?action=book-states">Book States</a></li>
-          <li><a href="/<?php echo $_SESSION['home'];?>?action=email">Email</a></li>
-          <li><a href="/<?php echo $_SESSION['home'];?>?action=users">Users</a></li>
-        </ul>
-      </li>	
+      </li>
+      <?php if ($_SESSION['loggedRole'] == 'admin'): ?>
+        <li class="dropdown <?php if ($_SESSION['page'] == 'email' || $_SESSION['page'] == 'users' || $_SESSION['page'] == 'new-user' || 
+            $_SESSION['page'] == 'edit-user' || $_SESSION['page'] == 'delete-user' || $_SESSION['page'] == 'change-password' ||
+            $_SESSION['page'] == 'book-states' || $_SESSION['page'] == 'new-book_state' || $_SESSION['page'] == 'edit-book_state' ||
+            $_SESSION['page'] == 'delete-book_state') {echo 'active';} ?>">
+          <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><b><span class="glyphicon glyphicon-wrench"></span> Admin</b><span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="/<?php echo $_SESSION['home'];?>?action=book-states">Book States</a></li>
+            <li><a href="/<?php echo $_SESSION['home'];?>?action=email">Email</a></li>
+            <li><a href="/<?php echo $_SESSION['home'];?>?action=users">Users</a></li>
+          </ul>
+        </li>
+      <?php endif; ?>
       <li class="<?php if ($_SESSION['page'] == 'reports' || $_SESSION['page'] == 'loaned-books_r' || $_SESSION['page'] == 'lost-books_r' || 
           $_SESSION['page'] == 'returned-books_r' || $_SESSION['page'] == 'new-books_r' || $_SESSION['page'] == 'replaced-books_r' ||
           $_SESSION['page'] == 'student_statement' || $_SESSION['page'] == 'student_statement_r') {echo 'active';} ?>">

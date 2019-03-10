@@ -3,12 +3,12 @@
 
 	function getUsers() {
 		$conn = openCon();
-		$sql = "SELECT `id`, `first_name`, `middle_name`, `last_name`, `username`, `user_role`,
+		$sql = "SELECT `id`, `first_name`, `middle_name`, `last_name`, `username`, `user_role`, `account_status`,
 				CASE 
 					WHEN account_status = 1 THEN 'active' 
 					WHEN account_status = 2 THEN  'disabled' 
 					ELSE 'removed' 
-				END `status`,
+				END `statusName`,
 				CONCAT(`first_name`,' ',`middle_name`,' ', `last_name`) `name`
 			FROM `users`
 			WHERE `account_status` != 0";
@@ -22,21 +22,21 @@
 		$conn = openCon();
 
 		if ($field == "id" || $field == "account_status" || $field == "last_modified_by") {
-			$sql = "SELECT `id`, `first_name`, `middle_name`, `last_name`, `username`, `user_role`, 
+			$sql = "SELECT `id`, `first_name`, `middle_name`, `last_name`, `username`, `user_role`, `account_status`,
 					CASE 
 						WHEN account_status = 1 THEN 'active' 
 						WHEN account_status = 2 THEN  'disabled' 
 						ELSE 'removed' 
-					END `account_status`
+					END `statusName`
 				FROM `users`
 				WHERE {$field} = {$value} AND `account_status` != 0";
 		} else {
-			$sql = "SELECT `id`, `first_name`, `middle_name`, `last_name`, `username`, `user_role`, 
+			$sql = "SELECT `id`, `first_name`, `middle_name`, `last_name`, `username`, `user_role`, `account_status`,
 					CASE 
 						WHEN account_status = 1 THEN 'active' 
 						WHEN account_status = 2 THEN  'disabled' 
 						ELSE 'removed' 
-					END `account_status`
+					END `statusName`
 				FROM `users`
 				WHERE {$field} = '{$value}' AND `account_status` != 0";
 		}

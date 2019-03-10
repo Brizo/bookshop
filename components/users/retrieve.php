@@ -43,7 +43,7 @@
 								<td><?=$row['name']?></td>
 								<td><?=$row['username']?></td>
 								<td><?=$row['user_role']?></td>
-								<td><?=$row['status']?></td>
+								<td><?=$row['statusName']?></td>
 							</tr>
 						<?php endforeach; ?>
 					</tbody>

@@ -270,29 +270,21 @@
 			header("Location: /bookshop?action=edit-user");
 			exit();
 		} else {
-
-			if (!empty($_SESSION['status']) && ($_SESSION['status'] != "0")) {
-				if ($_SESSION['status'] == $_SESSION['account_status']) {
-					$_SESSION["alert"] = "danger";
-					$_SESSION["status"] = "Error";
-					$_SESSION["message"] = "Account already in select status.";
-
-					header("Location: /bookshop?action=edit-user");
-					exit();
-				} else {
-					$_SESSION['account_status'] = $_SESSION['status'];
-				}
-			} 
-
+			if ($_SESSION['status'] == "0") {
+				$_SESSION['status'] = $_SESSION['account_status'];
+			}
+			
 			// update user
 			$updateUserResult = updateUser($_SESSION['id'], $_SESSION['first_name'], $_SESSION['middle_name'], $_SESSION['last_name'], 
-				$_SESSION['user_role'], $_SESSION['account_status']);
+				$_SESSION['user_role'], $_SESSION['status']);
 	
 			if ($updateUserResult) {
 				unset($_SESSION['first_name']);
         		unset($_SESSION['middle_name']);
 				unset($_SESSION['last_name']);
 				unset($_SESSION['user_role']);
+				unset($_SESSION['account_status']);
+				unset($_SESSION['status']);
 				unset($_SESSION['id']);
 				
                 $_SESSION["alert"] = "success";
