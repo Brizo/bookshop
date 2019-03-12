@@ -1,5 +1,5 @@
 <?php
-	include "controller.php";
+	include $_SERVER['DOCUMENT_ROOT']."/bookshop/components/school/controller.php";
 	$accountExist = accountExist();
 
 	if ($accountExist == 1) {
@@ -131,7 +131,7 @@
 									<div class="col-sm-8 col-sm-offset-4">
 										<?php if ($accountExist == 0) echo '<button type="submit" class="btn btn-success" name="addnewaccount"><span class="glyphicon glyphicon-ok-circle"></span>&nbsp;Configure</button>'; ?>
 										<?php if ($accountExist == 1) echo '<button type="submit" class="btn btn-success" name="updateaccount"><span class="glyphicon glyphicon-ok-circle"></span>&nbsp;Update</button>' ?>
-										<a href="/<?php echo $_SESSION['home'];?>?action=school" class="btn btn-warning"><span class="glyphicon glyphicon-remove-circle"></span>&nbsp;Cancel</a>
+										<a href="/bookshop?action=school" class="btn btn-warning"><span class="glyphicon glyphicon-remove-circle"></span>&nbsp;Cancel</a>
 									</div>
 								</div>
 							</div>

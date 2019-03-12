@@ -1,5 +1,5 @@
 <?php
-	include "controller.php";
+	include $_SERVER['DOCUMENT_ROOT']."/bookshop/components/streams/controller.php";
 ?>
 <div class="row">
 	<div class="col-sm-2">
@@ -13,7 +13,7 @@
 				</div>
 			</div>
 			<div class="panel-body">
-				<a class="btn btn-primary" data-keyboard="false" href="/<?php echo $_SESSION['home'];?>?action=new-stream"><span class="glyphicon glyphicon-plus"></span>&nbsp;Add New</a><br /><br />
+				<a class="btn btn-primary" data-keyboard="false" href="/bookshop?action=new-stream"><span class="glyphicon glyphicon-plus"></span>&nbsp;Add New</a><br /><br />
 
 				<table id="streamsTable" class="table table-bordered table-hover">
 					<thead>

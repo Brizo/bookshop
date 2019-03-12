@@ -31,7 +31,7 @@
 	<div class="col col-sm-10">
         <div class="panel panel-primary">
             <div class="panel-heading">
-                <h4 class="panel-title">Replace Book Copy <a href="/<?php echo $_SESSION['home'];?>?action=book-copies" class="pull-right"><span class = "glyphicon glyphicon-list"></span>&nbsp;View List</a></h4>
+                <h4 class="panel-title">Replace Book Copy <a href="/bookshop?action=book-copies" class="pull-right"><span class = "glyphicon glyphicon-list"></span>&nbsp;View List</a></h4>
             </div>
             <div class="panel-body">
                 <div class="col-sm-10">
@@ -71,7 +71,7 @@
                         <div class="form-group">
                             <div class="col-sm-8 col-sm-offset-4">
                                 <button type="submit" class="btn btn-success" name="replacebookcopy"><span class="glyphicon glyphicon-ok-circle"></span>&nbsp;Replace</button>
-                                <a href="/<?php echo $_SESSION['home'];?>?action=book-copies" class="btn btn-warning"><span class="glyphicon glyphicon-remove-circle"></span>&nbsp;Cancel</a>
+                                <a href="/bookshop?action=book-copies" class="btn btn-warning"><span class="glyphicon glyphicon-remove-circle"></span>&nbsp;Cancel</a>
                             </div>
                         </div>           
                     </form>

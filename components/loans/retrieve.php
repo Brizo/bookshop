@@ -1,5 +1,5 @@
 <?php
-    include "controller.php";
+    include $_SERVER['DOCUMENT_ROOT']."/bookshop/components/loans/controller.php";
 ?>
 
 <div class="row">
@@ -12,7 +12,7 @@
 				<b>Book Loans</b>
 			</div>
 			<div class="panel-body">
-				<a class="btn btn-primary" data-keyboard="false" href="/<?php echo $_SESSION['home'];?>?action=new-loan"><span class="glyphicon glyphicon-plus"></span>&nbsp;Add New</a><br /><br />
+				<a class="btn btn-primary" data-keyboard="false" href="/bookshop?action=new-loan"><span class="glyphicon glyphicon-plus"></span>&nbsp;Add New</a><br /><br />
 
 				<table id="loansTable" class="table table-bordered table-hover">
 					<thead>
@@ -37,9 +37,9 @@
 						<?php foreach($loans as $row): ?>
 							<tr>
 								<td>
-									<a href="/<?php echo $_SESSION['home'];?>?action=edit-loan&id=<?php echo $row['id']; ?>"><span class='glyphicon glyphicon-edit' aria-hidden='true'></span>Edit</a>&nbsp;&nbsp;
-									<a style="color: #FF0000;" href="/<?php echo $_SESSION['home'];?>?action=delete-loan&id=<?php echo $row['id']; ?>"><span class='glyphicon glyphicon-trash' aria-hidden='true'></span>Remove</a>&nbsp;&nbsp;
-									<a href="/<?php echo $_SESSION['home'];?>?action=return-loan&id=<?php echo $row['id']; ?>"><span class='glyphicon glyphicon-log-in' aria-hidden='true'></span>&nbsp;Return Book</a>&nbsp;&nbsp;
+									<a href="/bookshop?action=edit-loan&id=<?php echo $row['id']; ?>"><span class='glyphicon glyphicon-edit' aria-hidden='true'></span>Edit</a>&nbsp;&nbsp;
+									<a style="color: #FF0000;" href="/bookshop?action=delete-loan&id=<?php echo $row['id']; ?>"><span class='glyphicon glyphicon-trash' aria-hidden='true'></span>Remove</a>&nbsp;&nbsp;
+									<a href="/bookshop?action=return-loan&id=<?php echo $row['id']; ?>"><span class='glyphicon glyphicon-log-in' aria-hidden='true'></span>&nbsp;Return Book</a>&nbsp;&nbsp;
 								</td>
 								<td><?=$row['client']?></td>
 								<td><?=$row['book']?></td>

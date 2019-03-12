@@ -1,5 +1,5 @@
 <?php
-    include "model.php";
+    include $_SERVER['DOCUMENT_ROOT']."/bookshop/components/reports/model.php";
     
     // count books on stock
 	function countBooksOnStock() {

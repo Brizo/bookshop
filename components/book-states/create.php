@@ -6,7 +6,7 @@
 		<div class="panel panel-primary">
 			<div class="panel-heading">
 				<div class="panel-title">
-					<h4 class="panel-title">New Book State <a href="/<?php echo $_SESSION['home'];?>?action=book-states" class="pull-right"><span class = "glyphicon glyphicon-list"></span>&nbsp;View List</a></h4>
+					<h4 class="panel-title">New Book State <a href="/bookshop?action=book-states" class="pull-right"><span class = "glyphicon glyphicon-list"></span>&nbsp;View List</a></h4>
 				</div>
 			</div>
 			<div class="panel-body">
@@ -28,7 +28,7 @@
 						<div class="form-group">
 							<div class="col-sm-8 col-sm-offset-4">
 								<button type="submit" class="btn btn-success" name="addnewbookstate"><span class="glyphicon glyphicon-ok-circle"></span>&nbsp;Add</button>
-								<a href="/<?php echo $_SESSION['home'];?>?action=book-states" class="btn btn-warning"><span class="glyphicon glyphicon-remove-circle"></span>&nbsp;Cancel</a>
+								<a href="/bookshop?action=book-states" class="btn btn-warning"><span class="glyphicon glyphicon-remove-circle"></span>&nbsp;Cancel</a>
 							</div>
 						</div>                
 					</form>

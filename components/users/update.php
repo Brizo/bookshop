@@ -1,5 +1,5 @@
 <?php
-    include "controller.php";
+    include $_SERVER['DOCUMENT_ROOT']."/bookshop/components/users/controller.php";
 
     if (isset($_GET['id'])) {
         $userId = $_GET['id'];
@@ -23,7 +23,7 @@
 	<div class="col col-sm-10">
         <div class="panel panel-primary">
             <div class="panel-heading">
-                <h4 class="panel-title">Update User <a href="/<?php echo $_SESSION['home'];?>?action=users" class="pull-right"><span class = "glyphicon glyphicon-list"></span>&nbsp;View List</a></h4>
+                <h4 class="panel-title">Update User <a href="/bookshop?action=users" class="pull-right"><span class = "glyphicon glyphicon-list"></span>&nbsp;View List</a></h4>
             </div>
             <div class="panel-body">
                 <div class="col-sm-10">

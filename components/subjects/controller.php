@@ -1,5 +1,5 @@
 <?php
-	include "model.php";
+	include $_SERVER['DOCUMENT_ROOT']."/bookshop/components/subjects/model.php";
 
 	// get all subjects
 	function retrieveSubjects() {

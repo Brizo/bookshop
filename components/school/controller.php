@@ -1,5 +1,5 @@
 <?php
-    include "model.php";
+    include $_SERVER['DOCUMENT_ROOT']."/bookshop/components/school/model.php";
     include_once $_SERVER['DOCUMENT_ROOT']."/bookshop/config/global_functions.php";
 
     // check if account exist

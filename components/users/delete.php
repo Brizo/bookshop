@@ -1,5 +1,5 @@
 <?php
-    include "controller.php";
+    include $_SERVER['DOCUMENT_ROOT']."/bookshop/components/users/controller.php";
 
     if (isset($_GET['id'])) {
         $userId = $_GET['id'];

@@ -1,5 +1,5 @@
 <?php
-	include "controller.php";
+	include $_SERVER['DOCUMENT_ROOT']."/bookshop/components/classes/controller.php";
 ?>
 
 <div class="row">
@@ -14,7 +14,7 @@
 				</div>
 			</div>
 			<div class="panel-body">
-				<a class="btn btn-primary" data-keyboard="false" href="/<?php echo $_SESSION['home'];?>?action=new-class"><span class="glyphicon glyphicon-plus"></span>&nbsp;Add New</a><br /><br />
+				<a class="btn btn-primary" data-keyboard="false" href="/bookshop?action=new-class"><span class="glyphicon glyphicon-plus"></span>&nbsp;Add New</a><br /><br />
 
 				<table id="classesTable" class="table table-bordered table-hover">
 					<thead>

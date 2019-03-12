@@ -1,5 +1,5 @@
 <?php
-	include "controller.php";
+	include $_SERVER['DOCUMENT_ROOT']."/bookshop/components/reports/controller.php";
 ?>
 
 <div class="panel panel-primary">
@@ -17,8 +17,8 @@
 						<b>Loaned Books</b>
 					</div>
 					<div class="panel-body">
-                        <a class="btn btn-warning" data-keyboard="false" href="/<?php echo $_SESSION['home'];?>?action=exportLoanedBooks"><span class="glyphicon glyphicon-export"></span>&nbsp;Export CSV</a>&nbsp;
-                        <a class="btn btn-warning" data-keyboard="false" href="/<?php echo $_SESSION['home'];?>?action=exportLoanedBooks"><span class="glyphicon glyphicon-export"></span>&nbsp;Export PDF</a><br /><br />
+                        <a class="btn btn-warning" data-keyboard="false" href="/bookshop?action=exportLoanedBooks"><span class="glyphicon glyphicon-export"></span>&nbsp;Export CSV</a>&nbsp;
+                        <a class="btn btn-warning" data-keyboard="false" href="/bookshop?action=exportLoanedBooks"><span class="glyphicon glyphicon-export"></span>&nbsp;Export PDF</a><br /><br />
                         <table id="loanedBooksTable" class="table table-bordered table-hover">
                             <thead>
                                 <tr>

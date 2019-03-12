@@ -1,5 +1,5 @@
 <?php
-	include "model.php";
+	include $_SERVER['DOCUMENT_ROOT']."/bookshop/components/class-levels/model.php";
 
 	// get all class levels
 	function retrieveClassLevels() {

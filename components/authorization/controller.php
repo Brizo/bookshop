@@ -1,10 +1,21 @@
 <?php
 	session_start();
 	include $_SERVER['DOCUMENT_ROOT']."/bookshop/components/school/controller.php";
-	include "model.php";
+	include_once $_SERVER['DOCUMENT_ROOT']."/bookshop/components/authorization/model.php";
 
   if (isset($_POST['local'])) {
+		// check if db connection string works
 		$conn2 = openCon();
+		if ($conn2->connect_error) {
+			$_SESSION["alert"] = "danger";
+			$_SESSION["status"] = "Error";
+			$_SESSION["message"] = "A database connection rrror has occurred, Please check your connection string";
+
+			header("Location: /bookshop");
+			exit();
+		}
+
+		// form data
 		$_SESSION['username'] = mysqli_real_escape_string($conn2,$_POST['username']);
 		$_SESSION['password'] = mysqli_real_escape_string($conn2,$_POST['password']); // use on front end before echo htmlspecialchars
 		closeCon($conn2);

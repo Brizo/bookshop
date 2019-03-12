@@ -9,7 +9,7 @@
 		unset($_SESSION["selfchangepwdfailure"]);
 	}
 
-	include "controller.php";
+	include $_SERVER['DOCUMENT_ROOT']."/bookshop/components/home/controller.php";
 
 	$stockBooks = countBooksOnStock();
 	$loanedBooks = countLoanedBooks();

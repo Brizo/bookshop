@@ -1,5 +1,5 @@
 <?php
-    include "controller.php";
+    include $_SERVER['DOCUMENT_ROOT']."/bookshop/components/subject-books/controller.php";
     include $_SERVER['DOCUMENT_ROOT']."/bookshop/components/books/controller.php";
 
     if (isset($_GET['id'])) {
@@ -29,7 +29,7 @@
 				</div>
 			</div>
 			<div class="panel-body">
-				<a class="btn btn-primary" data-keyboard="false" href="/<?php echo $_SESSION['home'];?>?action=new-subject-book&id=<?php echo $subjectId; ?>&name=<?php echo $subjectName; ?>"><span class="glyphicon glyphicon-plus"></span>&nbsp;Add New</a><br /><br />
+				<a class="btn btn-primary" data-keyboard="false" href="/bookshop?action=new-subject-book&id=<?php echo $subjectId; ?>&name=<?php echo $subjectName; ?>"><span class="glyphicon glyphicon-plus"></span>&nbsp;Add New</a><br /><br />
 
 				<table id="booksTable" class="table table-bordered table-hover">
 					<thead>

@@ -1,5 +1,5 @@
 <?php
-	include "controller.php";
+	include $_SERVER['DOCUMENT_ROOT']."/bookshop/components/email/controller.php";
 	$configsExist = emailConfigsExist();
 
 	if ($configsExist == 1) {
@@ -104,7 +104,7 @@
 									<div class="col-sm-8 col-sm-offset-4">
 										<?php if ($configsExist == 0) echo '<button type="submit" class="btn btn-success" name="addnewemailconfigs"><span class="glyphicon glyphicon-ok-circle"></span>&nbsp;Configure</button>'; ?>
 										<?php if ($configsExist == 1) echo '<button type="submit" class="btn btn-success" name="updateemailconfigs"><span class="glyphicon glyphicon-ok-circle"></span>&nbsp;Update</button>' ?>
-										<a href="/<?php echo $_SESSION['home'];?>?action=email" class="btn btn-warning"><span class="glyphicon glyphicon-remove-circle"></span>&nbsp;Cancel</a>
+										<a href="/bookshop?action=email" class="btn btn-warning"><span class="glyphicon glyphicon-remove-circle"></span>&nbsp;Cancel</a>
 									</div>
 								</div>
 							</div>

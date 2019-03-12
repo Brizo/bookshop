@@ -1,5 +1,5 @@
 <?php
-	include "model.php";
+	include $_SERVER['DOCUMENT_ROOT']."/bookshop/components/users/model.php";
 
 	// get all users
 	function retrieveUsers() {

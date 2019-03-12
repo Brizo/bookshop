@@ -1,5 +1,5 @@
 <?php
-	include "model.php";
+	include $_SERVER['DOCUMENT_ROOT']."/bookshop/components/classes/model.php";
 
 	// get all classes
 	function retrieveClasses() {

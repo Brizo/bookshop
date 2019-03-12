@@ -1,5 +1,5 @@
 <?php
-	include "model.php";
+	include $_SERVER['DOCUMENT_ROOT']."/bookshop/components/streams/model.php";
 
 	// get all strams
 	function retrieveStreams() {

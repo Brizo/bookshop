@@ -1,5 +1,5 @@
 <?php
-    include "controller.php";
+    include $_SERVER['DOCUMENT_ROOT']."/bookshop/components/reports/controller.php";
     include $_SERVER['DOCUMENT_ROOT']."/bookshop/components/students/controller.php";
     
     $students = array();
@@ -40,7 +40,7 @@
                                     <div class="col-sm-8 col-sm-offset-4">
                                         <button type="submit" class="btn btn-success" name="stdsettledloans"><span class="glyphicon glyphicon-ok-circle"></span>&nbsp;Settled Loans</button>
                                         <button type="submit" class="btn btn-primary" name="stdunsettledloans"><span class="glyphicon glyphicon-ok-circle"></span>&nbsp;Unsettled Loans</button>
-                                        <a href="/<?php echo $_SESSION['home'];?>?action=reports" class="btn btn-warning"><span class="glyphicon glyphicon-remove-circle"></span>&nbsp;Cancel</a>
+                                        <a href="/bookshop?action=reports" class="btn btn-warning"><span class="glyphicon glyphicon-remove-circle"></span>&nbsp;Cancel</a>
                                     </div>
                                 </div>       
                             </form>

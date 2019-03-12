@@ -1,5 +1,5 @@
 <?php
-    include "controller.php";
+    include $_SERVER['DOCUMENT_ROOT']."/bookshop/components/stream-subjects/controller.php";
     include $_SERVER['DOCUMENT_ROOT']."/bookshop/components/subjects/controller.php";
 
     if (isset($_GET['id'])) {
@@ -29,7 +29,7 @@
 				</div>
 			</div>
 			<div class="panel-body">
-				<a class="btn btn-primary" data-keyboard="false" href="/<?php echo $_SESSION['home'];?>?action=new-stream-subject&id=<?php echo $streamId; ?>&name=<?php echo $streamName; ?>"><span class="glyphicon glyphicon-plus"></span>&nbsp;Add New</a><br /><br />
+				<a class="btn btn-primary" data-keyboard="false" href="/bookshop?action=new-stream-subject&id=<?php echo $streamId; ?>&name=<?php echo $streamName; ?>"><span class="glyphicon glyphicon-plus"></span>&nbsp;Add New</a><br /><br />
 
 				<table id="subjectsTable" class="table table-bordered table-hover">
 					<thead>
