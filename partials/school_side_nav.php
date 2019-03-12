@@ -6,12 +6,12 @@
     </div>
     <div class="panel-body">
         <ul class="sidenav">
-            <li><a href="/<?php echo $_SESSION['home'];?>?action=school"><i class="glyphicon glyphicon-plus-sign"></i>&nbsp;School</a></li>
-            <li><a href="/<?php echo $_SESSION['home'];?>?action=subjects"><i class="glyphicon glyphicon-plus-sign"></i>&nbsp;Subjects</a></li>
-            <li><a href="/<?php echo $_SESSION['home'];?>?action=streams"><i class="glyphicon glyphicon-plus-sign"></i>&nbsp;Streams</a></li>
-            <li><a href="/<?php echo $_SESSION['home'];?>?action=classes"><i class="glyphicon glyphicon-plus-sign"></i>&nbsp;Classes</a></li>
-            <li><a href="/<?php echo $_SESSION['home'];?>?action=class_levels"><i class="glyphicon glyphicon-plus-sign"></i>&nbsp;Class Levels</a></li>
-            <li><a href="/<?php echo $_SESSION['home'];?>?action=students"><i class="glyphicon glyphicon-plus-sign"></i>&nbsp;Students</a></li>
+            <li><a href="/bookshop?action=school"><i class="glyphicon glyphicon-plus-sign"></i>&nbsp;School</a></li>
+            <li><a href="/bookshop?action=subjects"><i class="glyphicon glyphicon-plus-sign"></i>&nbsp;Subjects</a></li>
+            <li><a href="/bookshop?action=streams"><i class="glyphicon glyphicon-plus-sign"></i>&nbsp;Streams</a></li>
+            <li><a href="/bookshop?action=classes"><i class="glyphicon glyphicon-plus-sign"></i>&nbsp;Classes</a></li>
+            <li><a href="/bookshop?action=class_levels"><i class="glyphicon glyphicon-plus-sign"></i>&nbsp;Class Levels</a></li>
+            <li><a href="/bookshop?action=students"><i class="glyphicon glyphicon-plus-sign"></i>&nbsp;Students</a></li>
         </ul>
     </div>
 </div>

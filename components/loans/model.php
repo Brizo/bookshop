@@ -1,5 +1,5 @@
 <?php
-	include $_SERVER['DOCUMENT_ROOT']."/bookshop/config/global_functions.php";
+	include_once $_SERVER['DOCUMENT_ROOT']."/bookshop/config/global_functions.php";
 
 	function getLoans() {
 		$conn = openCon();

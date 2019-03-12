@@ -1,5 +1,5 @@
 <?php
-	include $_SERVER['DOCUMENT_ROOT']."/".$_SESSION['home']."/config/global_functions.php";
+	include_once $_SERVER['DOCUMENT_ROOT']."/bookshop/config/global_functions.php";
 
 	function localUserLogin($username) {
 		$conn = openCon();

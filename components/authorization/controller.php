@@ -2,7 +2,7 @@
 	session_start();
 	$_SESSION['home'] = "bookshop";
 	include "model.php";
-	include $_SERVER['DOCUMENT_ROOT']."/bookshop/components/school/controller.php";
+	include "../school/controller.php";
 
   if (isset($_POST['local'])) {
 		$conn2 = openCon();
@@ -16,7 +16,7 @@
 			$_SESSION["status"] = "Error";
 			$_SESSION["message"] = "Please fill all information.";
 
-			header("Location: /".$_SESSION['home']);
+			header("Location: /bookshop");
 			exit();
 		} else {
 
@@ -34,7 +34,7 @@
 						$_SESSION["status"] = "Error";
 						$_SESSION["message"] = "Incorrect password supplied. Please enter correct password and try again.";
 						
-						header("Location: /".$_SESSION['home']);
+						header("Location: /bookshop");
 						exit();
 					} else {
 						
@@ -65,7 +65,7 @@
 						unset($_SESSION['username']);
 						unset($_SESSION['password']);
 
-						header( "Location: /".$_SESSION['home']."?action=home");
+						header( "Location: /bookshop?action=home");
 						exit();
 					}
 				} else {
@@ -73,7 +73,7 @@
 					$_SESSION["status"] = "Error";
 					$_SESSION["message"] = "Username doesnot exist. Please enter correct username and try again";
 
-					header("Location: /".$_SESSION['home']);
+					header("Location: /bookshop");
 					exit();
 				}
 			} else {
@@ -81,7 +81,7 @@
 				$_SESSION["status"] = "Error";
 				$_SESSION["message"] = "A database error has occured, please contact system administrator.";
 
-				header( "Location: /".$_SESSION['home'] );
+				header( "Location: /bookshop");
 				exit();
 			}
 		}

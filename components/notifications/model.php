@@ -1,5 +1,5 @@
 <?php
-	include $_SERVER['DOCUMENT_ROOT']."/erp/db/mysql_conn.php";
+	include_once $_SERVER['DOCUMENT_ROOT']."/bookshop/config/global_functions.php";
 
 	function getUsers() {
 		$conn = openCon();
