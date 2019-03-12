@@ -1,15 +1,15 @@
 <?php
 
 	function openCon() {
-		$dbhost = "localhost";
-		$dbuser = "root";
-		$dbpass = "";
-		$db = "book_shop_dev";
-
 		// $dbhost = "localhost";
-		// $dbuser = "sinawete_bookshop";
-		// $dbpass = "P@ssw0rd@2019";
-		// $db = "sinawete_bookshop_dev";
+		// $dbuser = "root";
+		// $dbpass = "";
+		// $db = "book_shop_dev";
+
+		$dbhost = "localhost";
+		$dbuser = "sinawete_bookshop";
+		$dbpass = "P@ssw0rd@2019";
+		$db = "sinawete_bookshop_dev";
 
 		$conn = new mysqli($dbhost, $dbuser, $dbpass, $db) or die("Connect failed: %s\n". $conn -> error);
 		return $conn;
