@@ -1,8 +1,7 @@
 <?php
 	session_start();
-	$_SESSION['home'] = "bookshop";
+	include $_SERVER['DOCUMENT_ROOT']."/bookshop/components/school/controller.php";
 	include "model.php";
-	include "../school/controller.php";
 
   if (isset($_POST['local'])) {
 		$conn2 = openCon();
