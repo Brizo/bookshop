@@ -79,7 +79,7 @@
 			FROM `book_copies` C
 			LEFT JOIN books B ON C.book = B.id
 			LEFT JOIN book_states S ON S.id = C.state
-			WHERE B.status = 1";
+			WHERE C.status = 1";
 		$result = $conn->query($sql);
 		closeCon($conn);
 		return $result;

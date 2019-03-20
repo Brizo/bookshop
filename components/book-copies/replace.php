@@ -83,10 +83,10 @@
 
 <script type="text/javascript">
     // Initialize select2
-    $("#book").select2();
+    $("#newBook").select2();
     // Read selected option
     $('#but_read').click(function(){
-        $('#book option:selected').text();
+        $('#newBook option:selected').text();
     });
 
     // Initialize select2

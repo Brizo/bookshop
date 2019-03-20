@@ -253,6 +253,10 @@
 				case "student_statement_r":
 					$destination="components/reports/new_std_statement.php";
 					break;
+
+				case "exportLoanedBooks":
+					$destination="components/reports/export.php";
+					break;
 						
 				default:
 					$destination="components/home/retrieve.php";

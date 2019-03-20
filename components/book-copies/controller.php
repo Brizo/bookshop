@@ -6,6 +6,10 @@
 		return getBookCopies();
 	}
 
+	function retrieveFBookCopies() {
+		return getFBookCopies();
+	}
+
 	// add new book copy
 	if (isset($_POST['addnewbookcopy'])) {
 		session_start();

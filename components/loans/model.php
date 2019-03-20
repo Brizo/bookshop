@@ -36,7 +36,7 @@
 				LEFT JOIN book_copies C ON L.book = C.id
 				LEFT JOIN books B ON C.book = B.id
 				LEFT JOIN book_states T ON L.book_issue_state = T.id 
-				WHERE C.{$field} = {$value}";
+				WHERE L.{$field} = {$value}";
 		} else {
 			$sql = "SELECT L.id, L.issue_date, L.return_date, T.name book_issue_state, L.book_return_state, 
 					CONCAT(B.name,' - ', C.bar_code) bookName, L.book,
@@ -50,8 +50,9 @@
 				LEFT JOIN book_copies C ON L.book = C.id
 				LEFT JOIN books B ON C.book = B.id
 				LEFT JOIN book_states T ON L.book_issue_state = T.id 
-				WHERE C.{$field} = '{$value}'";
+				WHERE L.{$field} = '{$value}'";
 		}
+
 		$result = $conn->query($sql);
 		closeCon($conn);
 		return $result;
@@ -62,7 +63,7 @@
 		$created_at = getTime();
 		$last_modified_by = $_SESSION['loggedUserId'];
 		$status = 1; // 1 = loaned, 0 = removed, 2 = returned, 4 = paid, 3 = replaced
-		$sql = "INSERT INTO `book_loans`(`client`, `issue_date`, `return_date`, `book_issue_state`, `book`, `status`, `created_at`, `last_modified_by`) 
+		$sql1 = "INSERT INTO `book_loans`(`client`, `issue_date`, `return_date`, `book_issue_state`, `book`, `status`, `created_at`, `last_modified_by`) 
 			VALUES({$student},
 				'{$created_at}',
 				'{$return_date}',
@@ -72,12 +73,12 @@
 				'{$created_at}',
 				{$last_modified_by})";
 
-		$sql = "UPDATE `book_copies`
-				SET status = 2
-				WHERE `book` = {$book}";
+		$sql2 = "UPDATE `book_copies`
+				SET `status` = 2
+				WHERE `id` = {$book}";
 
-		$result1 = $conn->query($sql);
-		$result2 = $conn->query($sql);
+		$result1 = $conn->query($sql1);
+		$result2 = $conn->query($sql2);
 		closeCon($conn);
 		return $result2;
 	}

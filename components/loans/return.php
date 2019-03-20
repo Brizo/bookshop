@@ -7,6 +7,8 @@
         $getBookLoanResult = getBookLoanByField("id", $loanId);
         $loan = mysqli_fetch_array($getBookLoanResult);
 
+        echo $loan;
+
         $_SESSION['client'] = $loan['clientName'];
         $_SESSION['book'] = $loan['bookName'];
         $_SESSION['id'] = $loan['id'];

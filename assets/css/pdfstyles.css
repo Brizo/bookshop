@@ -1,0 +1,87 @@
+.grid-container{
+	width: 100%; 
+    max-width: 1200px;      
+}
+
+body {
+	{ font-family: arial;  font-size:7pt;;}
+}
+
+/*-- our cleafix hack -- */ 
+.row:before, 
+.row:after {
+    content:"";
+    display: table ;
+    clear:both;
+}
+
+.col-1,.col-2,.col-3,.col-4,.col-5,.col-6,.col-7,.col-8,.col-9,.col-10,.col-11,.col-12 {
+	float: left; 
+    min-height: 1px; 
+    
+    padding-right: 0px;
+    padding-left: 0px;
+}
+
+.pull-right {
+  float: right !important;
+}
+
+.pull-left {
+  float: left !important;
+}
+
+div {
+	 border-color: #A9A9A9;
+}
+
+.col-1 {  width: 8.333333333%;}
+.col-2 {  width: 16.666666667%;}
+.col-3 {  width: 24.96%;}
+.col-4 {  width: 33.333333332%;}
+.col-5 {  width: 41.666666665%;}
+.col-6 {  width: 49.999999998%;}
+.col-7 {  width: 58.233333331%;}
+.col-8 {  width: 66.666666664%;}
+.col-9 {  width: 74.999999997%;}
+.col-10 {  width: 83.33333333%;}
+.col-11 {  width: 91.666666663%;}
+.col-12 {  width: 99.999999996%;}
+
+.table {
+  border-collapse: collapse !important;
+}
+.table td,
+.table th {
+  background-color: #fff !important;
+}
+.table-bordered th,
+.table-bordered td {
+  border: 1px solid #ddd !important;
+}
+
+th {
+  text-align: left;
+}
+.table {
+  width: 100%;
+  max-width: 100%;
+  margin-bottom: 20px;
+  margin-top: 20px;
+  padding: 20px;
+}
+.table > thead > tr > th,
+.table > tbody > tr > th,
+.table > tfoot > tr > th,
+.table > thead > tr > td,
+.table > tbody > tr > td,
+.table > tfoot > tr > td {
+  padding: 8px;
+  line-height: 1.42857143;
+  vertical-align: top;
+  border-top: 1px solid #dddddd;
+}
+.table > thead > tr > th {
+  vertical-align: bottom;
+  border-bottom: 2px solid #dddddd;
+}

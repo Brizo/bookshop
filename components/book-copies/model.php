@@ -7,7 +7,19 @@
 			FROM `book_copies` C
 			LEFT JOIN books B ON C.book = B.id
 			LEFT JOIN book_states S ON S.id = C.state
-			WHERE B.status NOT IN (0,4)";
+			WHERE C.status NOT IN (0,4)";
+		$result = $conn->query($sql);
+		closeCon($conn);
+		return $result;
+	}
+
+	function getFBookCopies() {
+		$conn = openCon();
+		$sql = "SELECT C.id, B.name, B.description, C.circulation_date, B.isb, B.year, B.purchase_price, B.levie, B.author, C.bar_code, S.name `state`, CASE WHEN B.status = 1 THEN 'active' ELSE 'replaced' END `status`
+			FROM `book_copies` C
+			LEFT JOIN books B ON C.book = B.id
+			LEFT JOIN book_states S ON S.id = C.state
+			WHERE C.status = 1";
 		$result = $conn->query($sql);
 		closeCon($conn);
 		return $result;

@@ -2,6 +2,7 @@
 	include $_SERVER['DOCUMENT_ROOT']."/bookshop/components/streams/controller.php";
 	include $_SERVER['DOCUMENT_ROOT']."/bookshop/components/school/controller.php";
 	include $_SERVER['DOCUMENT_ROOT']."/bookshop/components/classes/controller.php";
+	include $_SERVER['DOCUMENT_ROOT']."/bookshop/components/students/controller.php";
 	include $_SERVER['DOCUMENT_ROOT']."/bookshop/components/class-levels/controller.php";
 
     $streams = array();
@@ -30,10 +31,11 @@
 		$_SESSION['first_name'] = $student['first_name'];
 		$_SESSION['student_no'] = $student['student_no'];
         $_SESSION['middle_name'] = $student['middle_name'];
-        $_SESSION['last_name'] = $student['last_name'];
+		$_SESSION['last_name'] = $student['national_id'];
+		$_SESSION['national_id'] = $student['last_name'];
         $_SESSION['birth_date'] = $student['birth_date'];
         $_SESSION['contact_no'] = $student['contact_no'];
-        $_SESSION['email_address'] = $student['email_address'];
+        $_SESSION['std_email_address'] = $student['email_address'];
         $_SESSION['gender'] = $student['gender'];
         $_SESSION['stream'] = $student['stream'];
         $_SESSION['class'] = $student['class'];

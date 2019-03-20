@@ -1,5 +1,7 @@
 <?php
     include $_SERVER['DOCUMENT_ROOT']."/bookshop/components/reports/controller.php";
+    include $_SERVER['DOCUMENT_ROOT']."/bookshop/components/students/controller.php";
+    include $_SERVER['DOCUMENT_ROOT']."/bookshop/components/school/controller.php";
     
     if (isset($_GET['student']) && isset($_GET['status'])) {
         $stdId = $_GET['student'];
@@ -15,6 +17,20 @@
         while ($row = mysqli_fetch_array($queryResult)) {
             $loans[] = $row;
         }
+
+        $getStudentResult = getStudentByField("id", $stdId);
+        $student = mysqli_fetch_array($getStudentResult);
+        $studentno = $student['student_no'];
+
+        $getAccountResult = retrieveAccount();
+		$account = mysqli_fetch_array($getAccountResult);
+
+        $html = generateStatementTemplate($student, $account, $loans, $debt);
+
+        $stamentSuffix = "student-statement.pdf";
+        $filename = "/bookshop/docs/".$studentno."-".$stamentSuffix;
+        
+        downloadPdf($filename, $html);
     }
 ?>
 
@@ -33,8 +49,8 @@
 						<b>Student <?php echo $type; ?> Loans</b>
 					</div>
 					<div class="panel-body">
-                        <a class="btn btn-warning" data-keyboard="false" href="/bookshop?action=exportLoanedBooks"><span class="glyphicon glyphicon-ok"></span>&nbsp;Export CSV</a>&nbsp;
-                        <a class="btn btn-warning" data-keyboard="false" href="/bookshop?action=exportLoanedBooks"><span class="glyphicon glyphicon-ok"></span>&nbsp;Export PDF</a><br /><br />
+                        <a class="btn btn-warning" data-keyboard="false" href="#"><span class="glyphicon glyphicon-ok"></span>&nbsp;Export CSV</a>&nbsp;
+                        <a class="btn btn-warning" data-keyboard="false" href="<?php echo $filename; ?>" target="_blank"><span class="glyphicon glyphicon-ok"></span>&nbsp;Export PDF</a><br /><br />
                         <table id="stdStatementTable" class="table table-bordered table-hover">
                             <thead>
                                 <tr>

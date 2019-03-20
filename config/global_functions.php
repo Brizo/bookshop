@@ -1,5 +1,7 @@
 <?php
     include $_SERVER['DOCUMENT_ROOT']."/bookshop/db/mysql_conn.php";
+    include_once $_SERVER['DOCUMENT_ROOT']."/bookshop/assets/lib/PHPMailer/PHPMailerAutoload.php";
+    include_once $_SERVER['DOCUMENT_ROOT']."/bookshop/assets/lib/MPDF57/mpdf.php";
 
     function getTime() {
         $now = new DateTime();
@@ -89,6 +91,176 @@
         }
 
         return $error;
+    }
+
+    // generate statement template
+    function generateStatementTemplate($student, $account, $loans, $debt){
+        $studentFName = $student['first_name'];
+		$studentno = $student['student_no'];
+        $studentMName = $student['middle_name'];
+        $studentLName = $student['last_name'];
+        $dateOfBirth = $student['birth_date'];
+        $contactNo = $student['contact_no'];
+        $emailAddress = $student['email_address'];
+        $gender = $student['gender'];
+        $stream = $student['stream'];
+        $class = $student['class'].$student['class_level'];
+
+        $schoolname = $account['name'];
+        $postal = $account['postal_address'];
+        $contactPerson = $account['contact_person'];
+        $telephone = $account['telephone'];
+
+        $logo = $_SERVER['DOCUMENT_ROOT']."/bookshop/assets/images/SEC.png";
+
+        $table = "<table class='table table-bordered' style='padding:20px;'>
+        <thead>
+            <tr>
+                <th>Student</th>
+                <th>Book</th>
+                <th>Issue date</th>
+                <th>Return date</th>
+                <th>Price</th>
+                <th>Levie</th>
+            </tr>
+        </thead>
+        <tbody>";
+
+        foreach($loans as $row) {
+            $clientName = $row['clientName'];
+            $bookName = $row['bookName'];
+            $dateIssued = $row['issue_date'];
+            $dateReturned = $row['return_date'];
+            $price = $row['price'];
+            $levie = $row['levie'];
+            $table = $table."<tr>
+                <td>{$clientName}</td>
+                <td>{$bookName}</td>
+                <td>{$dateIssued}</td>
+                <td>{$dateReturned}</td>
+                <td>{$price}</td>
+                <td>{$levie}</td>
+            </tr>";
+        }
+
+        $table = $table."</tbody></table><br><h3>Total Outstanding : E {$debt} </h3>";
+
+        // echo $table;exit();
+
+        $html = "
+            <body class='grid-container'>
+                <div class='row'>
+                    <div class='col-10'>
+                        <div class='row'>
+                            <div class='col-12'>
+                                <div style='border: 0.3px solid;padding: 5px;color: #337ab7; font-weight: bold;'>{$schoolname} &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp; STUDENT STATEMENT</div>
+                            </div>
+                        </div>
+                        <div class='row'>
+                            <div class='col-12'>
+                                <div style='border: 0.3px solid;padding: 5px; height:60px;'>
+                                    <div class='row'>
+                                        <div class='col-12'>
+                                            &emsp;{$contactPerson}<br>
+                                            &emsp;{$postal}<br>
+                                            &emsp;{$telephone}<br>
+                                        </div>
+                                    </div>
+                                    <div class='row'>
+                                        <div class='col-2'>
+                                            &emsp;
+                                        </div>
+                                        <div class='col-8'>
+                                            &emsp;
+                                        </div>
+                                        <div class='col-2'>
+                                            &emsp;
+                                        </div>
+                                    </div>
+                                    <div class='row'>
+                                        <div class='col-12'>
+                                            &emsp;
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class='row'>
+                            <div class='col-4'>
+                                <div style='border: 0.3px solid; border-left: 0px; padding: 5px;background-color: #337ab7;color:white;'>MR./MRS./MISS.</div>
+                            </div>
+                            <div class='col-8'>
+                                <div style='border: 0.3px solid;padding: 5px;'>&emsp;</div>
+                            </div>
+                        </div>
+
+                        <div class='row'>
+                            <div class='col-12'>
+                                <div style='border: 0.3px solid;padding: 5px; height:60px;'>{$studentFName}<br>{$studentMName}<br>{$studentLName}<br>{$studentno}</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class='col-2'>
+                        <div class='row'>
+                            <div class='col-12'>
+                            <div style='height: 96px;border: 0.3px solid;'><img src='{$logo}' alt='logo face' height='95px' width='90px'>  
+                            </div>
+                            </div>
+                        </div>
+                        <div class='row'>
+                            <div class='col-12'>
+                                <div style='border: 0.3px solid;padding: 5px;background-color: #337ab7;color:white;'>STREAM</div>
+                            </div>
+                        </div>
+                        <div class='row'>
+                            <div class='col-12'>
+                                <div style='border: 0.3px solid;padding: 5px;'>{$stream}</div>
+                            </div>
+                        </div>
+                        <div class='row'>
+                            <div class='col-12'>
+                                <div style='border: 0.3px solid;padding: 5px;background-color: #337ab7;color:white;'>CLASS</div>
+                            </div>
+                        </div>
+                        <div class='row'>
+                            <div class='col-12'>
+                                <div style='border: 0.3px solid;padding: 5px;'>{$class}</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class='row'>
+                    <div class='col-12'>
+                        <div style='border: 0.3px solid;padding: 5px;height:700px;'>
+                            <div class='row'>
+                                {$table}
+                            </div> 
+                        </div>
+                    </div>
+                </div>
+
+            </body>";
+
+        return $html;
+    }
+
+    // download pdf 
+    function downloadPdf($file, $template) {
+        $path = $_SERVER['DOCUMENT_ROOT'];
+        $wholeFile = $path.$file;
+
+        if (file_exists($wholeFile)) {
+            unlink($wholeFile);
+        }
+        
+        $mpdf=new mPDF();
+        $stylesheet = file_get_contents($_SERVER['DOCUMENT_ROOT']."/bookshop/assets/css/pdfstyles.css");
+        $mpdf->WriteHTML($stylesheet,1);
+        $mpdf->WriteHTML($template,2);
+        $stmName = $wholeFile;
+        $mpdf->Output($stmName,"F");
+
+        return $stmName;
     }
 
 ?>

@@ -10,7 +10,7 @@
     }
 
     $bookCopies = array();
-    $queryResult = retrieveBookCopies();
+    $queryResult = retrieveFBookCopies();
     while ($row = mysqli_fetch_array($queryResult)) {
         $bookCopies[] = $row;
     }
