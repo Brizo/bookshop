@@ -25,19 +25,29 @@
         return $result['count'];
     }
     
-    // count replaced books
-	function countReplacedBooks() {
-        $getCountResult = sumReplacedBooks();
-        $result = mysqli_fetch_array($getCountResult);
+  //   // count replaced books
+	// function countReplacedBooks() {
+  //       $getCountResult = sumReplacedBooks();
+  //       $result = mysqli_fetch_array($getCountResult);
 
-        return $result['count'];
-    }
+  //       return $result['count'];
+  //   }
 
-    function retrieveStdDebt($stdId) {
-      $getCountResult = sumStudentDebt($stdId);
-      $result = mysqli_fetch_array($getCountResult);
+  function retrieveStdDebt($stdId) {
+    $getCountResult = sumStudentDebt($stdId);
+    $result = mysqli_fetch_array($getCountResult);
 
-      return $result['debt'];
+    return $result['debt'];
+  }
+
+  function retrieveLoanYears() {
+    $result = getLoanYears();
+    return $result;
+  }
+
+  function retrieveStdStatement($student, $year) {
+    $result = getStdStatement($student, $year);
+    return $result;
   }
     
     // count new books
@@ -55,67 +65,66 @@
 
         return $result['count'];
     }
+
+      // count old books
+    function countOldBooks() {
+      $getCountResult = sumOldBooks();
+      $result = mysqli_fetch_array($getCountResult);
+
+      return $result['count'];
+  }
     
     function retrieveLoanedBooks() {
-		return getLoanedBooks();
+		  return getLoanedBooks();
+    }
+
+    function retrieveOlBooks() {
+		  return getOldBooks();
     }
     
     function retrieveLostBooks() {
-		return getLostBooks();
+		  return getLostBooks();
     }
     
     function retrieveReturnedBooks() {
-		return getReturnedBooks();
+		  return getReturnedBooks();
     }
     
     function retrieveNewBooks() {
-		return getNewBooks();
+		  return getNewBooks();
     }
     
-    function retrieveReplacedBooks() {
-		return getReplacedBooks();
+    function retrieveOldBooks() {
+		  return getOldBooks();
     }
     
-    if (isset($_POST['stdsettledloans'])) {
-		session_start();
-		$conn = openCon();
-		$_SESSION['student'] = mysqli_real_escape_string($conn,$_POST['student']);
-		closeCon($conn);
-	
-		// // check if user filled fields and throw error if not
-		if (empty($_SESSION['student'])) {
-			$_SESSION["alert"] = "danger";
-			$_SESSION["status"] = "Error";
-			$_SESSION["message"] = "Please fill all information.";
+    if (isset($_POST['stdloans'])) {
+      session_start();
+      $conn = openCon();
+      $_SESSION['student'] = mysqli_real_escape_string($conn,$_POST['student']);
+      $_SESSION['year'] = mysqli_real_escape_string($conn,$_POST['year']);
+      closeCon($conn);
+    
+      // // check if user filled fields and throw error if not
+      if (empty($_SESSION['student'])) {
+        $_SESSION["alert"] = "danger";
+        $_SESSION["status"] = "Error";
+        $_SESSION["message"] = "Please fill all information.";
 
-			header("Location: /bookshop?action=new_std_statement");
-			exit();
-		} else {
-            header("Location: /bookshop?action=student_statement&student={$_SESSION['student']}&status=2");
-            unset($_SESSION['student']);
-            exit();
-		}
+        header("Location: /bookshop?action=new_std_statement");
+        exit();
+      } else if (empty($_SESSION['year'])) {
+          $_SESSION["alert"] = "danger";
+          $_SESSION["status"] = "Error";
+          $_SESSION["message"] = "Please fill all information.";
+  
+          header("Location: /bookshop?action=new_std_statement");
+          exit();
+      } else {
+          header("Location: /bookshop?action=student_statement&student={$_SESSION['student']}&year={$_SESSION['year']}");
+          unset($_SESSION['student']);
+          exit();
+      }
     }
     
-    if (isset($_POST['stdunsettledloans'])) {
-		session_start();
-		$conn = openCon();
-		$_SESSION['student'] = mysqli_real_escape_string($conn,$_POST['student']);
-		closeCon($conn);
-	
-		// // check if user filled fields and throw error if not
-		if (empty($_SESSION['student'])) {
-			$_SESSION["alert"] = "danger";
-			$_SESSION["status"] = "Error";
-			$_SESSION["message"] = "Please fill all information.";
-
-			header("Location: /bookshop?action=new_std_statement");
-			exit();
-		} else {
-            header("Location: /bookshop?action=student_statement&student={$_SESSION['student']}&status=1");
-            unset($_SESSION['student']);
-            exit();
-		}
-	}
-
 ?>

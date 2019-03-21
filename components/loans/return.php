@@ -7,8 +7,6 @@
         $getBookLoanResult = getBookLoanByField("id", $loanId);
         $loan = mysqli_fetch_array($getBookLoanResult);
 
-        echo $loan;
-
         $_SESSION['client'] = $loan['clientName'];
         $_SESSION['book'] = $loan['bookName'];
         $_SESSION['id'] = $loan['id'];
@@ -46,11 +44,10 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="form" class="col-sm-4 control-label">Book Returned * :</label>
+                            <label for="form" class="col-sm-4 control-label">Returned * :</label>
                             <div class="col-sm-8">                                
                                 <select class="form-control" id="returnedBook" name="returnedBook">
-                                    <option value="2">Original</option>
-                                    <option value="3">Replacement</option>
+                                    <option value="2">Book</option>
                                     <option value="4">Payment</option>
                                 </select>
                             </div>

@@ -11,11 +11,10 @@
 		$_SESSION['student'] = mysqli_real_escape_string($conn,$_POST['student']);
 		$_SESSION['book'] = mysqli_real_escape_string($conn,$_POST['book']); // use on front end before echo htmlspecialchars
 		$_SESSION['issueState'] = mysqli_real_escape_string($conn,$_POST['issueState']); // use on front end before echo htmlspecialchars
-		$_SESSION['return_date'] = mysqli_real_escape_string($conn,$_POST['return_date']); // use on front end before echo htmlspecialchars
 		closeCon($conn);
 	
 		// // check if user filled fields and throw error if not
-		if (empty($_SESSION['student']) || empty($_SESSION['book']) || empty($_SESSION['issueState']) || empty($_SESSION['return_date'])) {
+		if (empty($_SESSION['student']) || empty($_SESSION['book']) || empty($_SESSION['issueState'])) {
 			$_SESSION["alert"] = "danger";
 			$_SESSION["status"] = "Error";
 			$_SESSION["message"] = "Please fill all information.";
@@ -23,13 +22,13 @@
 			header("Location: /bookshop?action=new-loan");
 			exit();
 		} else {
-			$addBookLoanResult = addBookLoan($_SESSION['student'], $_SESSION['book'], $_SESSION['issueState'], $_SESSION['return_date']);
+			$period = getYear();
+			$addBookLoanResult = addBookLoan($_SESSION['student'], $_SESSION['book'], $_SESSION['issueState'], $period);
 	
 			if ($addBookLoanResult) {
 				unset($_SESSION['student']);
         		unset($_SESSION['book']);
 				unset($_SESSION['issueState']);
-				unset($_SESSION['return_date']);
 				
                 $_SESSION["alert"] = "success";
                 $_SESSION["status"] = "Success";

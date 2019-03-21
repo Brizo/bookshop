@@ -63,7 +63,7 @@
 								<div class="form-group">
 									<label for="form" class="col-sm-4 control-label">Student Number * :</label>
 									<div class="col-sm-8">
-										<input type="text" class="form-control" id="student_no" name="student_no" value="<?php  echo $_SESSION['student_no']; ?>" />
+										<input type="text" class="form-control" id="student_no" name="student_no" value="<?php  if (isset($_SESSION['student_no'])) {echo $_SESSION['student_no'];} ?>"/>
 									</div>
 								</div>
 								<div class="form-group">
@@ -151,7 +151,7 @@
 								</div>
 								<div class="form-group">
 									<div class="col-sm-8 col-sm-offset-4">
-										<button type="submit" class="btn btn-success" name="updatestudent"><span class="glyphicon glyphicon-ok-circle"></span>&nbsp;Add</button>
+										<button type="submit" class="btn btn-success" name="updatestudent"><span class="glyphicon glyphicon-ok-circle"></span>&nbsp;Update</button>
 										<a href="/bookshop?action=students" class="btn btn-warning"><span class="glyphicon glyphicon-remove-circle"></span>&nbsp;Cancel</a>
 									</div>
 								</div>

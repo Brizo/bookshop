@@ -1,5 +1,6 @@
 <?php
     include $_SERVER['DOCUMENT_ROOT']."/bookshop/components/students/controller.php";
+    include $_SERVER['DOCUMENT_ROOT']."/bookshop/components/loans/controller.php";
     include $_SERVER['DOCUMENT_ROOT']."/bookshop/components/book-copies/controller.php";
     include $_SERVER['DOCUMENT_ROOT']."/bookshop/components/book-states/controller.php";
 
@@ -10,7 +11,7 @@
     }
 
     $bookCopies = array();
-    $queryResult = getBookLoanByField("status", 2);
+    $queryResult = getBookCopyByField("status", 2);
     while ($row = mysqli_fetch_array($queryResult)) {
         $bookCopies[] = $row;
     }
@@ -23,7 +24,7 @@
 
     if (isset($_GET['id'])) {
         $loanId = $_GET['id'];
-        $getLoanResult = getLoanByField("id", $loanId);
+        $getLoanResult = getBookLoanByField("id", $loanId);
         $loan = mysqli_fetch_array($getLoanResult);
 
         $_SESSION['book'] = $loan['book'];
@@ -61,7 +62,7 @@
                             <div class="col-sm-8">                                
                                 <select class="form-control" id="book" name="book">
                                     <?php foreach($bookCopies as $row): ?>
-                                        <option value="<?php echo $row['id']; ?>"><?=$row['name']?> - <?=$row['bar_code']?></option>
+                                        <option value="<?php echo $row['id']; ?>" <?php if ($_SESSION['book'] == $row['id']) {echo "selected";} ?> ><?=$row['name']?> - <?=$row['bar_code']?></option>
                                     <?php endforeach; ?>
                                 </select>
                             </div>
@@ -71,7 +72,7 @@
                             <div class="col-sm-8">                                
                                 <select class="form-control" id="issueState" name="issueState">
                                     <?php foreach($bookStates as $row): ?>
-                                        <option value="<?php echo $row['id']; ?>"><?=$row['name']?></option>
+                                        <option value="<?php echo $row['id']; ?>" <?php if ($_SESSION['issueState'] == $row['id']) {echo "selected";} ?> ><?=$row['name']?></option>
                                     <?php endforeach; ?>
                                 </select>
                             </div>

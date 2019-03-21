@@ -10,7 +10,8 @@
       </li>
       <li class="dropdown <?php if ($_SESSION['page'] == 'books' || $_SESSION['page'] == 'new-book' || $_SESSION['page'] == 'edit-book' || 
           $_SESSION['page'] == 'delete-book' || $_SESSION['page'] == 'book-copies' || $_SESSION['page'] == 'new-book-copy' ||
-          $_SESSION['page'] == 'edit-book-copy' || $_SESSION['page'] == 'delete-book-copy' || $_SESSION['page'] == 'replace-book-copy') {echo 'active';} ?>">
+          $_SESSION['page'] == 'edit-book-copy' || $_SESSION['page'] == 'delete-book-copy' || $_SESSION['page'] == 'book-loans'
+          || $_SESSION['page'] == 'replace-book-copy') {echo 'active';} ?>">
         <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><b><span class="glyphicon glyphicon-book"></span> Books</b><span class="caret"></span></a>
         <ul class="dropdown-menu">
           <li><a href="/bookshop?action=books">Books</b></li>
@@ -40,17 +41,18 @@
         <li class="dropdown <?php if ($_SESSION['page'] == 'email' || $_SESSION['page'] == 'users' || $_SESSION['page'] == 'new-user' || 
             $_SESSION['page'] == 'edit-user' || $_SESSION['page'] == 'delete-user' || $_SESSION['page'] == 'change-password' ||
             $_SESSION['page'] == 'book-states' || $_SESSION['page'] == 'new-book_state' || $_SESSION['page'] == 'edit-book_state' ||
-            $_SESSION['page'] == 'delete-book_state') {echo 'active';} ?>">
+            $_SESSION['page'] == 'delete-book_state' || $_SESSION['page'] == 'logs') {echo 'active';} ?>">
           <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><b><span class="glyphicon glyphicon-wrench"></span> Admin</b><span class="caret"></span></a>
           <ul class="dropdown-menu">
             <li><a href="/bookshop?action=book-states">Book States</a></li>
             <li><a href="/bookshop?action=email">Email</a></li>
             <li><a href="/bookshop?action=users">Users</a></li>
+            <li><a href="/bookshop?action=logs">Logs</a></li>
           </ul>
         </li>
       <?php endif; ?>
       <li class="<?php if ($_SESSION['page'] == 'reports' || $_SESSION['page'] == 'loaned-books_r' || $_SESSION['page'] == 'lost-books_r' || 
-          $_SESSION['page'] == 'returned-books_r' || $_SESSION['page'] == 'new-books_r' || $_SESSION['page'] == 'replaced-books_r' ||
+          $_SESSION['page'] == 'returned-books_r' || $_SESSION['page'] == 'new-books_r' || $_SESSION['page'] == 'old-books_r' ||
           $_SESSION['page'] == 'student_statement' || $_SESSION['page'] == 'student_statement_r') {echo 'active';} ?>">
         <a href="/bookshop?action=reports"><b><span class="glyphicon glyphicon-list-alt"></span> Reports</b></a>
       </li>  

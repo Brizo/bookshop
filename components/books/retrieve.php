@@ -13,7 +13,6 @@
 			</div>
 			<div class="panel-body">
 				<a class="btn btn-primary" data-keyboard="false" href="/bookshop?action=new-book"><span class="glyphicon glyphicon-plus"></span>&nbsp;Add New</a><br /><br />
-
 				<table id="booksTable" class="table table-bordered table-hover">
 					<thead>
 						<tr>
@@ -41,6 +40,7 @@
 								<td>
 									<a href="/bookshop?action=edit-book&id=<?php echo $row['id']; ?>"><span class='glyphicon glyphicon-edit' aria-hidden='true'></span>Edit</a>&nbsp;&nbsp;
 									<a style="color: #FF0000;" href="/bookshop?action=delete-book&id=<?php echo $row['id']; ?>"><span class='glyphicon glyphicon-trash' aria-hidden='true'></span>Remove</a>&nbsp;&nbsp;
+									<a href="/bookshop?action=add-book-copies&id=<?php echo $row['id']; ?>"><span class='glyphicon glyphicon-plus' aria-hidden='true'></span>Add Copies</a>
 								</td>
 								<td><?=$row['name']?></td>
 								<td><?=$row['isb']?></td>
@@ -61,6 +61,6 @@
 <script type="text/javascript">
 	$(document).ready(function() {
 		$('#booksTable').dataTable();
-  });
+    });
 </script>
 

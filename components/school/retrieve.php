@@ -122,7 +122,7 @@
 									</div>
 								</div>
 								<div class="form-group">
-									<label for="form" class="col-sm-4 control-label">Book Circulation :</label>
+									<label for="form" class="col-sm-4 control-label">Book Circulation * :</label>
 									<div class="col-sm-8">
 										<input type="text" class="form-control" id="book_circulation" name="book_circulation" placeholder="Enter book circulation years" value="<?php  if (isset($_SESSION['book_circulation'])) {echo $_SESSION['book_circulation'];} ?>" />
 									</div>

@@ -3,7 +3,7 @@
 
 	function getLoans() {
 		$conn = openCon();
-		$sql = "SELECT L.id, L.issue_date, L.return_date, T.name book_issue_state, L.book_return_state, 
+		$sql = "SELECT L.id, L.issue_date, L.return_date, T.name book_issue_state, L.returned_date, L.book_return_state, L.period,
 				CONCAT(B.name,' - ', C.bar_code) book,
 				CONCAT(S.first_name, ' ', S.last_name, ' - ', S.student_no) client, 
 				CASE 
@@ -24,7 +24,7 @@
 	function getBookLoanByField($field, $value) {
 		$conn = openCon();
 		if ($field == "id" || $field == "status" || $field == "client" || $field == "book" || $field == "last_modified_by") {
-			$sql = "SELECT L.id, L.issue_date, L.return_date, T.name book_issue_state, L.book_return_state, 
+			$sql = "SELECT L.id, L.issue_date, L.return_date, T.name book_issue_state, L.book_return_state, L.returned_date, L.period,
 					CONCAT(B.name,' - ', C.bar_code) bookName, L.book,
 					CONCAT(S.first_name, ' ', S.last_name, ' - ', S.student_no) clientName, L.client,
 					CASE 
@@ -38,7 +38,7 @@
 				LEFT JOIN book_states T ON L.book_issue_state = T.id 
 				WHERE L.{$field} = {$value}";
 		} else {
-			$sql = "SELECT L.id, L.issue_date, L.return_date, T.name book_issue_state, L.book_return_state, 
+			$sql = "SELECT L.id, L.issue_date, L.return_date, T.name book_issue_state, L.book_return_state, L.returned_date, L.period,
 					CONCAT(B.name,' - ', C.bar_code) bookName, L.book,
 					CONCAT(S.first_name, ' ', S.last_name, ' - ', S.student_no) clientName, L.client,
 					CASE 
@@ -58,17 +58,17 @@
 		return $result;
 	}
 
-	function addBookLoan($student, $book, $state, $return_date) {
+	function addBookLoan($student, $book, $state, $period) {
 		$conn = openCon();
 		$created_at = getTime();
 		$last_modified_by = $_SESSION['loggedUserId'];
 		$status = 1; // 1 = loaned, 0 = removed, 2 = returned, 4 = paid, 3 = replaced
-		$sql1 = "INSERT INTO `book_loans`(`client`, `issue_date`, `return_date`, `book_issue_state`, `book`, `status`, `created_at`, `last_modified_by`) 
+		$sql1 = "INSERT INTO `book_loans`(`client`, `issue_date`, `book_issue_state`, `book`, `period`, `status`, `created_at`, `last_modified_by`) 
 			VALUES({$student},
 				'{$created_at}',
-				'{$return_date}',
 				{$state},
 				{$book},
+				'{$period}',
 				{$status},
 				'{$created_at}',
 				{$last_modified_by})";

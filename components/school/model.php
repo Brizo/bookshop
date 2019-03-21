@@ -24,6 +24,7 @@
 						`physical_address`, 
 						`username_prefix`,
 						`student_no_counter`,
+						`barcode_no_counter`,
 						`book_circulation`,
 						`status`, 
 						`created_at`, 

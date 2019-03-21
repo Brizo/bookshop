@@ -36,7 +36,7 @@
                         <div class="form-group">
                             <label for="form" class="col-sm-4 control-label">Book * :</label>
                             <div class="col-sm-8">                                
-                            <input type="text" class="form-control" id="book" name="book" value="<?php  if (isset($_SESSION['book'])) {echo $_SESSION['book'];} ?>" disabled/>
+                                <input type="text" class="form-control" id="book" name="book" value="<?php  if (isset($_SESSION['book'])) {echo $_SESSION['book'];} ?>" disabled/>
                             </div>
                         </div>
                         <div class="form-group">
@@ -50,7 +50,7 @@
                             <div class="col-sm-8">                                
                                 <select class="form-control" id="state" name="state">
                                     <?php foreach($bookStates as $row): ?>
-                                        <option value="<?php echo $row['id']; ?>"><?=$row['name']?></option>
+                                        <option value="<?php echo $row['id']; ?>" <?php if ($_SESSION['state'] == $row['id']) {echo "selected";} ?> ><?=$row['name']?></option>
                                     <?php endforeach; ?>
                                 </select>
                             </div>
@@ -59,14 +59,14 @@
                             <label for="form" class="col-sm-4 control-label">Status * :</label>
                             <div class="col-sm-8">                                
                                 <select class="form-control" id="status" name="status">
-                                    <option value="1">Active</option>
-                                    <option value="4">Lost</option>
+                                    <option value="1" <?php if (isset($_SESSION['status']) && $_SESSION['status'] == '1') {echo "selected";} ?>>Active</option>
+                                    <option value="4" <?php if (isset($_SESSION['status']) && $_SESSION['status'] == '4') {echo "selected";} ?> >Lost</option>
                                 </select>
                             </div>
                         </div>
                         <div class="form-group">
                             <div class="col-sm-8 col-sm-offset-4">
-                                <button type="submit" class="btn btn-success" name="updatebookcopy"><span class="glyphicon glyphicon-ok-circle"></span>&nbsp;Add</button>
+                                <button type="submit" class="btn btn-success" name="updatebookcopy"><span class="glyphicon glyphicon-ok-circle"></span>&nbsp;Update</button>
                                 <a href="/bookshop?action=book-copies" class="btn btn-warning"><span class="glyphicon glyphicon-remove-circle"></span>&nbsp;Cancel</a>
                             </div>
                         </div>           

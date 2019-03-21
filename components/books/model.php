@@ -20,11 +20,12 @@
 	function getBookByField($field, $value) {
 		$conn = openCon();
 
-		if ($field == "id" || $field == "state" || $field == "status" || $field == "last_modified_by") {
+		if ($field == "id" || $field == "status" || $field == "last_modified_by") {
 			$sql = "SELECT B.id,B.name, B.description, B.isb, B.year,B.purchase_price, B.levie, B.author, 
 				CASE 
-					WHEN B.status = 1 THEN 'active' 
-					ELSE 'obsolete' 
+					WHEN B.status = 1 THEN 'active'
+					WHEN B.status = 0 THEN 'removed'
+					ELSE 'old' 
 				END `status`
 				FROM `books` B
 				LEFT JOIN book_copies S ON B.id = S.book
@@ -32,8 +33,9 @@
 		} else {
 			$sql = "SELECT B.id, B.name, B.description, B.isb, B.year,B.purchase_price, B.levie, B.author, 
 				CASE 
-					WHEN B.status = 1 THEN 'active' 
-					ELSE 'obsolete' 
+					WHEN B.status = 1 THEN 'active'
+					WHEN B.status = 0 THEN 'removed'
+					ELSE 'old' 
 				END `status`
 				FROM `books` B
 				LEFT JOIN book_copies S ON B.id = S.book
@@ -48,14 +50,12 @@
 	function getBookByFieldId($field, $value, $id) {
 		$conn = openCon();
 
-		if ($field == "id" || $field == "state" || $field == "status" || $field == "last_modified_by") {
+		if ($field == "status" || $field == "last_modified_by") {
 			$sql = "SELECT B.id,B.name, B.description, B.isb, B.year,B.purchase_price, B.levie, B.author,
 					CASE 
-						WHEN B.status = 1 THEN 'instock' 
-						WHEN B.status = 2 THEN 'loaned'
-						WHEN B.status = 3 THEN 'replaced'
-						WHEN B.status = 4 THEN 'lost'
-						ELSE 'lost' 
+						WHEN B.status = 1 THEN 'active' 
+						WHEN B.status = 2 THEN 'removed'
+						ELSE 'old' 
 					END `status`
 				FROM `books` B
 				LEFT JOIN book_copies S ON B.id = S.book
@@ -76,7 +76,7 @@
 		$conn = openCon();
 		$created_at = getTime();
 		$last_modified_by = $_SESSION['loggedUserId'];
-		$status = 1; // 1 = active/instock, 0 = removed, 2 = loaned, 3 = replaced, 4 = lost 
+		$status = 1; // 1 = active, 0 = removed, 2 = old 
 		$sql = "INSERT INTO `books`(`name`, `description`, `isb`, `year`, `purchase_price`, `levie`, `author`, `status`, `created_at`, `last_modified_by`) 
 			VALUES('{$name}',
 				'{$description}',
@@ -88,7 +88,7 @@
 				{$status},
 				'{$created_at}',
 				{$last_modified_by})";
-	
+
 		$result = $conn->query($sql);
 		closeCon($conn);
 		return $result;

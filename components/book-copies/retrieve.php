@@ -12,8 +12,6 @@
 				<b>Book Copies</b>
 			</div>
 			<div class="panel-body">
-				<a class="btn btn-primary" data-keyboard="false" href="/bookshop?action=new-book-copy"><span class="glyphicon glyphicon-plus"></span>&nbsp;Add New</a><br /><br />
-
 				<table id="bookCopiesTable" class="table table-bordered table-hover">
 					<thead>
 						<tr>
@@ -41,14 +39,14 @@
 								<td>
 									<a href="/bookshop?action=edit-book-copy&id=<?php echo $row['id']; ?>"><span class='glyphicon glyphicon-edit' aria-hidden='true'></span>Edit</a>&nbsp;&nbsp;
 									<a style="color: #FF0000;" href="/bookshop?action=delete-book-copy&id=<?php echo $row['id']; ?>"><span class='glyphicon glyphicon-trash' aria-hidden='true'></span>Remove</a>&nbsp;&nbsp;
-									<a href="/bookshop?action=replace-book-copy&id=<?php echo $row['id']; ?>"><span class='glyphicon glyphicon-check' aria-hidden='true'></span>Replace</a>
+									<a href="/bookshop?action=book-loans&id=<?php echo $row['id']; ?>"><span class='glyphicon glyphicon-link' aria-hidden='true'></span>Loans</a>
 								</td>
 								<td><?=$row['name']?></td>
 								<td><?=$row['isb']?></td>
 								<td><?=$row['year']?></td>
 								<td><?=$row['author']?></td>
 								<td><?=$row['bar_code']?></td>
-								<td><?=$row['state']?></td>
+								<td><?=$row['statename']?></td>
 								<td><?=$row['status']?></td>
 							</tr>
 						<?php endforeach; ?>

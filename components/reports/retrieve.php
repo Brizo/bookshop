@@ -4,7 +4,7 @@
 	$stockBooks = countBooksOnStock();
 	$loanedBooks = countLoanedBooks();
 	$lostBooks = countLostBooks();
-	$replacedBooks = countReplacedBooks();
+	$oldBooks = countOldBooks();
 	$newBooks = countNewBooks();
 	$students = countStudents();
 ?>
@@ -27,28 +27,28 @@
 						<div class="col-sm-12">
 							<div class="row">
 								<div class="col-sm-6">
-									<a href="/bookshop?action=loaned-books_r" class="btn btn-default btn-lg btn-block" style="padding: 20px"><strong>Loaned Books : </strong><span class="badge"><?php echo $loanedBooks; ?></span></a>
+									<a href="/bookshop?action=loaned-books_r" class="btn btn-default btn-lg btn-block" style="padding: 20px; background:#e3f2fd"><strong>Borrowed Books : </strong><span class="badge"><?php echo $loanedBooks; ?></span></a>
 								</div>
 								<div class="col-sm-6">
-									<a href="/bookshop?action=lost-books_r" class="btn btn-default btn-lg btn-block" style="padding: 20px"><strong>Lost Books : </strong><span class="badge"><?php echo $lostBooks; ?></span></a>
-								</div>
-							</div><br>
-							<div class="row">
-								<div class="col-sm-6">
-									<a href="/bookshop?action=returned-books_r" class="btn btn-default btn-lg btn-block" style="padding: 20px"><strong>Books On Stock : </strong><span class="badge"><?php echo $stockBooks; ?></span><br></a>
-								</div>
-
-								<div class="col-sm-6">
-									<a href="/bookshop?action=new-books_r" class="btn btn-default btn-lg btn-block" style="padding: 20px"><strong>Never Borrowed : </strong><span class="badge"><?php echo $newBooks; ?></span><br></a>
+									<a href="/bookshop?action=lost-books_r" class="btn btn-default btn-lg btn-block" style="padding: 20px; background:#e3f2fd"><strong>Lost Books : </strong><span class="badge"><?php echo $lostBooks; ?></span></a>
 								</div>
 							</div><br>
 							<div class="row">
 								<div class="col-sm-6">
-									<a href="/bookshop?action=replaced-books_r" class="btn btn-default btn-lg btn-block" style="padding: 20px"><strong>Replaced Books : </strong><span class="badge"><?php echo $replacedBooks; ?></span><br></a>
+									<a href="/bookshop?action=returned-books_r" class="btn btn-default btn-lg btn-block" style="padding: 20px; background:#e3f2fd"><strong>Books On Stock : </strong><span class="badge"><?php echo $stockBooks; ?></span><br></a>
 								</div>
 
 								<div class="col-sm-6">
-									<a href="/bookshop?action=students" class="btn btn-default btn-lg btn-block" style="padding: 20px"><strong>Number of students : </strong><span class="badge"><?php echo $students; ?></span><br></a>
+									<a href="/bookshop?action=new-books_r" class="btn btn-default btn-lg btn-block" style="padding: 20px; background:#e3f2fd"><strong>Never Borrowed : </strong><span class="badge"><?php echo $newBooks; ?></span><br></a>
+								</div>
+							</div><br>
+							<div class="row">
+								<div class="col-sm-6">
+									<a href="/bookshop?action=old-books_r" class="btn btn-default btn-lg btn-block" style="padding: 20px; background:#e3f2fd"><strong>Old Books : </strong><span class="badge"><?php echo $oldBooks; ?></span><br></a>
+								</div>
+
+								<div class="col-sm-6">
+									<a href="/bookshop?action=students" class="btn btn-default btn-lg btn-block" style="padding: 20px; background:#e3f2fd"><strong>Number of students : </strong><span class="badge"><?php echo $students; ?></span><br></a>
 								</div>
 							</div>
 						</div>

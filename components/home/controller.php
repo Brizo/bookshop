@@ -25,9 +25,9 @@
         return $result['count'];
     }
     
-    // count replaced books
-	function countReplacedBooks() {
-        $getCountResult = sumReplacedBooks();
+    // count old books
+	function countOldBooks() {
+        $getCountResult = sumOldBooks();
         $result = mysqli_fetch_array($getCountResult);
 
         return $result['count'];

@@ -9,7 +9,7 @@
 		if ($conn2->connect_error) {
 			$_SESSION["alert"] = "danger";
 			$_SESSION["status"] = "Error";
-			$_SESSION["message"] = "A database connection rrror has occurred, Please check your connection string";
+			$_SESSION["message"] = "A database connection error has occurred, Please check your connection string";
 
 			header("Location: /bookshop");
 			exit();
@@ -65,8 +65,8 @@
 							$getAccountResult = retrieveAccount();
 							$account = mysqli_fetch_array($getAccountResult);
 							$_SESSION['accountName'] = $account['name'];
+							$_SESSION['bookCirculation'] = $account['book_circulation'];
 						}
-
 
 						$action = "Login";
 						$description = $_SESSION['username'];

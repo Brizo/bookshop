@@ -32,6 +32,27 @@
 
 			header("Location: /bookshop?action=new-student");
 			exit();
+		} else if (!empty($_SESSION['national_id']) && !is_numeric($_SESSION['national_id'])) {
+			$_SESSION["alert"] = "danger";
+			$_SESSION["status"] = "Error";
+			$_SESSION["message"] = "Id number should be numeric.";
+
+			header("Location: /bookshop?action=new-student");
+			exit();
+		} else if (!empty($_SESSION['contact_no']) && !is_numeric($_SESSION['contact_no'])) {
+			$_SESSION["alert"] = "danger";
+			$_SESSION["status"] = "Error";
+			$_SESSION["message"] = "Contact number should be numeric.";
+
+			header("Location: /bookshop?action=new-student");
+			exit();
+		} else if (!empty($_SESSION['std_email_address']) && !validEmail($_SESSION['std_email_address'])) {
+			$_SESSION["alert"] = "danger";
+			$_SESSION["status"] = "Error";
+			$_SESSION["message"] = "Invalid email address entered.";
+
+			header("Location: /bookshop?action=new-student");
+			exit();
 		} else {
 			// add student
 			$addStudentResult = addStudent($_SESSION['first_name'], $_SESSION['middle_name'], $_SESSION['last_name'], $_SESSION['national_id'], $_SESSION['birth_date'], 
@@ -95,10 +116,32 @@
 
 			header("Location: /bookshop?action=edit-student");
 			exit();
+		} else if (!empty($_SESSION['national_id']) && !is_numeric($_SESSION['national_id'])) {
+			$_SESSION["alert"] = "danger";
+			$_SESSION["status"] = "Error";
+			$_SESSION["message"] = "Id number should be numeric.";
+
+			header("Location: /bookshop?action=edit-student");
+			exit();
+		} else if (!empty($_SESSION['contact_no']) && !is_numeric($_SESSION['contact_no'])) {
+			$_SESSION["alert"] = "danger";
+			$_SESSION["status"] = "Error";
+			$_SESSION["message"] = "Contact number should be numeric.";
+
+			header("Location: /bookshop?action=edit-student");
+			exit();
+		} else if (!empty($_SESSION['std_email_address']) && !validEmail($_SESSION['std_email_address'])) {
+			$_SESSION["alert"] = "danger";
+			$_SESSION["status"] = "Error";
+			$_SESSION["message"] = "Invalid email address entered.";
+
+			header("Location: /bookshop?action=edit-student");
+			exit();
 		} else {
-			// add student
-			$updateStudentResult = updateStudent($_SESSION['first_name'], $_SESSION['middle_name'], $_SESSION['last_name'], $_SESSION['national_id'], $_SESSION['birth_date'], 
-			$_SESSION['gender'], $_SESSION['class'], $_SESSION['stream'], $_SESSION['class_level'], $_SESSION['student_no'], $_SESSION['contact_no'], $_SESSION['std_email_address']);
+
+			// update student
+			$updateStudentResult = updateStudent($_SESSION['id'], $_SESSION['first_name'], $_SESSION['middle_name'], $_SESSION['last_name'], $_SESSION['national_id'], $_SESSION['birth_date'],
+			$_SESSION['gender'], $_SESSION['class'], $_SESSION['stream'], $_SESSION['class_level'], $_SESSION['contact_no'], $_SESSION['std_email_address']);
 	
 			if ($updateStudentResult) {
 				unset($_SESSION['first_name']);
@@ -113,12 +156,13 @@
 				unset($_SESSION['student_no']);
 				unset($_SESSION['contact_no']);
 				unset($_SESSION['std_email_address']);
+				unset($_SESSION['id']);
 				
                 $_SESSION["alert"] = "success";
                 $_SESSION["status"] = "Success";
                 $_SESSION["message"] = "Student Successfully Updated";
 
-                header("Location: /bookshop?action=edit-student");
+                header("Location: /bookshop?action=students");
                 exit();
 			} else {
 			    $_SESSION["alert"] = "danger";

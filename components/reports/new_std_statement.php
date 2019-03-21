@@ -7,6 +7,12 @@
     while ($row = mysqli_fetch_array($queryResult)) {
         $students[] = $row;
     }
+
+    $years = array();
+    $queryResult = retrieveLoanYears();
+    while ($row = mysqli_fetch_array($queryResult)) {
+        $years[] = $row;
+    }
 ?>
 
 <div class="panel panel-primary">
@@ -37,9 +43,18 @@
                                     </div>
                                 </div>
                                 <div class="form-group">
+                                    <label for="form" class="col-sm-4 control-label">Year * :</label>
+                                    <div class="col-sm-8">                                
+                                        <select class="form-control" id="year" name="year">
+                                            <?php foreach($years as $row): ?>
+                                                <option value="<?php echo $row['period']; ?>"><?=$row['period']?></option>
+                                            <?php endforeach; ?>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group">
                                     <div class="col-sm-8 col-sm-offset-4">
-                                        <button type="submit" class="btn btn-success" name="stdsettledloans"><span class="glyphicon glyphicon-ok-circle"></span>&nbsp;Settled Loans</button>
-                                        <button type="submit" class="btn btn-primary" name="stdunsettledloans"><span class="glyphicon glyphicon-ok-circle"></span>&nbsp;Unsettled Loans</button>
+                                        <button type="submit" class="btn btn-success" name="stdloans"><span class="glyphicon glyphicon-ok-circle"></span>&nbsp;Get Statement</button>
                                         <a href="/bookshop?action=reports" class="btn btn-warning"><span class="glyphicon glyphicon-remove-circle"></span>&nbsp;Cancel</a>
                                     </div>
                                 </div>       
@@ -57,6 +72,13 @@
     // Read selected option
     $('#but_read').click(function(){
         $('#student option:selected').text();
+    });
+
+    // Initialize select2
+    $("#year").select2();
+    // Read selected option
+    $('#but_read').click(function(){
+        $('#year option:selected').text();
     });
 
 </script>

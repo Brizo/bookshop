@@ -44,7 +44,7 @@
 						<?php foreach($subjects as $row): ?>
 							<tr>
 								<td>
-									<a href="/bookshop?action=delete-stream-subject&id=<?php echo $row['id']; ?>"><span class='glyphicon glyphicon-trash' aria-hidden='true'></span>Remove</a>&nbsp;&nbsp;
+									<a style="color: #FF0000;" href="/bookshop?action=delete-stream-subject&id=<?php echo $row['id']; ?>"><span class='glyphicon glyphicon-trash' aria-hidden='true'></span>Remove</a>&nbsp;&nbsp;
 								</td>
 								<td><?=$row['name']?></td>
 								<td><?=$row['description']?></td>

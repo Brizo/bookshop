@@ -20,6 +20,8 @@
     while ($row = mysqli_fetch_array($queryResult)) {
         $bookStates[] = $row;
     }
+
+    $period = getYear();
 ?>
 
 <div class="row">
@@ -65,9 +67,9 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="form" class="col-sm-4 control-label">Return Date * :</label>
+                            <label for="form" class="col-sm-4 control-label">Year * :</label>
                             <div class="col-sm-8">
-                                <input type="text" id="datepicker" class="form-control datepicker-here" name="return_date" placeholder="Click for return date" value="<?php  if (isset($_SESSION['return_date'])) {echo $_SESSION['return_date'];} ?>" />
+                                <input type="text" id="year" class="form-control" name="year" placeholder="year" value="<?php  if (isset($period)) {echo $period;} ?>" disabled/>
                             </div>
                         </div>
                         <div class="form-group">

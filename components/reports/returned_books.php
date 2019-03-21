@@ -17,8 +17,8 @@
 						<b>Books In Stock</b>
 					</div>
 					<div class="panel-body">
-                        <a class="btn btn-warning" data-keyboard="false" href="/bookshop?action=exportLoanedBooks"><span class="glyphicon glyphicon-export"></span>&nbsp;Export CSV</a>&nbsp;
-                        <a class="btn btn-warning" data-keyboard="false" href="/bookshop?action=exportLoanedBooks"><span class="glyphicon glyphicon-export"></span>&nbsp;Export PDF</a><br /><br />
+                        <a class="btn btn-warning" data-keyboard="false" href="#"><span class="glyphicon glyphicon-export"></span>&nbsp;Export CSV</a>&nbsp;
+                        <a class="btn btn-warning" data-keyboard="false" href="#"><span class="glyphicon glyphicon-export"></span>&nbsp;Export PDF</a><br /><br />
                         <table id="returnedBooksTable" class="table table-bordered table-hover">
                             <thead>
                                 <tr>

@@ -75,7 +75,8 @@
 		return $result;
 	}
 
-	function updateStudent($id, $first_name, $middle_name, $last_name, $national_id, $birth_date, $gender, $class, $stream, $class_level, $student_no, $contact_no, $email_address) {
+	function updateStudent($id, $first_name, $middle_name, $last_name, $national_id, $birth_date, $gender, $class, 
+		$stream, $class_level, $contact_no, $email_address) {
 		$conn = openCon();
 		$last_modified_by = $_SESSION['loggedUserId'];
 
@@ -89,9 +90,8 @@
 				`class` = {$class},
 				`stream` = {$stream},
 				`class_level` = {$class_level},
-				`student_no` = {$student_no},
-				`contact_no` = {$contact_no},
-				`email_address` = {$email_address},
+				`contact_no` = '{$contact_no}',
+				`email_address` = '{$email_address}',
 				`last_modified_by` = {$last_modified_by}
 			WHERE id = {$id}";
 

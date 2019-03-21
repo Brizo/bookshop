@@ -5,8 +5,32 @@
 
     function getTime() {
         $now = new DateTime();
-        $curr_time = $now->format('Y-m-d H:i:s');
-        return $curr_time;
+        $currDate = $now->format('Y-m-d H:i:s');
+        return $currDate;
+    }
+
+    function getYear() {
+        $now = new DateTime();
+        $year = $now->format('Y');
+        return intval($year);
+    }
+
+    function getMonth() {
+        $now = new DateTime();
+        $month = $now->format('m');
+        return intval($month);
+    }
+
+    function getDay() {
+        $now = new DateTime();
+        $day = $now->format('d');
+        return intval($day);
+    }
+
+    function getCurrentTime() {
+        $now = new DateTime();
+        $currTime = $now->format('H:i:s');
+        return $currTime;
     }
 
     function logAction($action, $description) {
@@ -118,6 +142,7 @@
             <tr>
                 <th>Student</th>
                 <th>Book</th>
+                <th>Barcode</th>
                 <th>Issue date</th>
                 <th>Return date</th>
                 <th>Price</th>
@@ -129,13 +154,15 @@
         foreach($loans as $row) {
             $clientName = $row['clientName'];
             $bookName = $row['bookName'];
+            $barCode = $row['bar_code'];
             $dateIssued = $row['issue_date'];
-            $dateReturned = $row['return_date'];
+            $dateReturned = $row['returned_date'];
             $price = $row['price'];
             $levie = $row['levie'];
             $table = $table."<tr>
                 <td>{$clientName}</td>
                 <td>{$bookName}</td>
+                <td>{$barCode}</td>
                 <td>{$dateIssued}</td>
                 <td>{$dateReturned}</td>
                 <td>{$price}</td>

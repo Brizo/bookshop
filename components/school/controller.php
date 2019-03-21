@@ -36,7 +36,9 @@
 		closeCon($conn); // disconnect from db
 	
 		// // check fields and throw error if empty
-		if (empty($_SESSION['name']) || empty($_SESSION['contact_person']) || empty($_SESSION['telephone']) || empty($_SESSION['postal_address']) || empty($_SESSION['physical_address']) || empty($_SESSION['username_prefix'])) {
+		if (empty($_SESSION['name']) || empty($_SESSION['contact_person']) || empty($_SESSION['telephone']) 
+			|| empty($_SESSION['postal_address']) || empty($_SESSION['physical_address']) 
+			|| empty($_SESSION['username_prefix']) || empty($_SESSION['book_circulation'])) {
 			$_SESSION["alert"] = "danger";
 			$_SESSION["status"] = "Error";
 			$_SESSION["message"] = "Please fill all mandatory information.";
@@ -47,6 +49,13 @@
 			$_SESSION["alert"] = "danger";
 			$_SESSION["status"] = "Error";
 			$_SESSION["message"] = "Telephone should be numeric.";
+
+			header("Location: /bookshop?action=school");
+			exit();
+		} else if (!is_numeric($_SESSION['book_circulation'])) {
+			$_SESSION["alert"] = "danger";
+			$_SESSION["status"] = "Error";
+			$_SESSION["message"] = "Book circulation should be numeric.";
 
 			header("Location: /bookshop?action=school");
 			exit();
@@ -108,7 +117,8 @@
 		closeCon($conn); // disconnect from db
 	
 		// // check fields and throw error if empty
-		if (empty($_SESSION['aname']) || empty($_SESSION['contact_person']) || empty($_SESSION['telephone']) || empty($_SESSION['postal_address']) || empty($_SESSION['physical_address']) || empty($_SESSION['username_prefix'])) {
+		if (empty($_SESSION['aname']) || empty($_SESSION['contact_person']) || empty($_SESSION['telephone']) || empty($_SESSION['postal_address']) || 
+			empty($_SESSION['physical_address']) || empty($_SESSION['username_prefix']) || empty($_SESSION['book_circulation'])) {
 			$_SESSION["alert"] = "danger";
 			$_SESSION["status"] = "Error";
 			$_SESSION["message"] = "Please fill all mandatory information.";
@@ -119,6 +129,13 @@
 			$_SESSION["alert"] = "danger";
 			$_SESSION["status"] = "Error";
 			$_SESSION["message"] = "Telephone should be numeric.";
+
+			header("Location: /bookshop?action=school");
+			exit();
+		} else if (!is_numeric($_SESSION['book_circulation'])) {
+			$_SESSION["alert"] = "danger";
+			$_SESSION["status"] = "Error";
+			$_SESSION["message"] = "Book circulation should be numeric.";
 
 			header("Location: /bookshop?action=school");
 			exit();

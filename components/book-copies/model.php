@@ -3,11 +3,17 @@
 
 	function getBookCopies() {
 		$conn = openCon();
-		$sql = "SELECT C.id, B.name, B.description, C.circulation_date, B.isb, B.year, B.purchase_price, B.levie, B.author, C.bar_code, S.name `state`, CASE WHEN B.status = 1 THEN 'active' ELSE 'replaced' END `status`
+		$sql = "SELECT C.id, B.name, B.description, C.circulation_date, B.isb, B.year, B.purchase_price, B.levie, B.author, C.bar_code, C.state, S.name `statename`, 
+			CASE 
+				WHEN C.status = 1 THEN 'In stock'
+				WHEN C.status = 2 THEN 'Loaned'
+				WHEN C.status = 3 THEN 'Replaced'
+				ELSE 'Lost' 
+			END `status`
 			FROM `book_copies` C
 			LEFT JOIN books B ON C.book = B.id
 			LEFT JOIN book_states S ON S.id = C.state
-			WHERE C.status NOT IN (0,4)";
+			WHERE C.status != 0";
 		$result = $conn->query($sql);
 		closeCon($conn);
 		return $result;
@@ -15,7 +21,13 @@
 
 	function getFBookCopies() {
 		$conn = openCon();
-		$sql = "SELECT C.id, B.name, B.description, C.circulation_date, B.isb, B.year, B.purchase_price, B.levie, B.author, C.bar_code, S.name `state`, CASE WHEN B.status = 1 THEN 'active' ELSE 'replaced' END `status`
+		$sql = "SELECT C.id, B.name, B.description, C.circulation_date, B.isb, B.year, B.purchase_price, B.levie, B.author, C.bar_code, C.state, S.name `statename`, 
+			CASE 
+				WHEN C.status = 1 THEN 'In stock'
+				WHEN C.status = 2 THEN 'Loaned'
+				WHEN C.status = 3 THEN 'Replaced'
+				ELSE 'Lost'
+			END `status`
 			FROM `book_copies` C
 			LEFT JOIN books B ON C.book = B.id
 			LEFT JOIN book_states S ON S.id = C.state
@@ -29,13 +41,25 @@
 		$conn = openCon();
 
 		if ($field == "id" || $field == "state" || $field == "status" || $field == "last_modified_by") {
-			$sql = "SELECT C.id, B.name, B.description, C.circulation_date, B.isb, B.year, B.purchase_price, B.levie, B.author, C.bar_code, S.name `state`, CASE WHEN B.status = 1 THEN 'active' ELSE 'replaced' END `status`
+			$sql = "SELECT C.id, B.name, B.description, C.circulation_date, B.isb, B.year, B.purchase_price, B.levie, B.author, C.bar_code, C.state, S.name `statename`, 
+					CASE 
+						WHEN C.status = 1 THEN 'In stock'
+						WHEN C.status = 2 THEN 'Loaned'
+						WHEN C.status = 3 THEN 'Replaced'
+						ELSE 'Lost'
+					END `status`
 					FROM `book_copies` C
 					LEFT JOIN books B ON C.book = B.id
 					LEFT JOIN book_states S ON S.id = C.state
 					WHERE C.{$field} = {$value}";
 		} else {
-			$sql = "SELECT C.id, B.name, B.description, C.circulation_date, B.isb, B.year, B.purchase_price, B.levie, B.author, C.bar_code, S.name `state`, CASE WHEN B.status = 1 THEN 'active' ELSE 'replaced' END `status`
+			$sql = "SELECT C.id, B.name, B.description, C.circulation_date, B.isb, B.year, B.purchase_price, B.levie, B.author, C.bar_code, C.state, S.name `statename`, 
+				CASE 
+					WHEN C.status = 1 THEN 'In stock'
+					WHEN C.status = 2 THEN 'Loaned'
+					WHEN C.status = 3 THEN 'Replaced'
+					ELSE 'Lost'
+				END `status`
 				FROM `book_copies` C
 				LEFT JOIN books B ON C.book = B.id
 				LEFT JOIN book_states S ON S.id = C.state
@@ -47,11 +71,12 @@
 		return $result;
 	}
 
-	function addBookCopy($book, $bar_code, $state, $circulation_date) {
+	function addBookCopy($book, $bar_code, $state) {
 		$conn = openCon();
 		$created_at = getTime();
+		$circulation_date = getTime();
 		$last_modified_by = $_SESSION['loggedUserId'];
-		$status = 1; // 1 = active/instock, 0 = removed, 2 = loaned, 3 = replaced, 4 = lost 
+		$status = 1; // 1 = active/instock, 0 = removed, 2 = loaned, 4 = lost 
 		$sql = "INSERT INTO `book_copies`(`book`, `bar_code`, `state`, `circulation_date`, `status`, `created_at`, `last_modified_by`) 
 			VALUES('{$book}',
 				'{$bar_code}',
@@ -62,8 +87,13 @@
 				{$last_modified_by})";
 
 		$result = $conn->query($sql);
+
+		$sql2 = "UPDATE `account_unit` SET `barcode_no_counter` = `barcode_no_counter` + 1 WHERE `status` = 1";
+
+		$result2 = $conn->query($sql2);
 		closeCon($conn);
-		return $result;
+
+		return $result2;
 	}
 
 	function updateBookCopy($id, $bar_code, $state, $status) {

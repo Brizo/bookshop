@@ -3,17 +3,12 @@
     include $_SERVER['DOCUMENT_ROOT']."/bookshop/components/students/controller.php";
     include $_SERVER['DOCUMENT_ROOT']."/bookshop/components/school/controller.php";
     
-    if (isset($_GET['student']) && isset($_GET['status'])) {
+    if (isset($_GET['student']) && isset($_GET['year'])) {
         $stdId = $_GET['student'];
-        $status = $_GET['status'];
-        if ($status == 1) {
-            $type = "Unsettled Loans";
-            $debt = retrieveStdDebt($stdId);
-        } else {
-            $type = "Settled Loans";
-        }
+        $year = $_GET['year'];
+
         $loans = array();
-        $queryResult = retrieveStdStatement($stdId, $status);
+        $queryResult = retrieveStdStatement($stdId, $year);
         while ($row = mysqli_fetch_array($queryResult)) {
             $loans[] = $row;
         }
@@ -23,7 +18,10 @@
         $studentno = $student['student_no'];
 
         $getAccountResult = retrieveAccount();
-		$account = mysqli_fetch_array($getAccountResult);
+        $account = mysqli_fetch_array($getAccountResult);
+        
+        $debt = retrieveStdDebt($stdId);
+        $debt = round($debt,2);
 
         $html = generateStatementTemplate($student, $account, $loans, $debt);
 
@@ -46,7 +44,7 @@
 			<div class="col col-sm-10">
 				<div class="panel panel-default">
 					<div class="panel-heading">
-						<b>Student <?php echo $type; ?> Loans</b>
+						<b>Student <?php echo $year; ?> Loans</b>
 					</div>
 					<div class="panel-body">
                         <a class="btn btn-warning" data-keyboard="false" href="#"><span class="glyphicon glyphicon-ok"></span>&nbsp;Export CSV</a>&nbsp;
@@ -56,8 +54,10 @@
                                 <tr>
                                     <th>Student</th>
                                     <th>Book</th>
+                                    <th>Barcode</th>
                                     <th>Issue date</th>
-                                    <th>Return date</th>
+                                    <th>Status</th>
+                                    <th>Returned date</th>
                                     <th>Price</th>
                                     <th>Levie</th>
                                 </tr>
@@ -67,8 +67,10 @@
                                     <tr>
                                         <td><?=$row['clientName']?></td>
                                         <td><?=$row['bookName']?></td>
+                                        <td><?=$row['bar_code']?></td>
                                         <td><?=$row['issue_date']?></td>
-                                        <td><?=$row['return_date']?></td>
+                                        <td><?=$row['status']?></td>
+                                        <td><?=$row['returned_date']?></td>
                                         <td><?=$row['price']?></td>
                                         <td><?=$row['levie']?></td>
                                     </tr>

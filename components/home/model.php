@@ -24,14 +24,16 @@
 		closeCon($conn);
 		return $result;
   }
-
-  function sumReplacedBooks() {
-		$conn = openCon();
-		$sql = "SELECT COUNT(*) count FROM `book_copies` WHERE `status` = 3";
-		$result = $conn->query($sql);
-		closeCon($conn);
-		return $result;
-  }
+  
+  function sumOldBooks() {
+	$conn = openCon();
+	$circulationYears = $_SESSION['bookCirculation'];
+	$current = getTime();
+	$sql = "SELECT COUNT(*) count FROM `book_copies` WHERE FLOOR(DATEDIFF('{$current}', `circulation_date`) / 365) > {$circulationYears}";
+	$result = $conn->query($sql);
+	closeCon($conn);
+	return $result;
+ }
 
   function sumStudents() {
 		$conn = openCon();

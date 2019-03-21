@@ -21,7 +21,8 @@
 							<th>Student</th>
 							<th>Book</th>
 							<th>Issue date</th>
-							<th>Return date</th>
+							<th>Returned date</th>
+							<th>Period</th>
 							<th>Status</th>
 						</tr>
 					</thead>
@@ -37,14 +38,17 @@
 						<?php foreach($loans as $row): ?>
 							<tr>
 								<td>
-									<a href="/bookshop?action=edit-loan&id=<?php echo $row['id']; ?>"><span class='glyphicon glyphicon-edit' aria-hidden='true'></span>Edit</a>&nbsp;&nbsp;
-									<a style="color: #FF0000;" href="/bookshop?action=delete-loan&id=<?php echo $row['id']; ?>"><span class='glyphicon glyphicon-trash' aria-hidden='true'></span>Remove</a>&nbsp;&nbsp;
-									<a href="/bookshop?action=return-loan&id=<?php echo $row['id']; ?>"><span class='glyphicon glyphicon-log-in' aria-hidden='true'></span>&nbsp;Return Book</a>&nbsp;&nbsp;
+									<?php if ($row['status'] == 'open'): ?>
+										<a href="/bookshop?action=edit-loan&id=<?php echo $row['id']; ?>"><span class='glyphicon glyphicon-edit' aria-hidden='true'></span>Edit</a>&nbsp;&nbsp;
+										<a style="color: #FF0000;" href="/bookshop?action=delete-loan&id=<?php echo $row['id']; ?>"><span class='glyphicon glyphicon-trash' aria-hidden='true'></span>Remove</a>&nbsp;&nbsp;
+										<a href="/bookshop?action=return-loan&id=<?php echo $row['id']; ?>"><span class='glyphicon glyphicon-log-in' aria-hidden='true'></span>&nbsp;Return Book</a>&nbsp;&nbsp;
+									<?php endif; ?>
 								</td>
 								<td><?=$row['client']?></td>
 								<td><?=$row['book']?></td>
 								<td><?=$row['issue_date']?></td>
-								<td><?=$row['return_date']?></td>
+								<td><?=$row['returned_date']?></td>
+								<td><?=$row['period']?></td>
 								<td><?=$row['status']?></td>
 							</tr>
 						<?php endforeach; ?>

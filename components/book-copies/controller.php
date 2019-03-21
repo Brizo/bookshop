@@ -47,6 +47,11 @@
 			$addBookCopyResult = addBookCopy($_SESSION['bookId'], $_SESSION['barCode'], $_SESSION['state'], $_SESSION['circulation_date']);
 	
 			if ($addBookCopyResult) {
+				// log action
+				$action = "Add book Copy";
+				$description = "barCode : ".$_SESSION['barCode'];
+				$logResults = logAction($action, $description);
+
 				unset($_SESSION['bookId']);
         		unset($_SESSION['barCode']);
 				unset($_SESSION['state']);
@@ -88,10 +93,11 @@
 		} else {
 			// check if barcode already used
 			$getByBarcodeResult = getBookCopyByField("bar_code", $_SESSION['bar_code']);
+			$bookCopy = mysqli_fetch_array($getByBarcodeResult);
 
 			$getByBarcodeNum = mysqli_num_rows($getByBarcodeResult);
 
-			if ($getByBarcodeNum > 0) {
+			if ($getByBarcodeNum > 0 && $bookCopy['id'] != $_SESSION['id']) {
 				$_SESSION["alert"] = "warning";
 				$_SESSION["status"] = "Warning";
 				$_SESSION["message"] = "Book Copy with entered barcode already exist.";
@@ -104,15 +110,21 @@
 			$updateBookCopyResult = updateBookCopy($_SESSION['id'], $_SESSION['bar_code'], $_SESSION['state'], $_SESSION['status']);
 	
 			if ($updateBookCopyResult) {
+				// log action
+				$action = "Update book Copy";
+				$description = "Name : ".$_SESSION['book']." Barcode : ".$_SESSION['barCode'];
+				$logResults = logAction($action, $description);
+
 				unset($_SESSION['status']);
         		unset($_SESSION['barCode']);
 				unset($_SESSION['state']);
+				unset($_SESSION['book']);
 				
                 $_SESSION["alert"] = "success";
                 $_SESSION["status"] = "Success";
                 $_SESSION["message"] = "Book Copy Successfully Updated";
 
-                header("Location: /bookshop?action=new-book-copy");
+                header("Location: /bookshop?action=book-copies");
                 exit();
 			} else {
 			    $_SESSION["alert"] = "danger";
@@ -146,6 +158,11 @@
 			$removeBookCopyResult = removeBookCopy($_SESSION['id'], $_SESSION['reason']);
 	
 			if ($removeBookCopyResult) {
+				// log action
+				$action = "Remove book copy";
+				$description = "Name : ".$_SESSION['name']." Id : ".$_SESSION['id'];
+				$logResults = logAction($action, $description);
+
 				unset($_SESSION['id']);
 				unset($_SESSION['name']);
         		unset($_SESSION['reason']);
