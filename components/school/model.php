@@ -23,6 +23,8 @@
 						`postal_address`, 
 						`physical_address`, 
 						`username_prefix`,
+						`barcode_prefix`,
+						`barcode_suffix`,
 						`student_no_counter`,
 						`barcode_no_counter`,
 						`book_circulation`,
@@ -37,13 +39,14 @@
 	}
 	
 	// add account unit information
-	function addAccount($name, $contact_person, $telephone, $fax, $email_address, $website, $postal_address, $physical_address, $username_prefix, $book_circulation) {
+	function addAccount($name, $contact_person, $telephone, $fax, $email_address, $website, $postal_address, $physical_address, 
+			$username_prefix, $book_circulation, $barcode_prefix, $barcode_suffix) {
 		$conn = openCon();
 		$created_at = getTime();
 		$last_modified_by = $_SESSION['loggedUserId'];
 		$status = 1; // 1 = active, 0 = removed
 		$sql = "INSERT INTO `account_unit`(`name`, `contact_person`, `telephone`, `fax`, `email_address`, `website`, `postal_address`, `physical_address`, 
-			`username_prefix`, `book_circulation`, `status`, `created_at`, `last_modified_by`) 
+			`username_prefix`, `book_circulation`, `status`, `created_at`, `last_modified_by`, `barcode_prefix`, `barcode_suffix`) 
 			VALUES('{$name}',
 				'{$contact_person}',
 				'{$telephone}',
@@ -56,14 +59,17 @@
 				{$book_circulation},
 				{$status},
 				'{$created_at}',
-				{$last_modified_by})";
+				{$last_modified_by},
+				'{$barcode_prefix}',
+				'{$barcode_suffix}')";
 
 		$result = $conn->query($sql);
 		closeCon($conn);
 		return $result;
 	}
 
-	function updateAccount($id, $name, $contact_person, $telephone, $fax, $email_address, $website, $postal_address, $physical_address, $username_prefix, $book_circulation) {
+	function updateAccount($id, $name, $contact_person, $telephone, $fax, $email_address, $website, $postal_address, 
+			$physical_address, $username_prefix, $book_circulation, $barcode_prefix, $barcode_suffix) {
 		$conn = openCon();
 		$created_at = getTime();
 		$last_modified_by = $_SESSION['loggedUserId'];
@@ -80,7 +86,9 @@
 				`username_prefix` = '{$username_prefix}',
 				`book_circulation` = {$book_circulation},
 				`created_at` = '{$created_at}', 
-				`last_modified_by` = {$last_modified_by}
+				`last_modified_by` = {$last_modified_by},
+				`last_modified_by` = '{$barcode_prefix}',
+				`last_modified_by` = '{$barcode_suffix}'
 			WHERE id = {$id}";
 
 		$result = $conn->query($sql);

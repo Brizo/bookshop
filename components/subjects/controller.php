@@ -31,6 +31,11 @@
 			$addSubjectResult = addSubject($_SESSION['name'], $_SESSION['description']);
 	
 			if ($addSubjectResult) {
+				// log action
+				$action = "Add subject";
+				$description = "Subject : ".$_SESSION['name'].;
+				$logResults = logAction($action, $description);
+
 				unset($_SESSION['name']);
         		unset($_SESSION['description']);
 				
@@ -72,6 +77,11 @@
 			$updateSubjectResult = updateSubject($_SESSION['name'], $_SESSION['description']);
 	
 			if ($updateSubjectResult) {
+				// log action
+				$action = "Update subject";
+				$description = "Subject : ".$_SESSION['name'].;
+				$logResults = logAction($action, $description);
+
 				unset($_SESSION['name']);
         		unset($_SESSION['description']);
 				
@@ -113,6 +123,11 @@
 			$removeSubjectResult = removeSubject($_SESSION['id'], $_SESSION['reason']);
 	
 			if ($removeSubjectResult) {
+				// log action
+				$action = "Remove subject";
+				$description = "Subject : ".$_SESSION['name'].;
+				$logResults = logAction($action, $description);
+
 				unset($_SESSION['id']);
 				unset($_SESSION['name']);
         		unset($_SESSION['reason']);

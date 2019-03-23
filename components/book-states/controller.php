@@ -27,6 +27,11 @@
 			$addBookStateResult = addBookState($_SESSION['name'], $_SESSION['description']);
 	
 			if ($addBookStateResult) {
+				// log action
+				$action = "Add book State";
+				$description = "Bookstate : ".$_SESSION['name'];
+				$logResults = logAction($action, $description);
+
 				unset($_SESSION['name']);
         		unset($_SESSION['description']);
 				
@@ -68,6 +73,11 @@
 			$updateBookStateResult = updateBookState($_SESSION['id'],$_SESSION['name'], $_SESSION['description']);
 	
 			if ($updateBookStateResult) {
+				// log action
+				$action = "Update book State";
+				$description = "Bookstate : ".$_SESSION['name'];
+				$logResults = logAction($action, $description);
+
 				unset($_SESSION['name']);
         		unset($_SESSION['description']);
 				
@@ -109,6 +119,10 @@
 			$removebookStateResult = removeBookState($_SESSION['id'], $_SESSION['reason']);
 	
 			if ($removebookStateResult) {
+				// log action
+				$action = "Remove book State";
+				$description = "Bookstate : ".$_SESSION['name'];
+				$logResults = logAction($action, $description);
 				unset($_SESSION['id']);
 				unset($_SESSION['name']);
         		unset($_SESSION['reason']);

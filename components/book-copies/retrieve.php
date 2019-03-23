@@ -15,7 +15,9 @@
 				<table id="bookCopiesTable" class="table table-bordered table-hover">
 					<thead>
 						<tr>
-							<th></th>
+							<?php if ($_SESSION['loggedRole'] == 'admin'): ?>
+								<th></th>
+							<?php endif; ?>
 							<th>Name</th>
 							<th>ISBN</th>
 							<th>Year</th>
@@ -36,11 +38,13 @@
 
 						<?php foreach($bookCopies as $row): ?>
 							<tr>
-								<td>
-									<a href="/bookshop?action=edit-book-copy&id=<?php echo $row['id']; ?>"><span class='glyphicon glyphicon-edit' aria-hidden='true'></span>Edit</a>&nbsp;&nbsp;
-									<a style="color: #FF0000;" href="/bookshop?action=delete-book-copy&id=<?php echo $row['id']; ?>"><span class='glyphicon glyphicon-trash' aria-hidden='true'></span>Remove</a>&nbsp;&nbsp;
-									<a href="/bookshop?action=book-loans&id=<?php echo $row['id']; ?>"><span class='glyphicon glyphicon-link' aria-hidden='true'></span>Loans</a>
-								</td>
+								<?php if ($_SESSION['loggedRole'] == 'admin'): ?>
+									<td>
+										<a href="/bookshop?action=edit-book-copy&id=<?php echo $row['id']; ?>"><span class='glyphicon glyphicon-edit' aria-hidden='true'></span>Edit</a>&nbsp;&nbsp;
+										<a style="color: #FF0000;" href="/bookshop?action=delete-book-copy&id=<?php echo $row['id']; ?>"><span class='glyphicon glyphicon-trash' aria-hidden='true'></span>Remove</a>&nbsp;&nbsp;
+										<a href="/bookshop?action=book-loans&id=<?php echo $row['id']; ?>"><span class='glyphicon glyphicon-link' aria-hidden='true'></span>Loans</a>
+									</td>
+								<?php endif; ?>
 								<td><?=$row['name']?></td>
 								<td><?=$row['isb']?></td>
 								<td><?=$row['year']?></td>

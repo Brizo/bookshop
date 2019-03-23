@@ -25,16 +25,19 @@
 		<div class="panel panel-primary">
 			<div class="panel-heading">
 				<div class="panel-title">
-					<h4 class="panel-title"><?php echo $subjectName?> Books</h4>
+					<h4 class="panel-title"><?=$subjectName?> Books</h4>
 				</div>
 			</div>
 			<div class="panel-body">
-				<a class="btn btn-primary" data-keyboard="false" href="/bookshop?action=new-subject-book&id=<?php echo $subjectId; ?>&name=<?php echo $subjectName; ?>"><span class="glyphicon glyphicon-plus"></span>&nbsp;Add New</a><br /><br />
-
+				<?php if ($_SESSION['loggedRole'] == 'admin'): ?>
+					<a class="btn btn-primary" data-keyboard="false" href="/bookshop?action=new-subject-book&id=<?=$subjectId?>&name=<?php echo $subjectName; ?>"><span class="glyphicon glyphicon-plus"></span>&nbsp;Add New</a><br /><br />
+				<?php endif; ?>
 				<table id="booksTable" class="table table-bordered table-hover">
 					<thead>
 						<tr>
-							<th></th>
+							<?php if ($_SESSION['loggedRole'] == 'admin'): ?>
+								<th></th>
+							<?php endif; ?>
 							<th>Name</th>
 							<th>ISBN</th>
 							<th>Year</th>
@@ -46,9 +49,11 @@
 						
 						<?php foreach($books as $row): ?>
 							<tr>
-								<td>
-									<a href="/bookshop?action=delete-subject-book&id=<?php echo $row['id']; ?>"><span class='glyphicon glyphicon-trash' aria-hidden='true'></span>Remove</a>&nbsp;&nbsp;
-								</td>
+								<?php if ($_SESSION['loggedRole'] == 'admin'): ?>
+									<td>
+										<a href="/bookshop?action=delete-subject-book&id=<?php echo $row['id']; ?>"><span class='glyphicon glyphicon-trash' aria-hidden='true'></span>Remove</a>&nbsp;&nbsp;
+									</td>
+								<?php endif; ?>
 								<td><?=$row['name']?></td>
 								<td><?=$row['isb']?></td>
 								<td><?=$row['year']?></td>

@@ -12,8 +12,9 @@
 				<b>Book Loans</b>
 			</div>
 			<div class="panel-body">
-				<a class="btn btn-primary" data-keyboard="false" href="/bookshop?action=new-loan"><span class="glyphicon glyphicon-plus"></span>&nbsp;Add New</a><br /><br />
-
+				<?php if ($_SESSION['loggedRole'] == 'admin'): ?>
+					<a class="btn btn-primary" data-keyboard="false" href="/bookshop?action=new-loan"><span class="glyphicon glyphicon-plus"></span>&nbsp;Add New</a><br /><br />
+				<?php endif; ?>
 				<table id="loansTable" class="table table-bordered table-hover">
 					<thead>
 						<tr>
@@ -37,13 +38,15 @@
 
 						<?php foreach($loans as $row): ?>
 							<tr>
-								<td>
-									<?php if ($row['status'] == 'open'): ?>
-										<a href="/bookshop?action=edit-loan&id=<?php echo $row['id']; ?>"><span class='glyphicon glyphicon-edit' aria-hidden='true'></span>Edit</a>&nbsp;&nbsp;
-										<a style="color: #FF0000;" href="/bookshop?action=delete-loan&id=<?php echo $row['id']; ?>"><span class='glyphicon glyphicon-trash' aria-hidden='true'></span>Remove</a>&nbsp;&nbsp;
-										<a href="/bookshop?action=return-loan&id=<?php echo $row['id']; ?>"><span class='glyphicon glyphicon-log-in' aria-hidden='true'></span>&nbsp;Return Book</a>&nbsp;&nbsp;
-									<?php endif; ?>
-								</td>
+								<?php if ($_SESSION['loggedRole'] == 'admin'): ?>
+									<td>
+										<?php if ($row['status'] == 'open'): ?>
+											<a href="/bookshop?action=edit-loan&id=<?php echo $row['id']; ?>"><span class='glyphicon glyphicon-edit' aria-hidden='true'></span>Edit</a>&nbsp;&nbsp;
+											<a style="color: #FF0000;" href="/bookshop?action=delete-loan&id=<?php echo $row['id']; ?>"><span class='glyphicon glyphicon-trash' aria-hidden='true'></span>Remove</a>&nbsp;&nbsp;
+											<a href="/bookshop?action=return-loan&id=<?php echo $row['id']; ?>"><span class='glyphicon glyphicon-log-in' aria-hidden='true'></span>&nbsp;Return Book</a>&nbsp;&nbsp;
+										<?php endif; ?>
+									</td>
+								<?php endif; ?>
 								<td><?=$row['client']?></td>
 								<td><?=$row['book']?></td>
 								<td><?=$row['issue_date']?></td>

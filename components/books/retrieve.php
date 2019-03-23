@@ -12,11 +12,15 @@
 				<b>Books</b>
 			</div>
 			<div class="panel-body">
-				<a class="btn btn-primary" data-keyboard="false" href="/bookshop?action=new-book"><span class="glyphicon glyphicon-plus"></span>&nbsp;Add New</a><br /><br />
+				<?php if ($_SESSION['loggedRole'] == 'admin'): ?>
+					<a class="btn btn-primary" data-keyboard="false" href="/bookshop?action=new-book"><span class="glyphicon glyphicon-plus"></span>&nbsp;Add New</a><br /><br />
+				<?php endif; ?>
 				<table id="booksTable" class="table table-bordered table-hover">
 					<thead>
 						<tr>
-							<th></th>
+							<?php if ($_SESSION['loggedRole'] == 'admin'): ?>
+								<th></th>
+							<?php endif; ?>
 							<th>Name</th>
 							<th>ISBN</th>
 							<th>Year</th>
@@ -37,11 +41,13 @@
 
 						<?php foreach($books as $row): ?>
 							<tr>
-								<td>
-									<a href="/bookshop?action=edit-book&id=<?php echo $row['id']; ?>"><span class='glyphicon glyphicon-edit' aria-hidden='true'></span>Edit</a>&nbsp;&nbsp;
-									<a style="color: #FF0000;" href="/bookshop?action=delete-book&id=<?php echo $row['id']; ?>"><span class='glyphicon glyphicon-trash' aria-hidden='true'></span>Remove</a>&nbsp;&nbsp;
-									<a href="/bookshop?action=add-book-copies&id=<?php echo $row['id']; ?>"><span class='glyphicon glyphicon-plus' aria-hidden='true'></span>Add Copies</a>
-								</td>
+								<?php if ($_SESSION['loggedRole'] == 'admin'): ?>
+									<td>
+										<a href="/bookshop?action=edit-book&id=<?php echo $row['id']; ?>"><span class='glyphicon glyphicon-edit' aria-hidden='true'></span>Edit</a>&nbsp;&nbsp;
+										<a style="color: #FF0000;" href="/bookshop?action=delete-book&id=<?php echo $row['id']; ?>"><span class='glyphicon glyphicon-trash' aria-hidden='true'></span>Remove</a>&nbsp;&nbsp;
+										<a href="/bookshop?action=add-book-copies&id=<?php echo $row['id']; ?>"><span class='glyphicon glyphicon-plus' aria-hidden='true'></span>Add Copies</a>
+									</td>
+								<?php endif; ?>
 								<td><?=$row['name']?></td>
 								<td><?=$row['isb']?></td>
 								<td><?=$row['year']?></td>

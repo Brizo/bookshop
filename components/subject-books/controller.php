@@ -25,6 +25,11 @@
 			$addSubjectBookResult = addSubjectBook($_SESSION['subjectBook'], $_SESSION['subjectId']);
 	
 			if ($addSubjectBookResult) {
+				// log action
+				$action = "Add book to subject";
+				$description = "Subject : ".$_SESSION['subjectId']."Book : ".$_SESSION['subjectBook'];
+				$logResults = logAction($action, $description);
+
 				unset($_SESSION['subjectBook']);
 				
                 $_SESSION["alert"] = "success";

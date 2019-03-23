@@ -41,7 +41,7 @@
                             <div class="col-sm-8">                                
                                 <select class="form-control" id="student" name="student">
                                     <?php foreach($students as $row): ?>
-                                        <option value="<?php echo $row['id']; ?>"><?=$row['first_name']?>-<?=$row['student_no']?></option>
+                                        <option value="<?=$row['id']?>"><?=$row['first_name']?>-<?=$row['student_no']?></option>
                                     <?php endforeach; ?>
                                 </select>
                             </div>
@@ -51,7 +51,7 @@
                             <div class="col-sm-8">                                
                                 <select class="form-control" id="book" name="book">
                                     <?php foreach($bookCopies as $row): ?>
-                                        <option value="<?php echo $row['id']; ?>"><?=$row['name']?> - <?=$row['bar_code']?></option>
+                                        <option value="<?=$row['id']?>"><?=$row['name']?> - <?=$row['bar_code']?></option>
                                     <?php endforeach; ?>
                                 </select>
                             </div>
@@ -61,7 +61,7 @@
                             <div class="col-sm-8">                                
                                 <select class="form-control" id="issueState" name="issueState">
                                     <?php foreach($bookStates as $row): ?>
-                                        <option value="<?php echo $row['id']; ?>"><?=$row['name']?></option>
+                                        <option value="<?=$row['id']?>"><?=$row['name']?></option>
                                     <?php endforeach; ?>
                                 </select>
                             </div>

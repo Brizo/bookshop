@@ -1,7 +1,6 @@
 <?php
     session_start();
-    $_SESSION['home'] = "bookshop";
-    include $_SERVER['DOCUMENT_ROOT']."/".$_SESSION['home']."/config/global_functions.php";
+    include $_SERVER['DOCUMENT_ROOT']."/bookshop/config/global_functions.php";
     $_SESSION["loggedUserId"] = 1;
   
     // create variables
@@ -9,10 +8,11 @@
         'cost' => 12,
     ];
     $password = password_hash("P@ssw0rd", PASSWORD_BCRYPT, $options);
-    $first_name = "Brian";
-    $middle_name = "Sihlongonyane";
-	$last_name = "Sihlongonyane";
+    $first_name = "Admin";
+    $middle_name = "Admin";
+	$last_name = "Admin";
     $user_role = "admin";
+    $employee_number = "01";
     $user_name = "admin";
     $account_status = 1;
     $password_status = 1;
@@ -22,11 +22,12 @@
     
     //Execute the query
 	$conn = openCon();
-    $sql = "INSERT INTO `users`(`first_name`, `middle_name`, `last_name`, `username`, `password`, `user_role`, `account_status`,
+    $sql = "INSERT INTO `users`(`first_name`, `middle_name`, `last_name`, `username`, `employee_number`, `password`, `user_role`, `account_status`,
                 `password_status`, `password_last_modified`, `created_at`, `last_modified_by`)
             VALUES('{$first_name}',
                     '{$middle_name}',
                     '{$last_name}',
+                    {$employee_number},
                     '{$user_name}',
                     '{$password}',
                     '{$user_role}',

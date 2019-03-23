@@ -5,7 +5,7 @@
 	<div class="col col-sm-10">
         <div class="panel panel-primary">
             <div class="panel-heading">
-                <h4 class="panel-title">Add User <a href="/<?php echo $_SESSION['home'];?>?action=users" class="pull-right"><span class = "glyphicon glyphicon-list"></span>&nbsp;View List</a></h4>
+                <h4 class="panel-title">Add User <a href="/bookshop?action=users" class="pull-right"><span class = "glyphicon glyphicon-list"></span>&nbsp;View List</a></h4>
             </div>
             <div class="panel-body">
                 <div class="col-sm-10">
@@ -42,9 +42,9 @@
                             </div>
                             <div class="col-sm-6">
                                 <div class="form-group">
-                                    <label for="form" class="col-sm-4 control-label">Username * :</label>
+                                    <label for="form" class="col-sm-4 control-label">Unique Id * :</label>
                                     <div class="col-sm-8">
-                                        <input type="text" class="form-control" id="usernameu" name="usernameu" placeholder="Enter username" value="<?php  if (isset($_SESSION['usernameu'])) {echo $_SESSION['usernameu'];} ?>" />
+                                        <input type="text" class="form-control" id="empid" name="empid" placeholder="Enter user unique id" value="<?php  if (isset($_SESSION['empid'])) {echo $_SESSION['empid'];} ?>" />
                                     </div>
                                 </div>
                                 <div class="form-group">

@@ -101,14 +101,14 @@
 										<input type="text" class="form-control" id="website" name="website" placeholder="Enter website" value="<?php  if (isset($_SESSION['website'])) {echo $_SESSION['website'];} ?>" />
 									</div>
 								</div>
-							</div>
-							<div class="col-sm-6">
 								<div class="form-group">
 									<label for="form" class="col-sm-4 control-label">Postal Address * :</label>
 									<div class="col-sm-8">
 										<input type="text" class="form-control" id="postal_address" name="postal_address" placeholder="Enter postal address" value="<?php  if (isset($_SESSION['postal_address'])) {echo $_SESSION['postal_address'];} ?>" />
 									</div>
 								</div>
+							</div>
+							<div class="col-sm-6">
 								<div class="form-group">
 									<label for="form" class="col-sm-4 control-label">Physical Address * :</label>
 									<div class="col-sm-8">
@@ -128,9 +128,25 @@
 									</div>
 								</div>
 								<div class="form-group">
+									<label for="form" class="col-sm-4 control-label">Barcode Prefix * :</label>
+									<div class="col-sm-8">
+										<input type="text" class="form-control" id="barcode_prefix" name="barcode_prefix" placeholder="Enter 2 character barcode prefix" value="<?php  if (isset($_SESSION['barcode_prefix'])) {echo $_SESSION['barcode_prefix'];} ?>" />
+									</div>
+								</div>
+								<div class="form-group">
+									<label for="form" class="col-sm-4 control-label">Barcode Suffix * :</label>
+									<div class="col-sm-8">
+										<input type="text" class="form-control" id="barcode_suffix" name="barcode_suffix" placeholder="Enter 2 character barcode suffix" value="<?php  if (isset($_SESSION['barcode_suffix'])) {echo $_SESSION['barcode_suffix'];} ?>" />
+									</div>
+								</div>
+								<div class="form-group">
 									<div class="col-sm-8 col-sm-offset-4">
-										<?php if ($accountExist == 0) echo '<button type="submit" class="btn btn-success" name="addnewaccount"><span class="glyphicon glyphicon-ok-circle"></span>&nbsp;Configure</button>'; ?>
-										<?php if ($accountExist == 1) echo '<button type="submit" class="btn btn-success" name="updateaccount"><span class="glyphicon glyphicon-ok-circle"></span>&nbsp;Update</button>' ?>
+										<?php if ($_SESSION['loggedRole'] == 'admin' && $accountExist == 0): ?>
+											<button type="submit" class="btn btn-success" name="addnewaccount"><span class="glyphicon glyphicon-ok-circle"></span>&nbsp;Configure</button>
+										<?php endif; ?>
+										<?php if ($_SESSION['loggedRole'] == 'admin' && $accountExist == 1): ?>
+											<button type="submit" class="btn btn-success" name="updateaccount"><span class="glyphicon glyphicon-ok-circle"></span>&nbsp;Update</button>
+										<?php endif; ?>
 										<a href="/bookshop?action=school" class="btn btn-warning"><span class="glyphicon glyphicon-remove-circle"></span>&nbsp;Cancel</a>
 									</div>
 								</div>

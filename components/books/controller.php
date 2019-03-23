@@ -295,7 +295,7 @@
 					$barcodeNoCounter = "0".$barcodeNoCounter;
 				}
 
-				$_SESSION['barcode'] = "M".$barcodeNoCounter;
+				$_SESSION['barcode'] = $_SESSION["barcodePrefix"].$barcodeNoCounter.$_SESSION["barcodeSuffix"];
 				$_SESSION['state'] = 1;
 
 				// add book copy

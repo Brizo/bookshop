@@ -14,14 +14,14 @@
         $_SESSION['middle_name'] = mysqli_real_escape_string($conn,$_POST['middle_name']);
 		$_SESSION['last_name'] = mysqli_real_escape_string($conn,$_POST['last_name']);
 		$_SESSION['user_role'] = mysqli_real_escape_string($conn,$_POST['user_role']);
-		$_SESSION['usernameu'] = mysqli_real_escape_string($conn,$_POST['usernameu']);
+		$_SESSION['empid'] = mysqli_real_escape_string($conn,$_POST['empid']);
 		$_SESSION['passwordu'] = mysqli_real_escape_string($conn,$_POST['passwordu']);
         $_SESSION['passwordu2'] = mysqli_real_escape_string($conn,$_POST['passwordu2']);
 		closeCon($conn); // disconnect from db
 	
 		// // check fields and throw error if empty
 		if (empty($_SESSION['first_name']) || empty($_SESSION['last_name']) || empty($_SESSION['user_role']) 
-				|| empty($_SESSION['usernameu']) || empty($_SESSION['passwordu']) || empty($_SESSION['passwordu2'])) {
+				|| empty($_SESSION['empid']) || empty($_SESSION['passwordu']) || empty($_SESSION['passwordu2'])) {
 			$_SESSION["alert"] = "danger";
 			$_SESSION["status"] = "Error";
 			$_SESSION["message"] = "Please fill all mandatory information.";
@@ -36,20 +36,18 @@
 			header("Location: /bookshop?action=new-user");
 			exit();
 		} else {
-			// check if username already used
-			$getByUsernameResult = getUserByField("username", $_SESSION['usernameu']);
+			// check if id already used
+			$getByEmpIdResult = getUserByField("employee_number", $_SESSION['empid']);
+			$getByEmpIdNum = mysqli_num_rows($getByEmpIdResult);
 
-			$getByUsernamecodeNum = mysqli_num_rows($getByUsernameResult);
-
-			if ($getByUsernamecodeNum > 0) {
+			if ($getByEmpIdNum > 0) {
 				$_SESSION["alert"] = "warning";
 				$_SESSION["status"] = "Warning";
-				$_SESSION["message"] = "Username already exist, please choose a different one.";
+				$_SESSION["message"] = "User Id already exist, please choose a different one.";
 
 				header("Location: /bookshop?action=new-user");
 				exit();
 			}
-
 
 			// check password
 			$checkPasswordResult = validPassword($_SESSION['passwordu2']);
@@ -66,17 +64,22 @@
 			// hash password
 			$options = [ 'cost' => 12, ];
 			$hashedPassword = password_hash($_SESSION['passwordu2'], PASSWORD_BCRYPT, $options);
+			$username = $_SESSION['username_prefix'].$_SESSION['empid'];
 
 			// add user
-			$addUserResult = addUser($_SESSION['first_name'], $_SESSION['middle_name'], $_SESSION['last_name'], 
-				$_SESSION['usernameu'], $hashedPassword, $_SESSION['user_role']);
+			$addUserResult = addUser($_SESSION['first_name'], $_SESSION['middle_name'], $_SESSION['last_name'],$_SESSION['empid'] ,
+				$username, $hashedPassword, $_SESSION['user_role']);
 	
 			if ($addUserResult) {
+				// log action
+				$action = "Add user";
+				$description = "User : ".$_SESSION['first_name']." ".$_SESSION['last_name']."-".$username;
+				$logResults = logAction($action, $description);
+
 				unset($_SESSION['first_name']);
         		unset($_SESSION['middle_name']);
 				unset($_SESSION['last_name']);
 				unset($_SESSION['user_role']);
-				unset($_SESSION['usernameu']);
 				unset($_SESSION['passwordu']);
 				unset($_SESSION['passwordu2']);
 				
@@ -143,6 +146,11 @@
 			$changeUserPassResult = changeUserPassword($_SESSION['username'],$hashedPassword);
 	
 			if ($changeUserPassResult) {
+				// log action
+				$action = "Admin change user password";
+				$description = "User : ".$_SESSION['username'];
+				$logResults = logAction($action, $description);
+
 				unset($_SESSION['username']);
 				unset($_SESSION['password']);
 				unset($_SESSION['password2']);
@@ -228,6 +236,11 @@
 			$changeUserPassResult = changeUserPassword($_SESSION['loggedUsername'],$hashedPassword);
 	
 			if ($changeUserPassResult) {
+				// log action
+				$action = "Self change password";
+				$description = "User : ".$_SESSION['loggedUsername'];
+				$logResults = logAction($action, $description);
+
 				unset($_SESSION['oldpassword']);
 				unset($_SESSION['newpassword']);
 				unset($_SESSION['newpassword2']);
@@ -279,6 +292,11 @@
 				$_SESSION['user_role'], $_SESSION['status']);
 	
 			if ($updateUserResult) {
+				// log action
+				$action = "Update user";
+				$description = "User : ".$_SESSION['first_name']." ".$_SESSION['last_name'];
+				$logResults = logAction($action, $description);
+
 				unset($_SESSION['first_name']);
         		unset($_SESSION['middle_name']);
 				unset($_SESSION['last_name']);
@@ -325,6 +343,11 @@
 			$removeUserResult = removeUser($_SESSION['id'], $_SESSION['reason']);
 	
 			if ($removeUserResult) {
+				// log action
+				$action = "Remove user";
+				$description = "User : ".$_SESSION['username'];
+				$logResults = logAction($action, $description);
+
 				unset($_SESSION['id']);
 				unset($_SESSION['username']);
         		unset($_SESSION['reason']);

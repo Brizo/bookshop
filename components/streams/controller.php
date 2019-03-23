@@ -27,6 +27,11 @@
 			$addStreamResult = addStream($_SESSION['name'], $_SESSION['description']);
 	
 			if ($addStreamResult) {
+				// log action
+				$action = "Add stream";
+				$description = "Stream : ".$_SESSION['name'];
+				$logResults = logAction($action, $description);
+
 				unset($_SESSION['name']);
         		unset($_SESSION['description']);
 				
@@ -68,6 +73,11 @@
 			$updateStreamResult = updateStream($_SESSION['name'], $_SESSION['description']);
 	
 			if ($updateStreamResult) {
+				// log action
+				$action = "Update stream";
+				$description = "Stream : ".$_SESSION['name'];
+				$logResults = logAction($action, $description);
+
 				unset($_SESSION['name']);
         		unset($_SESSION['description']);
 				
@@ -109,6 +119,11 @@
 			$removeStreamResult = removeStream($_SESSION['id'], $_SESSION['reason']);
 	
 			if ($removeStreamResult) {
+				// log action
+				$action = "Remove stream";
+				$description = "Stream : ".$_SESSION['name'];
+				$logResults = logAction($action, $description);
+
 				unset($_SESSION['id']);
 				unset($_SESSION['name']);
         		unset($_SESSION['reason']);

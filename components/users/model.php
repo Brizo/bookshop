@@ -3,7 +3,7 @@
 
 	function getUsers() {
 		$conn = openCon();
-		$sql = "SELECT `id`, `first_name`, `middle_name`, `last_name`, `username`, `user_role`, `account_status`,
+		$sql = "SELECT `id`, `first_name`, `middle_name`, `last_name`, `username`, `employee_number`,  `user_role`, `account_status`,
 				CASE 
 					WHEN account_status = 1 THEN 'active' 
 					WHEN account_status = 2 THEN  'disabled' 
@@ -21,8 +21,8 @@
 	function getUserByField($field, $value) {
 		$conn = openCon();
 
-		if ($field == "id" || $field == "account_status" || $field == "last_modified_by") {
-			$sql = "SELECT `id`, `first_name`, `middle_name`, `last_name`, `username`, `user_role`, `account_status`,
+		if ($field == "id" || $field == "account_status" || $field == "last_modified_by" || $field == "employee_number") {
+			$sql = "SELECT `id`, `first_name`, `middle_name`, `last_name`, `username`, `employee_number`, `user_role`, `account_status`,
 					CASE 
 						WHEN account_status = 1 THEN 'active' 
 						WHEN account_status = 2 THEN  'disabled' 
@@ -31,7 +31,7 @@
 				FROM `users`
 				WHERE {$field} = {$value} AND `account_status` != 0";
 		} else {
-			$sql = "SELECT `id`, `first_name`, `middle_name`, `last_name`, `username`, `user_role`, `account_status`,
+			$sql = "SELECT `id`, `first_name`, `middle_name`, `last_name`, `username`, `employee_number`, `user_role`, `account_status`,
 					CASE 
 						WHEN account_status = 1 THEN 'active' 
 						WHEN account_status = 2 THEN  'disabled' 
@@ -46,19 +46,20 @@
 		return $result;
 	}
 
-	function addUser($first_name, $middle_name, $last_name, $username, $password, $user_role) {
+	function addUser($first_name, $middle_name, $last_name, $empid, $username, $password, $user_role) {
 		$conn = openCon();
 		$created_at = getTime();
 		$password_last_modified = getTime();
 		$last_modified_by = $_SESSION['loggedUserId'];
 		$account_status = 1; // 1 = active, 0 = removed, 2 = disabled
 		$password_status = 1; // 1 = ok, 0 = needs to be changed
-		$sql = "INSERT INTO `users`(`first_name`, `middle_name`, `last_name`, 
+		$sql = "INSERT INTO `users`(`first_name`, `middle_name`, `last_name`, `employee_number`, 
 				`username`, `password`, `user_role`, `account_status`, `password_status`, 
 				`password_last_modified`, `created_at`, `last_modified_by`) 
 			VALUES('{$first_name}',
 				'{$middle_name}',
 				'{$last_name}',
+				{$empid}
 				'{$username}',
 				'{$password}',
 				'{$user_role}',

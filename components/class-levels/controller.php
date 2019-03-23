@@ -27,6 +27,11 @@
 			$addClassLevelResult = addClassLevel($_SESSION['name'], $_SESSION['description']);
 	
 			if ($addClassLevelResult) {
+				// log action
+				$action = "Add class level";
+				$description = "Class level : ".$_SESSION['name'];
+				$logResults = logAction($action, $description);
+
 				unset($_SESSION['name']);
         		unset($_SESSION['description']);
 				
@@ -68,6 +73,10 @@
 			$updateClassResult = updateClass($_SESSION['name'], $_SESSION['description']);
 	
 			if ($updateClassResult) {
+				// log action
+				$action = "Update class level";
+				$description = "Class level : ".$_SESSION['name'];
+				$logResults = logAction($action, $description);
 				unset($_SESSION['name']);
         		unset($_SESSION['description']);
 				
@@ -109,6 +118,11 @@
 			$removeClassResult = removeClass($_SESSION['id'], $_SESSION['reason']);
 	
 			if ($removeClassResult) {
+				// log action
+				$action = "Remove class level";
+				$description = "Class level : ".$_SESSION['name'];
+				$logResults = logAction($action, $description);
+				
 				unset($_SESSION['id']);
 				unset($_SESSION['name']);
         		unset($_SESSION['reason']);

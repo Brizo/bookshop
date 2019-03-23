@@ -59,6 +59,11 @@
 			$_SESSION['gender'], $_SESSION['class'], $_SESSION['stream'], $_SESSION['class_level'], $_SESSION['student_no'], $_SESSION['contact_no'], $_SESSION['std_email_address']);
 	
 			if ($addStudentResult) {
+				// log action
+				$action = "Add student";
+				$description = "Student : ".$_SESSION['first_name']." ".$_SESSION['last_name']."-".$_SESSION['student_no'];
+				$logResults = logAction($action, $description);
+
 				unset($_SESSION['first_name']);
         		unset($_SESSION['middle_name']);
 				unset($_SESSION['last_name']);
@@ -144,6 +149,10 @@
 			$_SESSION['gender'], $_SESSION['class'], $_SESSION['stream'], $_SESSION['class_level'], $_SESSION['contact_no'], $_SESSION['std_email_address']);
 	
 			if ($updateStudentResult) {
+				// log action
+				$action = "Update student";
+				$description = "Student : ".$_SESSION['first_name']." ".$_SESSION['last_name']."-".$_SESSION['student_no'];
+				$logResults = logAction($action, $description);
 				unset($_SESSION['first_name']);
         		unset($_SESSION['middle_name']);
 				unset($_SESSION['last_name']);
@@ -196,6 +205,11 @@
 			$removeBookResult = removeBook($_SESSION['id'], $_SESSION['reason']);
 	
 			if ($removeBookResult) {
+				// log action
+				$action = "Remove student";
+				$description = "Student : ".$_SESSION['name'];
+				$logResults = logAction($action, $description);
+				
 				unset($_SESSION['id']);
 				unset($_SESSION['name']);
         		unset($_SESSION['reason']);

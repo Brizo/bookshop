@@ -25,6 +25,11 @@
 			$addStreamSubjectResult = addStreamSubject($_SESSION['streamSubject'], $_SESSION['streamId']);
 	
 			if ($addStreamSubjectResult) {
+				// log action
+				$action = "Add stream subject";
+				$description = "Subject : ".$_SESSION['streamSubject']."Stream : ".$_SESSION['streamId'];
+				$logResults = logAction($action, $description);
+
 				unset($_SESSION['streamSubject']);
 				
                 $_SESSION["alert"] = "success";

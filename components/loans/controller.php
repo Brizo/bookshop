@@ -26,6 +26,11 @@
 			$addBookLoanResult = addBookLoan($_SESSION['student'], $_SESSION['book'], $_SESSION['issueState'], $period);
 	
 			if ($addBookLoanResult) {
+				// log action
+				$action = "Add student loan";
+				$description = "Student : ".$_SESSION['student']."Book : ".$_SESSION['book'];
+				$logResults = logAction($action, $description);
+
 				unset($_SESSION['student']);
         		unset($_SESSION['book']);
 				unset($_SESSION['issueState']);
@@ -68,6 +73,11 @@
 			$updateBookLoanResult = updateBookLoan($_SESSION['id'], $_SESSION['student'], $_SESSION['book'], $_SESSION['issueState'], $_SESSION['return_date']);
 	
 			if ($updateBookLoanResult) {
+				// log action
+				$action = "Update student loan";
+				$description = "Student : ".$_SESSION['student']."Book : ".$_SESSION['book'];
+				$logResults = logAction($action, $description);
+
 				unset($_SESSION['student']);
         		unset($_SESSION['book']);
 				unset($_SESSION['issueState']);
@@ -112,6 +122,11 @@
 			$returnBookLoanResult = returnBookLoan($_SESSION['id'], $_SESSION['returnState'], $_SESSION['returnedBook']);
 	
 			if ($returnBookLoanResult) {
+				// log action
+				$action = "Return student loan";
+				$description = "Student : ".$_SESSION['client']."Book : ".$_SESSION['book'];
+				$logResults = logAction($action, $description);
+
 				unset($_SESSION['id']);
         		unset($_SESSION['book']);
 				unset($_SESSION['client']);
@@ -155,6 +170,11 @@
 			$removeLoanResult = removeLoan($_SESSION['id'], $_SESSION['reason']);
 	
 			if ($removeLoanResult) {
+				// log action
+				$action = "Remove student loan";
+				$description = "book : ".$_SESSION['client']."reason : ".$_SESSION['book'];
+				$logResults = logAction($action, $description);
+
 				unset($_SESSION['id']);
 				unset($_SESSION['book']);
         		unset($_SESSION['reason']);

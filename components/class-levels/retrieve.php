@@ -14,12 +14,15 @@
 				</div>
 			</div>
 			<div class="panel-body">
-				<a class="btn btn-primary" data-keyboard="false" href="/bookshop?action=new-class_level"><span class="glyphicon glyphicon-plus"></span>&nbsp;Add New</a><br /><br />
-
+				<?php if ($_SESSION['loggedRole'] == 'admin'): ?>
+					<a class="btn btn-primary" data-keyboard="false" href="/bookshop?action=new-class_level"><span class="glyphicon glyphicon-plus"></span>&nbsp;Add New</a><br /><br />
+				<?php endif; ?>
 				<table id="classLevelsTable" class="table table-bordered table-hover">
 					<thead>
 						<tr>
-							<th></th>
+							<?php if ($_SESSION['loggedRole'] == 'admin'): ?>
+								<th></th>
+							<?php endif; ?>
 							<th>Name</th>
 							<th>Description</th>
 						</tr>
@@ -35,10 +38,12 @@
 
 						<?php foreach($classLevels as $row): ?>
 							<tr>
-								<td>
-									<a href="/bookshop?action=edit-class_level&id=<?php echo $row['id']; ?>"><span class='glyphicon glyphicon-edit' aria-hidden='true'></span>Edit</a>&nbsp;&nbsp;
-									<a style="color: #FF0000;" href="/bookshop?action=delete-class_level&id=<?php echo $row['id']; ?>"><span class='glyphicon glyphicon-trash' aria-hidden='true'></span>Remove</a>&nbsp;&nbsp;
-								</td>
+								<?php if ($_SESSION['loggedRole'] == 'admin'): ?>
+									<td>
+										<a href="/bookshop?action=edit-class_level&id=<?php echo $row['id']; ?>"><span class='glyphicon glyphicon-edit' aria-hidden='true'></span>Edit</a>&nbsp;&nbsp;
+										<a style="color: #FF0000;" href="/bookshop?action=delete-class_level&id=<?php echo $row['id']; ?>"><span class='glyphicon glyphicon-trash' aria-hidden='true'></span>Remove</a>&nbsp;&nbsp;
+									</td>
+								<?php endif; ?>
 								<td><?=$row['name']?></td>
 								<td><?=$row['description']?></td>
 							</tr>

@@ -4,8 +4,8 @@
     include $_SERVER['DOCUMENT_ROOT']."/bookshop/components/school/controller.php";
     
     if (isset($_GET['student']) && isset($_GET['year'])) {
-        $stdId = $_GET['student'];
-        $year = $_GET['year'];
+        $stdId = $_SESSION['student'] = $_GET['student'];
+        $year = $_SESSION['year'] = $_GET['year'];
 
         $loans = array();
         $queryResult = retrieveStdStatement($stdId, $year);
@@ -46,9 +46,12 @@
 					<div class="panel-heading">
 						<b>Student <?php echo $year; ?> Loans</b>
 					</div>
-					<div class="panel-body">
-                        <a class="btn btn-warning" data-keyboard="false" href="#"><span class="glyphicon glyphicon-ok"></span>&nbsp;Export CSV</a>&nbsp;
-                        <a class="btn btn-warning" data-keyboard="false" href="<?php echo $filename; ?>" target="_blank"><span class="glyphicon glyphicon-ok"></span>&nbsp;Export PDF</a><br /><br />
+					<div class="panel-body">                        
+                        <form class="form-inline" action="components/reports/controller.php" method="post">
+                            <button type="submit" class="btn btn-warning" name="exportStudentStatement"><span class="glyphicon glyphicon-export"></span> &nbsp;&nbsp;Export CSV</button>
+                            <a class="btn btn-warning" data-keyboard="false" href="<?php echo $filename; ?>" target="_blank"><span class="glyphicon glyphicon-ok"></span>&nbsp;Export PDF</a><br /><br />
+                        </form>
+                        <br>
                         <table id="stdStatementTable" class="table table-bordered table-hover">
                             <thead>
                                 <tr>
@@ -78,9 +81,7 @@
                             </tbody>
                         </table>
                         <br>
-                        <?php if ($_SESSION['loggedRole'] == 'admin'): ?>
-                            <h3>Total Outstanding : E <?php echo $debt; ?> </h3>
-                        <?php endif; ?>
+                        <h3>Total Outstanding : E <?=$debt?> </h3>
 					</div>
 				</div>
 			</div>

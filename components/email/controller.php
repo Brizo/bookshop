@@ -60,6 +60,11 @@
 					$_SESSION['password'], $_SESSION['host']);
 	
 			if ($addEmailConfigsResult) {
+				// log action
+				$action = "Configure email settings";
+				$description = "Email : ".$_SESSION['from_email'];
+				$logResults = logAction($action, $description);
+
 				unset($_SESSION['from_email']);
         		unset($_SESSION['reply_to']);
 				unset($_SESSION['username']);
@@ -126,6 +131,11 @@
 					$_SESSION['password'], $_SESSION['host']);
 	
 			if ($updateEmailConfigsResult) {
+				// log action
+				$action = "Update email settings";
+				$description = "Email : ".$_SESSION['from_email'];
+				$logResults = logAction($action, $description);
+
 				unset($_SESSION['from_email']);
         		unset($_SESSION['reply_to']);
 				unset($_SESSION['username']);

@@ -11,11 +11,13 @@
       <li class="dropdown <?php if ($_SESSION['page'] == 'books' || $_SESSION['page'] == 'new-book' || $_SESSION['page'] == 'edit-book' || 
           $_SESSION['page'] == 'delete-book' || $_SESSION['page'] == 'book-copies' || $_SESSION['page'] == 'new-book-copy' ||
           $_SESSION['page'] == 'edit-book-copy' || $_SESSION['page'] == 'delete-book-copy' || $_SESSION['page'] == 'book-loans'
-          || $_SESSION['page'] == 'replace-book-copy') {echo 'active';} ?>">
+          || $_SESSION['page'] == 'replace-book-copy' ||  $_SESSION['page'] == 'book-states' || $_SESSION['page'] == 'new-book_state' || $_SESSION['page'] == 'edit-book_state' ||
+          $_SESSION['page'] == 'delete-book_state') {echo 'active';} ?>">
         <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><b><span class="glyphicon glyphicon-book"></span> Books</b><span class="caret"></span></a>
         <ul class="dropdown-menu">
           <li><a href="/bookshop?action=books">Books</b></li>
           <li><a href="/bookshop?action=book-copies">Book Copies</a></li>
+          <li><a href="/bookshop?action=book-states">Book States</a></li>
         </ul>
       </li>
       <li class="dropdown <?php if ($_SESSION['page'] == 'subjects' || $_SESSION['page'] == 'new-subject' || $_SESSION['page'] == 'edit-subject' || 
@@ -40,11 +42,9 @@
       <?php if ($_SESSION['loggedRole'] == 'admin'): ?>
         <li class="dropdown <?php if ($_SESSION['page'] == 'email' || $_SESSION['page'] == 'users' || $_SESSION['page'] == 'new-user' || 
             $_SESSION['page'] == 'edit-user' || $_SESSION['page'] == 'delete-user' || $_SESSION['page'] == 'change-password' ||
-            $_SESSION['page'] == 'book-states' || $_SESSION['page'] == 'new-book_state' || $_SESSION['page'] == 'edit-book_state' ||
-            $_SESSION['page'] == 'delete-book_state' || $_SESSION['page'] == 'logs') {echo 'active';} ?>">
+            $_SESSION['page'] == 'logs') {echo 'active';} ?>">
           <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><b><span class="glyphicon glyphicon-wrench"></span> Admin</b><span class="caret"></span></a>
           <ul class="dropdown-menu">
-            <li><a href="/bookshop?action=book-states">Book States</a></li>
             <li><a href="/bookshop?action=email">Email</a></li>
             <li><a href="/bookshop?action=users">Users</a></li>
             <li><a href="/bookshop?action=logs">Logs</a></li>

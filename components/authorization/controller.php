@@ -66,6 +66,9 @@
 							$account = mysqli_fetch_array($getAccountResult);
 							$_SESSION['accountName'] = $account['name'];
 							$_SESSION['bookCirculation'] = $account['book_circulation'];
+							$_SESSION["barcodePrefix"] = $account['barcode_prefix'];
+							$_SESSION["barcodeSuffix"] = $account['barcode_suffix'];
+							$_SESSION["username_prefix"] = $account['username_prefix'];
 						}
 
 						$action = "Login";
