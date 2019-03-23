@@ -87,8 +87,8 @@
 				`book_circulation` = {$book_circulation},
 				`created_at` = '{$created_at}', 
 				`last_modified_by` = {$last_modified_by},
-				`last_modified_by` = '{$barcode_prefix}',
-				`last_modified_by` = '{$barcode_suffix}'
+				`barcode_prefix` = '{$barcode_prefix}',
+				`barcode_suffix` = '{$barcode_suffix}'
 			WHERE id = {$id}";
 
 		$result = $conn->query($sql);

@@ -28,19 +28,19 @@
         $getStudentResult = getStudentByField("id", $studentId);
         $student = mysqli_fetch_array($getStudentResult);
 
-		$_SESSION['first_name'] = $student['first_name'];
-		$_SESSION['student_no'] = $student['student_no'];
-        $_SESSION['middle_name'] = $student['middle_name'];
-		$_SESSION['last_name'] = $student['national_id'];
-		$_SESSION['national_id'] = $student['last_name'];
-        $_SESSION['birth_date'] = $student['birth_date'];
-        $_SESSION['contact_no'] = $student['contact_no'];
-        $_SESSION['std_email_address'] = $student['email_address'];
-        $_SESSION['gender'] = $student['gender'];
-        $_SESSION['stream'] = $student['stream'];
-        $_SESSION['class'] = $student['class'];
-        $_SESSION['class_level'] = $student['class_level'];
-        $_SESSION['id'] = $student['id'];
+		$_SESSION['first_nameu'] = $student['first_name'];
+		$_SESSION['student_nou'] = $student['student_no'];
+        $_SESSION['middle_nameu'] = $student['middle_name'];
+		$_SESSION['last_nameu'] = $student['national_id'];
+		$_SESSION['national_idu'] = $student['last_name'];
+        $_SESSION['birth_dateu'] = $student['birth_date'];
+        $_SESSION['contact_nou'] = $student['contact_no'];
+        $_SESSION['std_email_addressu'] = $student['email_address'];
+        $_SESSION['genderu'] = $student['gender'];
+        $_SESSION['streamu'] = $student['stream'];
+        $_SESSION['classu'] = $student['class'];
+        $_SESSION['class_levelu'] = $student['class_level'];
+        $_SESSION['idu'] = $student['id'];
     }
 ?>
 
@@ -63,37 +63,37 @@
 								<div class="form-group">
 									<label for="form" class="col-sm-4 control-label">Student Number * :</label>
 									<div class="col-sm-8">
-										<input type="text" class="form-control" id="student_no" name="student_no" value="<?php  if (isset($_SESSION['student_no'])) {echo $_SESSION['student_no'];} ?>"/>
+										<input type="text" class="form-control" id="student_nou" name="student_nou" value="<?php  if (isset($_SESSION['student_nou'])) {echo $_SESSION['student_nou'];} ?>"/>
 									</div>
 								</div>
 								<div class="form-group">
 									<label for="form" class="col-sm-4 control-label">Firstname * :</label>
 									<div class="col-sm-8">
-										<input type="text" class="form-control" id="first_name" name="first_name" placeholder="Enter firstname" value="<?php  if (isset($_SESSION['first_name'])) {echo $_SESSION['first_name'];} ?>" />
+										<input type="text" class="form-control" id="first_nameu" name="first_nameu" placeholder="Enter firstname" value="<?php  if (isset($_SESSION['first_nameu'])) {echo $_SESSION['first_nameu'];} ?>" />
 									</div>
 								</div>
 								<div class="form-group">
 									<label for="form" class="col-sm-4 control-label">Middlename:</label>
 									<div class="col-sm-8">
-										<input type="text" class="form-control" id="middle_name" name="middle_name" placeholder="Enter middlename" value="<?php  if (isset($_SESSION['middle_name'])) {echo $_SESSION['middle_name'];} ?>" />
+										<input type="text" class="form-control" id="middle_nameu" name="middle_nameu" placeholder="Enter middlename" value="<?php  if (isset($_SESSION['middle_nameu'])) {echo $_SESSION['middle_nameu'];} ?>" />
 									</div>
 								</div>
 								<div class="form-group">
 									<label for="form" class="col-sm-4 control-label">Lastname * :</label>
 									<div class="col-sm-8">
-										<input type="text" class="form-control" id="last_name" name="last_name" placeholder="Enter lastname" value="<?php  if (isset($_SESSION['last_name'])) {echo $_SESSION['last_name'];} ?>" />
+										<input type="text" class="form-control" id="last_nameu" name="last_nameu" placeholder="Enter lastname" value="<?php  if (isset($_SESSION['last_nameu'])) {echo $_SESSION['last_nameu'];} ?>" />
 									</div>
 								</div>                     
 								<div class="form-group">
 									<label for="form" class="col-sm-4 control-label">National Id * :</label>
 									<div class="col-sm-8">
-										<input type="text" class="form-control" id="national_id" name="national_id" placeholder="Enter nation ID" value="<?php  if (isset($_SESSION['national_id'])) {echo $_SESSION['national_id'];} ?>" />
+										<input type="text" class="form-control" id="national_idu" name="national_idu" placeholder="Enter nation ID" value="<?php  if (isset($_SESSION['national_idu'])) {echo $_SESSION['national_idu'];} ?>" />
 									</div>
 								</div>
 								<div class="form-group">
 									<label for="form" class="col-sm-4 control-label">Date Of Birth * :</label>
 									<div class="col-sm-8">
-										<input type="text" id="datepicker" class="form-control datepicker-here" name="birth_date" placeholder="Click date of birth" value="<?php  if (isset($_SESSION['birth_date'])) {echo $_SESSION['birth_date'];} ?>" />
+										<input type="text" id="datepicker" class="form-control datepicker-here" name="birth_dateu" placeholder="Click date of birth" value="<?php  if (isset($_SESSION['birth_dateu'])) {echo $_SESSION['birth_dateu'];} ?>" />
 									</div>
 								</div>
 							</div>
@@ -101,30 +101,30 @@
 								<div class="form-group">
 									<label for="form" class="col-sm-4 control-label">Contact Number :</label>
 									<div class="col-sm-8">
-										<input type="text" class="form-control" id="contact_no" name="contact_no" placeholder="Enter contact number" value="<?php  if (isset($_SESSION['contact_no'])) {echo $_SESSION['contact_no'];} ?>" />
+										<input type="text" class="form-control" id="contact_nou" name="contact_nou" placeholder="Enter contact number" value="<?php  if (isset($_SESSION['contact_nou'])) {echo $_SESSION['contact_nou'];} ?>" />
 									</div>
 								</div>
 								<div class="form-group">
 									<label for="form" class="col-sm-4 control-label">Email Address :</label>
 									<div class="col-sm-8">
-										<input type="text" class="form-control" id="std_email_address" name="std_email_address" placeholder="Enter email address" value="<?php  if (isset($_SESSION['std_email_address'])) {echo $_SESSION['std_email_address'];} ?>" />
+										<input type="text" class="form-control" id="std_email_addressu" name="std_email_addressu" placeholder="Enter email address" value="<?php  if (isset($_SESSION['std_email_addressu'])) {echo $_SESSION['std_email_addressu'];} ?>" />
 									</div>
 								</div>
 								<div class="form-group">
 									<label for="form" class="col-sm-4 control-label">Gender * :</label>
 									<div class="col-sm-8">                                
-										<select class="form-control" id="gender" name="gender">
-											<option value="male">Male</option>
-											<option value="female">Female</option>
+										<select class="form-control" id="genderu" name="genderu">
+											<option value="male" <?php if (isset($_SESSION['genderu']) && $_SESSION['genderu'] == 'male') {echo "selected";} ?> >Male</option>
+											<option value="female" <?php if (isset($_SESSION['genderu']) && $_SESSION['genderu'] == 'female') {echo "selected";} ?> >Female</option>
 										</select>
 									</div>
 								</div>
 								<div class="form-group">
 									<label for="form" class="col-sm-4 control-label">Stream * :</label>
 									<div class="col-sm-8">                                
-										<select class="form-control" id="stream" name="stream">
+										<select class="form-control" id="streamu" name="streamu">
 											<?php foreach($streams as $row): ?>
-												<option value="<?php echo $row['id']; ?>"><?=$row['name']?></option>
+												<option value="<?=$row['id']?>" <?php if (isset($_SESSION['streamu']) && $_SESSION['streamu'] == $row['id']) {echo "selected";} ?> ><?=$row['name']?></option>
 											<?php endforeach; ?>
 										</select>
 									</div>
@@ -132,9 +132,9 @@
 								<div class="form-group">
 									<label for="form" class="col-sm-4 control-label">Class * :</label>
 									<div class="col-sm-8">                                
-										<select class="form-control" id="class" name="class">
+										<select class="form-control" id="classu" name="classu">
 											<?php foreach($classes as $row): ?>
-												<option value="<?php echo $row['id']; ?>"><?=$row['name']?></option>
+												<option value="<?=$row['id']?>" <?php if (isset($_SESSION['classu']) && $_SESSION['classu'] == $row['id']) {echo "selected";} ?> ><?=$row['name']?></option>
 											<?php endforeach; ?>
 										</select>
 									</div>
@@ -142,9 +142,9 @@
 								<div class="form-group">
 									<label for="form" class="col-sm-4 control-label">Class Level * :</label>
 									<div class="col-sm-8">                                
-										<select class="form-control" id="class_level" name="class_level">
+										<select class="form-control" id="class_levelu" name="class_levelu">
 											<?php foreach($class_levels as $row): ?>
-												<option value="<?php echo $row['id']; ?>"><?=$row['name']?></option>
+												<option value="<?=$row['id']?>" <?php if (isset($_SESSION['class_levelu']) && $_SESSION['class_levelu'] == $row['id']) {echo "selected";} ?> ><?=$row['name']?></option>
 											<?php endforeach; ?>
 										</select>
 									</div>

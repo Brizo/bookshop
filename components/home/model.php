@@ -27,7 +27,12 @@
   
   function sumOldBooks() {
 	$conn = openCon();
-	$circulationYears = $_SESSION['bookCirculation'];
+	if (isset($_SESSION['bookCirculation'])) {
+		$circulationYears = $_SESSION['bookCirculation'];
+	} else {
+		$circulationYears = 3;
+	}
+	
 	$current = getTime();
 	$sql = "SELECT COUNT(*) count FROM `book_copies` WHERE FLOOR(DATEDIFF('{$current}', `circulation_date`) / 365) > {$circulationYears}";
 	$result = $conn->query($sql);

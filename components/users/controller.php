@@ -79,6 +79,7 @@
 				unset($_SESSION['first_name']);
         		unset($_SESSION['middle_name']);
 				unset($_SESSION['last_name']);
+				unset($_SESSION['empid']);
 				unset($_SESSION['user_role']);
 				unset($_SESSION['passwordu']);
 				unset($_SESSION['passwordu2']);
@@ -345,7 +346,7 @@
 			if ($removeUserResult) {
 				// log action
 				$action = "Remove user";
-				$description = "User : ".$_SESSION['username'];
+				$description = "User : ".$_SESSION['username'].", Reason : ".$_SESSION['reason'];
 				$logResults = logAction($action, $description);
 
 				unset($_SESSION['id']);

@@ -6,7 +6,7 @@
     <span>BOOK SYSTEM</span>
   </div>
   <div class="col-sm-4">
-    <span class="pull-right">| <?php echo $_SESSION['instance']; ?> <?php echo $_SESSION['version']; ?> | User: <?php echo $_SESSION['loggedUsername']; ?> | Role: <?php echo $_SESSION['loggedRole']; ?> | </span>
+    <span class="pull-right">| <?=$_SESSION['instance']?> v<?=$_SESSION['version']?> | User: <?=$_SESSION['loggedUsername']?> | Role: <?=$_SESSION['loggedRole']?> | </span>
   </div>
 </div>
 <hr />

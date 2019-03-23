@@ -59,7 +59,7 @@
 			VALUES('{$first_name}',
 				'{$middle_name}',
 				'{$last_name}',
-				{$empid}
+				{$empid},
 				'{$username}',
 				'{$password}',
 				'{$user_role}',

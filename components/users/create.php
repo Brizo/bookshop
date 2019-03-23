@@ -34,8 +34,8 @@
 									<label for="form" class="col-sm-4 control-label">Role * :</label>
 									<div class="col-sm-8">                                
 										<select class="form-control" id="user_role" name="user_role">
-											<option value="admin">Admin</option>
-											<option value="normal">Normal</option>
+											<option value="admin" <?php if (isset($_SESSION['user_role']) && $_SESSION['user_role'] == 'admin') {echo "selected";} ?> >Admin</option>
+											<option value="normal" <?php if (isset($_SESSION['user_role']) && $_SESSION['user_role'] == 'normal') {echo "selected";} ?> >Normal</option>
 										</select>
 									</div>
 								</div>

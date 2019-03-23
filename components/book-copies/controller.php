@@ -112,7 +112,7 @@
 			if ($updateBookCopyResult) {
 				// log action
 				$action = "Update book Copy";
-				$description = "Name : ".$_SESSION['book']." Barcode : ".$_SESSION['barCode'];
+				$description = "Name : ".$_SESSION['book'].", Barcode : ".$_SESSION['barCode'];
 				$logResults = logAction($action, $description);
 
 				unset($_SESSION['status']);
@@ -160,7 +160,7 @@
 			if ($removeBookCopyResult) {
 				// log action
 				$action = "Remove book copy";
-				$description = "Name : ".$_SESSION['name']." Id : ".$_SESSION['id'];
+				$description = "Name : ".$_SESSION['name'].", Reason : ".$_SESSION['reason'];
 				$logResults = logAction($action, $description);
 
 				unset($_SESSION['id']);
@@ -179,52 +179,6 @@
 				$_SESSION["message"] = "A database error has occured, please contact system administrator.";
 
 				header("Location: /bookshop?action=delete-book");
-				exit();
-			}
-		}
-	}
-	
-	// replace book
-	if (isset($_POST['replacebookcopy'])) {
-		session_start();
-		$conn = openCon(); // connect to db
-		$_SESSION['reason'] = mysqli_real_escape_string($conn,$_POST['reason']);
-		$_SESSION['newBook'] = mysqli_real_escape_string($conn,$_POST['newBook']);
-		$_SESSION['replaceStudent'] = mysqli_real_escape_string($conn,$_POST['replaceStudent']);
-		closeCon($conn); // disconnect from db
-	
-		// // check fields and throw error if empty
-		if (empty($_SESSION['reason']) || empty($_SESSION['newBook']) || empty($_SESSION['replaceStudent'])) {
-			$_SESSION["alert"] = "danger";
-			$_SESSION["status"] = "Error";
-			$_SESSION["message"] = "Please fill all mandatory information.";
-
-			header("Location: /bookshop?action=replace-book-copy");
-			exit();
-		} else {
-
-			// replace book copy
-			$replanceBookCopyResult = replaceBookCopy($_SESSION['id'], $_SESSION['newBook'], $_SESSION['reason'], $_SESSION['replaceStudent']);
-	
-			if ($removeBookCopyResult) {
-				unset($_SESSION['id']);
-				unset($_SESSION['book']);
-				unset($_SESSION['reason']);
-				unset($_SESSION['newBook']);
-				unset($_SESSION['replaceStudent']);
-				
-                $_SESSION["alert"] = "success";
-                $_SESSION["status"] = "Success";
-                $_SESSION["message"] = "Book Copy Successfully Replaced";
-
-                header("Location: /bookshop?action=book-copies");
-                exit();
-			} else {
-			    $_SESSION["alert"] = "danger";
-				$_SESSION["status"] = "Error";
-				$_SESSION["message"] = "A database error has occured, please contact system administrator.";
-
-				header("Location: /bookshop?action=replace-book");
 				exit();
 			}
 		}

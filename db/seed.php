@@ -1,12 +1,17 @@
 <?php
-    session_start();
-    include $_SERVER['DOCUMENT_ROOT']."/bookshop/config/global_functions.php";
-    $_SESSION["loggedUserId"] = 1;
+    if (session_id() == ''){
+		session_start();
+    }
+    include_once "mysql_conn.php";
+    $_SESSION["instance"] = "Training";
   
     // create variables
     $options = [
         'cost' => 12,
     ];
+    $now = new DateTime();
+    $currDate = $now->format('Y-m-d H:i:s');
+
     $password = password_hash("P@ssw0rd", PASSWORD_BCRYPT, $options);
     $first_name = "Admin";
     $middle_name = "Admin";
@@ -16,8 +21,8 @@
     $user_name = "admin";
     $account_status = 1;
     $password_status = 1;
-    $created_at = getTime();
-    $password_last_modified = getTime();;
+    $created_at = $currDate;
+    $password_last_modified = $currDate;
     $last_modified_by = 1;
     
     //Execute the query
@@ -27,8 +32,8 @@
             VALUES('{$first_name}',
                     '{$middle_name}',
                     '{$last_name}',
-                    {$employee_number},
                     '{$user_name}',
+                    '{$employee_number}',
                     '{$password}',
                     '{$user_role}',
                     {$account_status},
@@ -41,10 +46,7 @@
     $num = mysqli_affected_rows($conn);
 
     if($num > 0) {
-        $action = "Create initial user";
-        $description = $user_name;
-        $logResults = logAction($action, $description);
-        echo "User successfully created";
+        echo "User successfully created ===> Username : admin, Password : P@ssw0rd";
     } else {
         echo "User creation failed";
     }

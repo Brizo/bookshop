@@ -2,20 +2,11 @@
     include $_SERVER['DOCUMENT_ROOT']."/bookshop/components/students/controller.php";
 
     if (isset($_GET['id'])) {
-        $streamId = $_GET['id'];
-        $getStreamResult = getStreamByField("id", $streamId);
-        $stream = mysqli_fetch_array($getStreamResult);
-
-        $_SESSION['name'] = $stream['name'];
-        $_SESSION['id'] = $stream['id'];
-    }
-
-    if (isset($_GET['id'])) {
         $studentId = $_GET['id'];
         $getStudentResult = getStudentByField("id", $studentId);
         $student = mysqli_fetch_array($getStudentResult);
 
-        $_SESSION['name'] = $student['first_name']." ".$student['last_name']
+        $_SESSION['name'] = $student['first_name']." ".$student['last_name'];
         $_SESSION['id'] = $student['id'];
     }
 ?>

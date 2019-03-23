@@ -69,7 +69,7 @@
 
 			header("Location: /bookshop?action=school");
 			exit();
-		} else if (sizeof($_SESSION['barcode_prefix'] != 2) && (sizeof($_SESSION['barcode_prefix']) != 2)) {
+		} else if (strlen($_SESSION['barcode_prefix']) != 2 || strlen($_SESSION['barcode_prefix']) != 2) {
             $_SESSION["alert"] = "danger";
 			$_SESSION["status"] = "Error";
 			$_SESSION["message"] = "Barcode prefix and suffix should be 2 digits.";
@@ -77,6 +77,8 @@
 			header("Location: /bookshop?action=school");
 			exit();
         } else {
+			$_SESSION['barcode_prefix'] = strtoupper($_SESSION['barcode_prefix']);
+			$_SESSION['barcode_suffix'] = strtoupper($_SESSION['barcode_suffix']);
 			// add account
             $addAccountResult = addAccount($_SESSION['name'], $_SESSION['contact_person'], $_SESSION['telephone'], $_SESSION['fax'], $_SESSION['email_address'], 
 				$_SESSION['website'], $_SESSION['postal_address'], $_SESSION['physical_address'], $_SESSION['username_prefix'], $_SESSION['book_circulation'],
@@ -159,7 +161,7 @@
 
 			header("Location: /bookshop?action=school");
 			exit();
-		} else if (strlen($_SESSION['barcode_prefix'] != 2) && (strlen($_SESSION['barcode_prefix']) != 2)) {
+		} else if (strlen($_SESSION['barcode_prefix']) != 2 || strlen($_SESSION['barcode_prefix']) != 2) {
             $_SESSION["alert"] = "danger";
 			$_SESSION["status"] = "Error";
 			$_SESSION["message"] = "Barcode prefix and suffix should be 2 digits.";
@@ -174,6 +176,8 @@
 			header("Location: /bookshop?action=school");
 			exit();
         } else {
+			$_SESSION['barcode_prefix'] = strtoupper($_SESSION['barcode_prefix']);
+			$_SESSION['barcode_suffix'] = strtoupper($_SESSION['barcode_suffix']);
 			// update account
             $updateAccountResult = updateAccount($_SESSION['id'], $_SESSION['aname'], $_SESSION['contact_person'], $_SESSION['telephone'], $_SESSION['fax'], $_SESSION['email_address'], 
 				$_SESSION['website'], $_SESSION['postal_address'], $_SESSION['physical_address'], $_SESSION['username_prefix'], $_SESSION['book_circulation'],

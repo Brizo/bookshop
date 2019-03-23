@@ -121,7 +121,7 @@
 			if ($removebookStateResult) {
 				// log action
 				$action = "Remove book State";
-				$description = "Bookstate : ".$_SESSION['name'];
+				$description = "Bookstate : ".$_SESSION['name'].", Reason : ".$_SESSION['reason'];
 				$logResults = logAction($action, $description);
 				unset($_SESSION['id']);
 				unset($_SESSION['name']);

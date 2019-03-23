@@ -1,9 +1,16 @@
 <?php
-	session_start();
+	if (session_id() == ''){
+		session_start();
+	}
+	
 	include $_SERVER['DOCUMENT_ROOT']."/bookshop/components/school/controller.php";
 	include_once $_SERVER['DOCUMENT_ROOT']."/bookshop/components/authorization/model.php";
 
   if (isset($_POST['local'])) {
+		// instance information
+		$_SESSION['instance'] = "Training";
+		$_SESSION['version'] = "1.0.1";
+
 		// check if db connection string works
 		$conn2 = openCon();
 		if ($conn2->connect_error) {
@@ -47,16 +54,16 @@
 						header("Location: /bookshop");
 						exit();
 					} else {
-						
+						// setup session data to be used by application
 						$_SESSION['loggedRole'] = $userData['user_role'];			    	
 						$_SESSION['loggedUsername'] = $userData['username'];
 						$_SESSION["loggedUserId"] = $userData['id'];
 						$_SESSION["logged"] = true;
+
+						// welcom message
 						$_SESSION["alert"] = "info";
 						$_SESSION["status"] = "Welcome";
 						$_SESSION["message"] = "Logged in successfully, welcome";
-						$_SESSION['instance'] = "Development";
-						$_SESSION['version'] = "1.0.0";
 
 						// get account information
 						$accountExist = accountExist();
@@ -71,8 +78,9 @@
 							$_SESSION["username_prefix"] = $account['username_prefix'];
 						}
 
-						$action = "Login";
-						$description = $_SESSION['username'];
+						// log action
+						$action = "User login";
+						$description = "Username : ".$_SESSION['username'];
 						$logResults = logAction($action, $description);
 
 						unset($_SESSION['username']);

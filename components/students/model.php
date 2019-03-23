@@ -21,7 +21,7 @@
 
 		if ($field == "id" || $field == "class" || $field == "class_level" || $field == "stream" || $field == "status" || $field == "last_modified_by") {
 			$sql = "SELECT S.id, S.first_name, S.middle_name, S.last_name, S.national_id, S.birth_date, S.gender, S.student_no, 
-					C.name class, T.name stream, L.name class_level
+					C.name className, T.name streamName, S.stream, L.name classLevelName, S.class, S.class_level
 				FROM `students` S
 				LEFT JOIN streams T ON S.stream = T.id
 				LEFT JOIN classes C ON S.class = C.id
@@ -29,7 +29,7 @@
 				WHERE S.{$field} = {$value}";
 		} else {
 			$sql = "SELECT S.id, S.first_name, S.middle_name, S.last_name, S.national_id, S.birth_date, S.gender, S.student_no, 
-						C.name class, T.name stream, L.name class_level
+						C.name className, T.name streamName, S.stream, L.name classLevelName, S.class, S.class_level
 					FROM `students` S
 					LEFT JOIN streams T ON S.stream = T.id
 					LEFT JOIN classes C ON S.class = C.id

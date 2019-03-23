@@ -42,6 +42,14 @@
 			$_SESSION['username_prefix'] = $account['username_prefix'];
 		}
 
+		if (!isset($_SESSION['barcode_prefix'])) {
+			$_SESSION['barcode_prefix'] = $account['barcode_prefix'];
+		}
+
+		if (!isset($_SESSION['barcode_suffix'])) {
+			$_SESSION['barcode_suffix'] = $account['barcode_suffix'];
+		}
+
 		if (!isset($_SESSION['book_circulation'])) {
 			$_SESSION['book_circulation'] = $account['book_circulation'];
 		}

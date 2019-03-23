@@ -121,7 +121,7 @@
 			if ($removeStreamResult) {
 				// log action
 				$action = "Remove stream";
-				$description = "Stream : ".$_SESSION['name'];
+				$description = "Stream : ".$_SESSION['name'].", Reason : ".$_SESSION['reason'];
 				$logResults = logAction($action, $description);
 
 				unset($_SESSION['id']);

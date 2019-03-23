@@ -49,7 +49,7 @@
 					<div class="panel-body">                        
                         <form class="form-inline" action="components/reports/controller.php" method="post">
                             <button type="submit" class="btn btn-warning" name="exportStudentStatement"><span class="glyphicon glyphicon-export"></span> &nbsp;&nbsp;Export CSV</button>
-                            <a class="btn btn-warning" data-keyboard="false" href="<?php echo $filename; ?>" target="_blank"><span class="glyphicon glyphicon-ok"></span>&nbsp;Export PDF</a><br /><br />
+                            <a class="btn btn-warning" data-keyboard="false" href="<?php echo $filename; ?>" target="_blank"><span class="glyphicon glyphicon-export"></span>&nbsp;Export PDF</a><br /><br />
                         </form>
                         <br>
                         <table id="stdStatementTable" class="table table-bordered table-hover">

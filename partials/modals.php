@@ -18,13 +18,13 @@
                         <table class="table tabled-borderd">
                           <tr><th>Description</th><td>System for <br> 
                             <ul>
-                                <li>Schook Book Inventory</li>
+                                <li>Managing School Book Inventory</li>
                                 <li>Loaning Books to Students</li>
-                                <li>Auditing Student Book Loans</li>
+                                <li>Auditing and Invoicing Student Book Loans</li>
                             <ul></td></tr>
-                          <tr><th>Developer</th><td>SinaweTech - www.sinawetech.com - 76428722 / 7622476</td></tr>
+                          <tr><th>Supplier</th><td>SinaweTech - www.sinawetech.com - 76428722 / 7622476</td></tr>
                           <tr><th>Launched</th><td>01 March 2019</td></tr>
-                          <tr><th>Version</th><td>1.0.0</td></tr>
+                          <tr><th>Version</th><td><?=$_SESSION['version']?></td></tr>
                         </table>
                       </div>
                     </div>

@@ -3,13 +3,11 @@
 
     if (isset($_GET['id'])) {
         $loanId = $_GET['id'];
-        $getLoanResult = getLoanByField("id", $loanId);
+        $getLoanResult = getBookLoanByField("id", $loanId);
         $loan = mysqli_fetch_array($getLoanResult);
 
         $_SESSION['book'] = $loan['bookName'];
-        // $_SESSION['student'] = $loan['student'];
-        // $_SESSION['issueState'] = $loan['book_issue_state'];
-        // $_SESSION['return_date'] = $loan['return_date'];
+        $_SESSION['client'] = $loan['clientName'];
         $_SESSION['id'] = $loan['id'];
     }
 ?>

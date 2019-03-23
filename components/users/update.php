@@ -56,8 +56,8 @@
                             <label for="form" class="col-sm-4 control-label">Role * :</label>
                             <div class="col-sm-8">                                
                                 <select class="form-control" id="user_role" name="user_role">
-                                    <option value="admin">Admin</option>
-                                    <option value="normal">Normal</option>
+                                    <option value="admin" <?php if (isset($_SESSION['user_role']) && $_SESSION['user_role'] == 'admin') {echo "selected";} ?> >Admin</option>
+                                    <option value="normal" <?php if (isset($_SESSION['user_role']) && $_SESSION['user_role'] == 'normal') {echo "selected";} ?> >Normal</option>
                                 </select>
                             </div>
                         </div>
@@ -65,9 +65,9 @@
                             <label for="form" class="col-sm-4 control-label">Status :</label>
                             <div class="col-sm-8">                                
                                 <select class="form-control" id="status" name="status">
-                                    <option value="0">Skip</option>
-                                    <option value="1">Activate</option>
-                                    <option value="2">Disable</option>
+                                    <option value="0" <?php if (isset($_SESSION['status']) && $_SESSION['status'] == '0') {echo "selected";} ?> >Skip</option>
+                                    <option value="1" <?php if (isset($_SESSION['status']) && $_SESSION['status'] == '1') {echo "selected";} ?> >Activate</option>
+                                    <option value="2" <?php if (isset($_SESSION['status']) && $_SESSION['status'] == '2') {echo "selected";} ?> >Disable</option>
                                 </select>
                             </div>
                         </div>

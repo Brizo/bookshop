@@ -33,7 +33,7 @@
 			if ($addSubjectResult) {
 				// log action
 				$action = "Add subject";
-				$description = "Subject : ".$_SESSION['name'].;
+				$description = "Subject : ".$_SESSION['name'];
 				$logResults = logAction($action, $description);
 
 				unset($_SESSION['name']);
@@ -79,7 +79,7 @@
 			if ($updateSubjectResult) {
 				// log action
 				$action = "Update subject";
-				$description = "Subject : ".$_SESSION['name'].;
+				$description = "Subject : ".$_SESSION['name'];
 				$logResults = logAction($action, $description);
 
 				unset($_SESSION['name']);
@@ -125,7 +125,7 @@
 			if ($removeSubjectResult) {
 				// log action
 				$action = "Remove subject";
-				$description = "Subject : ".$_SESSION['name'].;
+				$description = "Subject : ".$_SESSION['name'].", Reason : ".$_SESSION['reason'];
 				$logResults = logAction($action, $description);
 
 				unset($_SESSION['id']);

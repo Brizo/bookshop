@@ -121,7 +121,7 @@
 			if ($removeClassResult) {
 				// log action
 				$action = "Remove class";
-				$description = "Class : ".$_SESSION['name'];
+				$description = "Class : ".$_SESSION['name'].", Reason : ".$_SESSION['reason'];
 				$logResults = logAction($action, $description);
 
 				unset($_SESSION['id']);

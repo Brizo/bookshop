@@ -34,7 +34,6 @@
 						</tr>
 					</thead>
 					<tbody>
-
 						<?php foreach($loans as $row): ?>
 							<tr>
 								<td><?=$row['clientName']?></td>

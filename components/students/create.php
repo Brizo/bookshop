@@ -98,8 +98,8 @@
 									<label for="form" class="col-sm-4 control-label">Gender * :</label>
 									<div class="col-sm-8">                                
 										<select class="form-control" id="gender" name="gender">
-											<option value="male">Male</option>
-											<option value="female">Female</option>
+											<option value="male" <?php if (isset($_SESSION['gender']) && $_SESSION['gender'] == 'male') {echo "selected";} ?> >Male</option>
+											<option value="female" <?php if (isset($_SESSION['gender']) && $_SESSION['gender'] == 'female') {echo "selected";} ?>>Female</option>
 										</select>
 									</div>
 								</div>
@@ -108,7 +108,7 @@
 									<div class="col-sm-8">                                
 										<select class="form-control" id="stream" name="stream">
 											<?php foreach($streams as $row): ?>
-												<option value="<?php echo $row['id']; ?>"><?=$row['name']?></option>
+												<option value="<?php echo $row['id']; ?>" <?php if (isset($_SESSION['stream']) && $_SESSION['stream'] == $row['id']) {echo "selected";} ?> ><?=$row['name']?></option>
 											<?php endforeach; ?>
 										</select>
 									</div>
@@ -118,7 +118,7 @@
 									<div class="col-sm-8">                                
 										<select class="form-control" id="class" name="class">
 											<?php foreach($classes as $row): ?>
-												<option value="<?php echo $row['id']; ?>"><?=$row['name']?></option>
+												<option value="<?php echo $row['id']; ?>" <?php if (isset($_SESSION['class']) && $_SESSION['class'] == $row['id']) {echo "selected";} ?> ><?=$row['name']?></option>
 											<?php endforeach; ?>
 										</select>
 									</div>
@@ -128,7 +128,7 @@
 									<div class="col-sm-8">                                
 										<select class="form-control" id="class_level" name="class_level">
 											<?php foreach($class_levels as $row): ?>
-												<option value="<?php echo $row['id']; ?>"><?=$row['name']?></option>
+												<option value="<?php echo $row['id']; ?>" <?php if (isset($_SESSION['class_level']) && $_SESSION['class_level'] == $row['id']) {echo "selected";} ?> ><?=$row['name']?></option>
 											<?php endforeach; ?>
 										</select>
 									</div>

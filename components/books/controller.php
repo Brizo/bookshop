@@ -78,7 +78,7 @@
 			if ($addBookResult) {
 				// log action
 				$action = "Add book";
-				$description = "Name : ".$_SESSION['name']." ISBN : ".$_SESSION['isb'];
+				$description = "Name : ".$_SESSION['name'].", ISBN : ".$_SESSION['isb'];
 				$logResults = logAction($action, $description);
 
 				unset($_SESSION['name']);
@@ -177,7 +177,7 @@
 			if ($updateBookResult) {
 				// log action
 				$action = "Update book";
-				$description = "Name : ".$_SESSION['name']." ISBN : ".$_SESSION['isb'];
+				$description = "Name : ".$_SESSION['name'].", ISBN : ".$_SESSION['isb'];
 				$logResults = logAction($action, $description);
 
 				unset($_SESSION['id']);
@@ -229,7 +229,7 @@
 			if ($removeBookResult) {
 				// log action
 				$action = "Remove book";
-				$description = "Name : ".$_SESSION['name']." Id : ".$_SESSION['id'];
+				$description = "Name : ".$_SESSION['name'].", Reason : ".$_SESSION['reason'];
 				$logResults = logAction($action, $description);
 
 				unset($_SESSION['id']);
@@ -309,7 +309,7 @@
 			if ($success) {
 				// log action
 				$action = "Add book copies";
-				$description = "Book : ".$_SESSION['display']." Id : ".$_SESSION['id'];
+				$description = "Book : ".$_SESSION['display'].", Copies : ".$_SESSION['copies'];
 				$logResults = logAction($action, $description);
 
 				unset($_SESSION['id']);

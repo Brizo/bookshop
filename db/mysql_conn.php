@@ -1,11 +1,26 @@
 <?php
-
+	if (session_id() == ''){
+		session_start();
+	}
+	
 	function openCon() {
-		$dbhost = "localhost";
-		$dbuser = "root";
-		$dbpass = "";
-		$db = "book_shop_dev";
-
+		if ($_SESSION['instance'] == "Development") {
+			$dbhost = "localhost";
+			$dbuser = "admin";
+			$dbpass = "P@ssw0rd";
+			$db = "book_shop_dev";
+		} else if ($_SESSION['instance'] == "Training") {
+			$dbhost = "localhost";
+			$dbuser = "admin";
+			$dbpass = "P@ssw0rd";
+			$db = "book_shop_trn";
+		} else {
+			$dbhost = "localhost";
+			$dbuser = "bookshop";
+			$dbpass = "P@ssw0rd@2019";
+			$db = "book_shop_prd";
+		}
+		
 		// $dbhost = "localhost";
 		// $dbuser = "sinawete_bookshop";
 		// $dbpass = "P@ssw0rd@2019";
